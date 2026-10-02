@@ -392,7 +392,13 @@ h1,h2,h3{font-weight:700;letter-spacing:1px}
   color:var(--txt);padding:11px 12px;border-radius:3px;cursor:pointer;transition:.14s;line-height:1.35;
   min-height:44px;
   touch-action:manipulation;
+  display:flex;justify-content:space-between;align-items:center;gap:8px;
 }
+.qbtn .qlabel{flex:1;min-width:0}
+.qbtn .qdelta{font-family:var(--mono);font-size:11px;font-weight:700;white-space:nowrap;flex-shrink:0}
+.qbtn .qdelta.pos{color:var(--amber)}
+.qbtn .qdelta.neg{color:var(--green)}
+.qbtn .qdelta.zero{color:var(--dim)}
 .qbtn:hover{border-color:var(--green-d);color:var(--green);background:#101b21}
 .qbtn.used{opacity:.5}
 .qbtn.lead{border-color:var(--amber);color:var(--amber)}
@@ -467,11 +473,7 @@ ul.plain.red li::before{color:var(--red)}
 .center{text-align:center}
 .mt10{margin-top:10px}.mt16{margin-top:16px}.mt24{margin-top:24px}
 
-/* ==========================================================================
-   RESPONSIVE — MOBILE & TABLET
-   ========================================================================== */
-
-/* Tablets y pantallas medianas */
+/* RESPONSIVE */
 @media (max-width:1080px){
   .interro{grid-template-columns:1fr;gap:12px}
   .suspect-panel{order:1}
@@ -481,8 +483,6 @@ ul.plain.red li::before{color:var(--red)}
   .log{min-height:260px;max-height:44vh}
   .qlist{max-height:none}
 }
-
-/* Móvil grande / tablet pequeña */
 @media (max-width:720px){
   html{font-size:15px}
   main{padding-top:14px}
@@ -507,8 +507,6 @@ ul.plain.red li::before{color:var(--red)}
   .ending-title{letter-spacing:3px}
   .bigscore{letter-spacing:2px}
 }
-
-/* Móvil pequeño */
 @media (max-width:540px){
   html{font-size:14px}
   #topbar{padding:6px 10px;gap:6px}
@@ -523,32 +521,14 @@ ul.plain.red li::before{color:var(--red)}
   .panel-title{font-size:9px;letter-spacing:1.5px;padding-bottom:6px;margin-bottom:10px}
   .btn{padding:12px 14px;font-size:12px;letter-spacing:1.5px}
   .btn.small{padding:7px 10px;font-size:10px}
-
-  /* Tabs con scroll horizontal en móvil */
   .tabs{
-    flex-wrap:nowrap;
-    overflow-x:auto;
-    overflow-y:hidden;
-    -webkit-overflow-scrolling:touch;
-    scrollbar-width:none;
-    padding-bottom:4px;
-    margin-left:-10px;
-    margin-right:-10px;
-    padding-left:10px;
-    padding-right:10px;
-    scroll-snap-type:x proximity;
+    flex-wrap:nowrap;overflow-x:auto;overflow-y:hidden;
+    -webkit-overflow-scrolling:touch;scrollbar-width:none;
+    padding-bottom:4px;margin-left:-10px;margin-right:-10px;
+    padding-left:10px;padding-right:10px;scroll-snap-type:x proximity;
   }
   .tabs::-webkit-scrollbar{display:none}
-  .tab{
-    flex:0 0 auto;
-    font-size:10px;
-    letter-spacing:1px;
-    padding:9px 12px;
-    min-height:42px;
-    scroll-snap-align:start;
-  }
-
-  /* Interrogatorio: layout móvil optimizado */
+  .tab{flex:0 0 auto;font-size:10px;letter-spacing:1px;padding:9px 12px;min-height:42px;scroll-snap-align:start}
   .interro{gap:10px}
   .suspect-panel{padding:12px}
   .suspect-panel .avatar{height:80px;font-size:26px;letter-spacing:2px;margin-bottom:10px}
@@ -562,18 +542,12 @@ ul.plain.red li::before{color:var(--red)}
   .qlist{margin-bottom:12px;max-height:340px}
   .qbtn{font-size:12px;padding:11px;min-height:46px;line-height:1.4}
   .evbtn{font-size:10.5px;padding:11px;min-height:46px;line-height:1.4}
-
-  /* Case cards y suspect cards más compactas */
   .casecard,.scard{padding:12px}
   .casecard .ctitle{font-size:15px;letter-spacing:1px}
   .casecard .cdesc{font-size:12.5px}
   .scard .sname{font-size:13px;letter-spacing:1.5px}
-
-  /* Meters más visibles al tacto */
   .meter{height:10px}
   .mlabel{font-size:9px;letter-spacing:0.5px}
-
-  /* Timeline y evidencia */
   .tl-text{font-size:13px}
   .evcard{padding:10px 11px}
   .evcard .evname{font-size:13px}
@@ -581,32 +555,22 @@ ul.plain.red li::before{color:var(--red)}
   .relmap{font-size:11px;line-height:1.9}
   .file-sec{padding:11px}
   .file-sec .fsbody{font-size:13px}
-
-  /* Transmisiones */
   .tx-item{padding:10px 11px}
   .tx-head{flex-direction:column;align-items:flex-start;gap:2px}
   .tx-time{font-size:12px}
   .tx-body{font-size:12.5px;letter-spacing:0.5px}
-
-  /* Modales */
   #modalRoot{padding:10px}
   .modal{padding:14px;border-radius:5px}
   .modal h3{font-size:12px;letter-spacing:2px}
   .modal .mbody{font-size:13px}
   .modal .mbtns .btn{padding:12px;font-size:12px}
-
-  /* Endings */
   .ending-title{letter-spacing:2px;margin-top:12px}
   .ending-sub{font-size:10px;letter-spacing:2px;margin-bottom:18px}
   .confession{padding:12px;font-size:13px}
   .bigscore{letter-spacing:2px;margin:14px 0 18px}
-
-  /* Toasts */
   #toasts{left:10px;right:10px;bottom:10px;gap:6px}
   .toast{font-size:10.5px;padding:9px 11px;letter-spacing:0.5px}
 }
-
-/* Móvil muy pequeño (iPhone SE, etc.) */
 @media (max-width:380px){
   html{font-size:13px}
   .brand{font-size:9px}
@@ -618,8 +582,6 @@ ul.plain.red li::before{color:var(--red)}
   .log{min-height:180px;max-height:38vh}
   .qbtn,.evbtn{font-size:11px;padding:10px;min-height:42px}
 }
-
-/* Landscape en móvil: layout más horizontal */
 @media (max-width:900px) and (orientation:landscape) and (max-height:500px){
   #topbar{padding-top:4px;padding-bottom:4px}
   .menu-wrap{margin:2vh auto}
@@ -627,14 +589,10 @@ ul.plain.red li::before{color:var(--red)}
   .qlist{max-height:36vh}
   .suspect-panel .avatar{height:60px;font-size:22px}
 }
-
-/* Pantallas grandes: mejor uso de espacio */
 @media (min-width:1600px){
   main{max-width:1600px}
   .grid.cases{grid-template-columns:repeat(auto-fit,minmax(340px,1fr))}
 }
-
-/* Touch: hover más suave, sin sticky hovers */
 @media (hover:none){
   .btn:hover:not(:disabled){transform:none}
   .scard:hover{transform:none;box-shadow:0 6px 20px rgba(0,0,0,.5)}
@@ -643,8 +601,6 @@ ul.plain.red li::before{color:var(--red)}
   .qbtn:hover{border-color:var(--line)}
   .tab:hover{color:var(--dim);border-color:var(--line)}
 }
-
-/* Preferencia de movimiento reducido */
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:0.01ms!important;animation-iteration-count:1!important;transition-duration:0.01ms!important}
   #crt::before{animation:none}
@@ -742,6 +698,7 @@ es:{
   relationships:'MAPA DE RELACIONES',
   relFriend:'AMIGO', relClass:'COMPAÑERA DE CLASE', relAcq:'CONOCIDO', relGirl:'NOVIA',
   relCoworker:'COMPAÑERA DE TRABAJO', relSupervisor:'SUPERVISOR', relFriend2:'AMIGA', relSecurity:'JEFE DE SEGURIDAD',
+  relBestFriend:'MEJOR AMIGO', relFormerFriend:'ANTIGUO AMIGO',
   relHidden:'INFORMACIÓN OCULTA',
   relHiddenText:'Las relaciones marcadas cambian según lo que descubras. Interroga a cada sospechoso para revelar los vínculos reales.',
 
@@ -775,6 +732,7 @@ es:{
   falseAccusation:'FALSA ACUSACIÓN DESCUBIERTA',
   irrelevant:'PREGUNTA REPETIDA — SIN NUEVA INFORMACIÓN',
   panicRise:'EL PÁNICO AUMENTA',
+  panicDrop:'EL PÁNICO DISMINUYE',
   scorePlus:'+{n} PUNTOS',
   scoreMinus:'{n} PUNTOS',
   transmissionDecoded:'TRANSMISIÓN DESCIFRADA',
@@ -785,8 +743,10 @@ es:{
   instList:[
     'Selecciona un caso desde la BASE DE DATOS DE CASOS.',
     'Interroga a los sospechosos libremente, en cualquier orden.',
-    'Cada pregunta puede aumentar el PÁNICO del sospechoso.',
+    'Cada pregunta puede aumentar, mantener o reducir el PÁNICO del sospechoso.',
     'Cuando el pánico sube, cambian su historia, se contradicen y revelan cosas.',
+    'Cuando el pánico baja, se calman y pueden confiar más en ti.',
+    'Algunas preguntas solo aparecen si el pánico está dentro de cierto rango.',
     'Descubrirás EVIDENCIA al presionar a los sospechosos en los momentos correctos.',
     'Usa el panel CONFRONTAR para mostrarle a un sospechoso una prueba concreta.',
     'Algunas pruebas generan CONTRADICCIONES. Una contradicción prueba que alguien mintió.',
@@ -857,7 +817,12 @@ es:{
   cameraLabel:'CÁMARA',
   securityRoomLabel:'SALA DE SEGURIDAD',
   footageDesc:'Descripción de grabación',
-  noFootage:'Sin grabación disponible.'
+  noFootage:'Sin grabación disponible.',
+  pressureBalance:'PRESSURE BALANCE',
+  pressureBalanceHint:'A veces necesitas bajar el pánico antes de poder obtener más información. Usa preguntas calmantes.',
+  panicLow:'PÁNICO BAJO',
+  panicMid:'PÁNICO MEDIO',
+  panicHigh:'PÁNICO ALTO'
 },
 en:{
   langName:'English',
@@ -914,6 +879,7 @@ en:{
   relationships:'RELATIONSHIP MAP',
   relFriend:'FRIEND', relClass:'CLASSMATE', relAcq:'ACQUAINTANCE', relGirl:'GIRLFRIEND',
   relCoworker:'COWORKER', relSupervisor:'SUPERVISOR', relFriend2:'FRIEND', relSecurity:'SECURITY OFFICER',
+  relBestFriend:'BEST FRIEND', relFormerFriend:'FORMER FRIEND',
   relHidden:'HIDDEN INFORMATION',
   relHiddenText:'Marked relationships change as you discover more. Interrogate each suspect to reveal the real connections.',
 
@@ -947,6 +913,7 @@ en:{
   falseAccusation:'FALSE ACCUSATION DISCOVERED',
   irrelevant:'REPEATED QUESTION — NO NEW INFORMATION',
   panicRise:'PANIC RISES',
+  panicDrop:'PANIC DROPS',
   scorePlus:'+{n} POINTS',
   scoreMinus:'{n} POINTS',
   transmissionDecoded:'TRANSMISSION DECODED',
@@ -957,8 +924,10 @@ en:{
   instList:[
     'Select a case from the CASE DATABASE.',
     'Interrogate suspects freely, in any order.',
-    'Every question may raise the suspect\'s PANIC.',
+    'Every question may raise, maintain or reduce the suspect\'s PANIC.',
     'As panic rises, they change their story, contradict themselves and reveal things.',
+    'As panic drops, they calm down and may trust you more.',
+    'Some questions only appear if panic is within a certain range.',
     'You will discover EVIDENCE by pressing suspects at the right moments.',
     'Use the CONFRONT panel to show a suspect a specific piece of evidence.',
     'Some pieces of evidence generate CONTRADICTIONS. A contradiction proves someone lied.',
@@ -1029,7 +998,12 @@ en:{
   cameraLabel:'CAMERA',
   securityRoomLabel:'SECURITY ROOM',
   footageDesc:'Footage description',
-  noFootage:'No footage available.'
+  noFootage:'No footage available.',
+  pressureBalance:'PRESSURE BALANCE',
+  pressureBalanceHint:'Sometimes you need to lower panic before you can get more information. Use calming questions.',
+  panicLow:'LOW PANIC',
+  panicMid:'MEDIUM PANIC',
+  panicHigh:'HIGH PANIC'
 }};
 function t(k){ const d=I18N[gameState.lang]||I18N.es; return (d[k]!==undefined?d[k]:(I18N.es[k]!==undefined?I18N.es[k]:k)); }
 function L(o){ if(o===null||o===undefined) return ''; if(typeof o==='string') return o; return o[gameState.lang]||o.es||''; }
@@ -2713,23 +2687,1006 @@ const CASE002 = {
 };
 
 /* ============================================================================
-   4. CASE REGISTRY
+   4. CASE #003 — THE SILENT ROOM / LA HABITACIÓN SILENCIOSA
+   ============================================================================ */
+const CASE003 = {
+  id:'case003',
+  number:'003',
+  title:{ es:'LA HABITACIÓN SILENCIOSA', en:'THE SILENT ROOM' },
+  shortTitle:{ es:'Elena Moore', en:'Elena Moore' },
+  description:{
+    es:'Una estudiante desaparece después de enviar un mensaje críptico. Su teléfono aparece dentro de una habitación cerrada desde el exterior, sin señales de entrada forzada.',
+    en:'A student disappears after sending a cryptic message. Her phone is found inside a room locked from the outside, with no signs of forced entry.'
+  },
+  accent:'#4fc3f7',
+  murderer:'olivia',
+  minEvidence:6, minContradictions:2,
+
+  victim:{
+    name:'Elena Moore', age:18,
+    statusKey:'missing',
+    occ:{es:'ESTUDIANTE',en:'STUDENT'},
+    interests:{es:'Literatura, fotografía, resolver acertijos. Le gustaba observar a la gente.',en:'Literature, photography, solving puzzles. She liked watching people.'},
+    personality:{es:'Reservada, observadora, desconfiada. Anotaba todo en un cuaderno que nunca mostraba.',en:'Reserved, observant, distrustful. She wrote everything down in a notebook she never showed anyone.'},
+    lastAct:{es:'Entró a la habitación 204 del Centro de Estudios Ashford a las 10:00 PM. Nadie la vio salir.',en:'Entered room 204 at the Ashford Study Center at 10:00 PM. No one saw her leave.'},
+    lastMsg:{es:'"Si mañana no aparezco, no confíes en la primera versión."',en:'"If I don\'t show up tomorrow, don\'t trust the first version."'},
+    estTime:{es:'10:00 PM — 11:45 PM',en:'10:00 PM — 11:45 PM'},
+    lastLoc:{es:'Habitación 204, Centro de Estudios Ashford.',en:'Room 204, Ashford Study Center.'},
+    unknown:{es:'• Paradero de Elena Moore.\n• A quién esperaba en la habitación 204.\n• Por qué la puerta estaba cerrada por fuera.\n• Qué contenía el cuaderno que siempre llevaba encima.',
+             en:'• Whereabouts of Elena Moore.\n• Who she was waiting for in room 204.\n• Why the door was locked from the outside.\n• What was in the notebook she always carried.'},
+    story:{es:'Elena Moore, 18 años, estudiante, desapareció la noche del 14. Envió un mensaje a su mejor amigo: "Si mañana no aparezco, no confíes en la primera versión." Su teléfono fue hallado a la mañana siguiente dentro de la habitación 204, sobre una mesa, junto a su cuaderno. La puerta estaba cerrada por fuera. No había señales de entrada forzada. La policía inicialmente consideró que Elena había abandonado el lugar voluntariamente, pero varias pruebas no coinciden con esa teoría.',
+           en:'Elena Moore, 18, student, disappeared the night of the 14th. She sent a message to her best friend: "If I don\'t show up tomorrow, don\'t trust the first version." Her phone was found the next morning inside room 204, on a table, next to her notebook. The door was locked from the outside. There were no signs of forced entry. Police initially considered that Elena had left voluntarily, but several pieces of evidence do not match that theory.'}
+  },
+
+  suspects:{
+    nathan:{
+      id:'nathan', name:'NATHAN COLE', age:19, initials:'NC', color:'#2bff9e',
+      rel:{es:'MEJOR AMIGO',en:'BEST FRIEND'}, relKey:'relBestFriend',
+      answers:{
+        q_where:{panic:5, es:[
+          "Estaba en mi casa jugando. Toda la noche. Puedo mostrarte mi historial de Steam.",
+          "En mi casa. Jugando. Ya te dije.",
+          "Bueno... salí un rato. Como a las 10:30. Pero volví rápido.",
+          "Salí. Sí. Salí a caminar. No vi a Elena. Estaba enojado con ella, pero no la vi.",
+          "Salí porque ella me había escrito algo raro antes. Fui al Centro de Estudios, miré por la ventana, no vi nada. Me fui. Eso es todo."],
+          en:[
+          "I was at home gaming. All night. I can show you my Steam history.",
+          "At home. Gaming. I told you.",
+          "Well... I went out for a bit. Around 10:30. But I came back quick.",
+          "I went out. Yes. I went for a walk. I didn't see Elena. I was angry with her, but I didn't see her.",
+          "I went out because she had texted me something strange earlier. I went to the Study Center, looked through the window, saw nothing. I left. That's all."]},
+        q_lastseen:{panic:8, es:[
+          "La vi ayer en la tarde. Estaba distraída. Me dijo que estaba investigando algo.",
+          "Ayer en la tarde. Ella estaba escribiendo en su cuaderno.",
+          "La vi ayer. Me dijo que necesitaba hablar conmigo esa noche. Pero nunca apareció.",
+          "La vi a las 6:00 PM. Me dijo 'si algo me pasa, revisa el cuaderno'. Le dije que estaba exagerando.",
+          "La vi a las 6:00 PM. Me pidió que fuera al Centro de Estudios a las 10:30. No fui. Llegué tarde. Cuando llegué, la puerta estaba cerrada y no había nadie."],
+          en:[
+          "I saw her yesterday afternoon. She was distracted. She told me she was investigating something.",
+          "Yesterday afternoon. She was writing in her notebook.",
+          "I saw her yesterday. She told me she needed to talk to me that night. But she never showed up.",
+          "I saw her at 6:00 PM. She told me 'if anything happens to me, check the notebook'. I told her she was overreacting.",
+          "I saw her at 6:00 PM. She asked me to come to the Study Center at 10:30. I didn't go. I arrived late. When I got there, the door was closed and no one was there."]},
+        q_relation:{panic:3, es:["Elena era mi mejor amiga. Desde primero de secundaria. Hablábamos todos los días."],
+          en:["Elena was my best friend. Since middle school. We talked every day."]},
+        q_others:{panic:5, es:["Conozco a Claire de la escuela. A Ryan no lo conozco bien. A Olivia la vi algunas veces con Elena."],
+          en:["I know Claire from school. Ryan I don't know well. Olivia I saw a few times with Elena."]},
+        q_motive:{panic:12, es:[
+          "¿Motivo? Ninguno. Elena era mi mejor amiga.",
+          "No. Discutimos ese día, sí, pero por tonterías.",
+          "Discutimos. Ella me dijo que estaba metida en algo peligroso y no me quiso decir qué. Yo me enojé. Le dije que no me hablara más.",
+          "Discutimos fuerte. Le dije cosas que no debía. Pero no la haría daño. Nunca.",
+          "Ella me contó que Olivia le había dicho algo raro sobre Ryan. Yo le dije que no confiara en Olivia. Se enojó. Me dijo que yo no entendía nada."],
+          en:[
+          "Motive? None. Elena was my best friend.",
+          "No. We argued that day, yes, but about stupid stuff.",
+          "We argued. She told me she was into something dangerous and she wouldn't tell me what. I got angry. I told her not to talk to me anymore.",
+          "We argued badly. I said things I shouldn't have. But I would never hurt her. Never.",
+          "She told me Olivia had told her something strange about Ryan. I told her not to trust Olivia. She got angry. She told me I didn't understand anything."]},
+        q_2200:{panic:8, es:[
+          "A las 10:00 PM estaba en mi casa. Jugando.",
+          "En mi casa, en mi cuarto.",
+          "Ya te dije. En mi casa.",
+          "En mi casa hasta las 10:30. Después salí.",
+          "A las 10:00 PM estaba en mi casa. A las 10:35 salí. Llegué al Centro de Estudios a las 10:50. La puerta de la habitación 204 estaba cerrada. Me fui."],
+          en:[
+          "At 10:00 PM I was at home. Gaming.",
+          "At home, in my room.",
+          "I told you. At home.",
+          "At home until 10:30. Then I went out.",
+          "At 10:00 PM I was at home. At 10:35 I went out. I got to the Study Center at 10:50. The door to room 204 was closed. I left."]},
+        q_hiding:{panic:10, es:[
+          "No escondo nada.",
+          "Nada importante.",
+          "Escondo que salí esa noche. Pero ya lo dije.",
+          "Escondo que discutimos fuerte ese día. Y que ella me había pedido que fuera al Centro. Y yo no fui.",
+          "Escondo que cuando llegué a la habitación, escuché voces adentro. Me asusté y me fui. No llamé a nadie. Eso es lo que escondo."],
+          en:[
+          "I'm not hiding anything.",
+          "Nothing important.",
+          "I'm hiding that I went out that night. But I already said that.",
+          "I'm hiding that we argued badly that day. And that she had asked me to come to the Center. And I didn't go.",
+          "I'm hiding that when I got to the room, I heard voices inside. I got scared and left. I didn't call anyone. That's what I'm hiding."]},
+        q_message:{panic:8, es:[
+          "Me escribió a las 9:45. 'Si mañana no aparezco, no confíes en la primera versión.' Nunca entendí qué quería decir.",
+          "Me escribió algo raro. Ya te lo dije.",
+          "Me escribió a las 9:45. Me dijo que si no aparecía, no confiara en la primera versión.",
+          "Me escribió a las 9:45 y a las 10:00 me mandó otra cosa: 'La puerta se cierra por fuera. No te asustes.'",
+          "Me escribió a las 9:45 y a las 10:00 me mandó otra cosa. Y a las 10:15 me escribió de nuevo. Dijo: 'Olivia está aquí. No me esperaba a ella.' Y después, nada."],
+          en:[
+          "She texted me at 9:45. 'If I don't show up tomorrow, don't trust the first version.' I never understood what she meant.",
+          "She texted me something strange. I told you.",
+          "She texted me at 9:45. She told me if she didn't show up, not to trust the first version.",
+          "She texted me at 9:45 and at 10:00 sent me something else: 'The door locks from the outside. Don't be scared.'",
+          "She texted me at 9:45 and at 10:00 sent me something else. And at 10:15 she texted again. She said: 'Olivia is here. I wasn't expecting her.' And then nothing."]},
+        q_who:{panic:8, es:[
+          "No lo sé. De verdad.",
+          "No puedo decir un nombre así nada más.",
+          "Claire. Claire estaba rara esa semana.",
+          "Ryan. Ryan le había dicho cosas horribles la semana pasada. Y esa noche estaba por la zona.",
+          "No puedo probarlo. Pero Elena me dijo que Olivia le había preguntado cosas sobre su cuaderno. Y que le dio miedo cómo lo preguntó. Y a las 10:15 me escribió que Olivia estaba en la habitación."],
+          en:[
+          "I don't know. Really.",
+          "I can't give a name just like that.",
+          "Claire. Claire was weird that week.",
+          "Ryan. Ryan had said horrible things to her last week. And that night he was in the area.",
+          "I can't prove it. But Elena told me Olivia had asked her questions about her notebook. And that she was scared by how she asked. And at 10:15 she texted me that Olivia was in the room."]},
+        q_calm_down:{panic:-15, es:[
+          "…está bien. Está bien. Respira.",
+          "Sí. Sí, puedo hacer eso. Gracias.",
+          "Perdón. No debí gritarte. Es que llevo tres días sin dormir.",
+          "Tienes razón. Estoy muy nervioso. Pero quiero ayudar. De verdad quiero ayudar.",
+          "Gracias. Necesitaba eso. Ok. Empecemos de nuevo."],
+          en:[
+          "…fine. Fine. Breathe.",
+          "Yes. Yes, I can do that. Thank you.",
+          "Sorry. I shouldn't have yelled. It's just... I haven't slept in three days.",
+          "You're right. I'm very nervous. But I want to help. I really want to help.",
+          "Thank you. I needed that. Okay. Let's start over."]},
+        q_trust:{panic:-10, es:[
+          "…gracias. Sí, quiero ayudar.",
+          "Está bien. Pregúntame lo que necesites.",
+          "Aprecio eso. De verdad.",
+          "No tienes que convencerme. Ya te estoy diciendo todo.",
+          "Gracias. Es que a veces siento que todos me miran a mí. Y yo solo quiero que aparezca."],
+          en:[
+          "…thank you. Yes, I want to help.",
+          "Okay. Ask me what you need.",
+          "I appreciate that. Really.",
+          "You don't have to convince me. I'm already telling you everything.",
+          "Thank you. It's just that sometimes I feel like everyone is looking at me. And I just want her to be found."]},
+        q_nathan_online:{panic:15, reqEv:'E03', es:[
+          "No sé qué decir. Sí, salí. Pero no estuve en la habitación.",
+          "Está bien. Mi conexión se cayó. Salí. Ya lo dije.",
+          "Mira... tuve una desconexión de tres minutos. Estaba reiniciando el router. No fui a ningún lado.",
+          "Está bien. Salí. Salí a caminar. Estaba enojado. Pero no entré al edificio.",
+          "Salí porque ella me había mandado un mensaje raro. Fui al Centro. Vi la puerta cerrada. Escuché voces. Me fui. Eso es todo."],
+          en:[
+          "I don't know what to say. Yes, I went out. But I wasn't in the room.",
+          "Fine. My connection dropped. I went out. I already said that.",
+          "Look... I had a three-minute disconnection. I was restarting the router. I didn't go anywhere.",
+          "Fine. I went out. I went for a walk. I was angry. But I didn't enter the building.",
+          "I went out because she had sent me a strange message. I went to the Center. I saw the closed door. I heard voices. I left. That's all."]},
+        q_contradiction:{panic:15, cond:'contradictions', es:[
+          "No sé de qué contradicción hablas.",
+          "Mi historial de conexión no dice dónde estaba. Dice cuándo estaba conectado.",
+          "Está bien. Sí, salí. Sí, mi conexión se cayó. Pero no entré a la habitación.",
+          "Ya te dije que salí. Ya te dije que escuché voces. ¿Qué más quieres?",
+          "Fui al Centro. Me paré frente a la puerta. Escuché voces —dos, creo—. No abrí. Me fui. Cuando volví al día siguiente, ya estaba la policía."],
+          en:[
+          "I don't know what contradiction you're talking about.",
+          "My connection history doesn't say where I was. It says when I was connected.",
+          "Fine. Yes, I went out. Yes, my connection dropped. But I didn't enter the room.",
+          "I already told you I went out. I already told you I heard voices. What else do you want?",
+          "I went to the Center. I stood in front of the door. I heard voices —two, I think—. I didn't open it. I left. When I came back the next day, the police were already there."]},
+        q_file:{panic:12, reqEv:'E08', es:[
+          "¿El cuaderno? Elena siempre lo llevaba con ella. Nunca me dejó leerlo.",
+          "Sé que escribía cosas ahí. Cosas que no decía en voz alta.",
+          "El cuaderno era su diario. Me dijo una vez que ahí guardaba 'la verdad sin editar'. Nunca me dejó verlo.",
+          "En el cuaderno anotaba todo. Horarios. Nombres. Cosas que la gente le decía. Yo siempre pensé que era su forma de protegerse.",
+          "El cuaderno tiene las respuestas. Yo lo sé. Pero yo nunca lo abrí. Y ahora no puedo, porque está en evidencia."],
+          en:[
+          "The notebook? Elena always carried it with her. She never let me read it.",
+          "I know she wrote things there. Things she didn't say out loud.",
+          "The notebook was her diary. She told me once she kept 'the unedited truth' in there. She never let me see it.",
+          "In the notebook she wrote everything down. Schedules. Names. Things people told her. I always thought it was her way of protecting herself.",
+          "The notebook has the answers. I know it does. But I never opened it. And now I can't, because it's in evidence."]},
+        q_lead_olivia:{panic:18, reqLead:'L1', es:[
+          "No dije que Olivia lo hizo. Dije que Elena me escribió que Olivia estaba en la habitación.",
+          "Que Olivia estuviera ahí no significa que ella la hizo desaparecer.",
+          "Solo sé lo que Elena me escribió. 'Olivia está aquí. No me esperaba a ella.' Eso es todo.",
+          "Bueno... y también me dijo que Olivia le había preguntado por el cuaderno. Varias veces. Y que le incomodaba cómo lo preguntaba.",
+          "Si quieres mi opinión, sí. Creo que Olivia sabía algo. Elena me dijo que Olivia le preguntó si había escrito algo sobre Ryan. Y que cuando Elena dijo 'no', Olivia se rió."],
+          en:[
+          "I didn't say Olivia did it. I said Elena texted me that Olivia was in the room.",
+          "Olivia being there doesn't mean she made her disappear.",
+          "I only know what Elena texted me. 'Olivia is here. I wasn't expecting her.' That's all.",
+          "Well... she also told me Olivia had asked her about the notebook. Several times. And that she was uncomfortable with how she asked.",
+          "If you want my opinion, yes. I think Olivia knew something. Elena told me Olivia asked her if she had written anything about Ryan. And when Elena said 'no', Olivia laughed."]},
+        q_lead_claire:{panic:16, reqLead:'L2', es:[
+          "Claire me cae bien. Pero es demasiado perfecta. Nunca se equivoca. Nunca se enoja.",
+          "Claire dice que estuvo estudiando. Pero yo la vi caminando por la zona esa noche.",
+          "Claire... mira, no quiero acusarla. Pero Elena me dijo una vez que Claire le había pedido que le mostrara el cuaderno. Y Elena le dijo que no.",
+          "Yo vi a Claire esa noche. Iba caminando cerca del Centro de Estudios como a las 9:45.",
+          "Claire me dijo que no sabía nada. Pero ella fue la última persona además de mí que estuvo con Elena en la escuela ese día. Y Elena me dijo que Claire había estado rara."],
+          en:[
+          "Claire is nice. But she's too perfect. She never makes mistakes. Never gets angry.",
+          "Claire says she was studying. But I saw her walking around the area that night.",
+          "Claire... look, I don't want to accuse her. But Elena told me once that Claire had asked to see her notebook. And Elena said no.",
+          "I saw Claire that night. She was walking near the Study Center around 9:45.",
+          "Claire told me she knew nothing. But she was the last person besides me who was with Elena at school that day. And Elena told me Claire had been acting strange."]}
+      }
+    },
+
+    claire:{
+      id:'claire', name:'CLAIRE MORGAN', age:18, initials:'CM', color:'#b47bff',
+      rel:{es:'COMPAÑERA DE CLASE',en:'CLASSMATE'}, relKey:'relClass',
+      answers:{
+        q_where:{panic:6, es:[
+          "Estudiando. En la biblioteca.",
+          "En la biblioteca. Hasta tarde.",
+          "En la biblioteca hasta las 9:30. Después me fui a casa.",
+          "En la biblioteca hasta las 9:30. Después caminé un rato. Necesitaba aire.",
+          "En la biblioteca hasta las 9:30. Caminé hasta las 10:15. Pasé cerca del Centro de Estudios. Pero no entré."],
+          en:[
+          "Studying. At the library.",
+          "At the library. Until late.",
+          "At the library until 9:30. Then I went home.",
+          "At the library until 9:30. Then I walked for a while. I needed air.",
+          "At the library until 9:30. I walked until 10:15. I passed near the Study Center. But I didn't go in."]},
+        q_lastseen:{panic:8, es:[
+          "La vi esa tarde, en la escuela.",
+          "La vi en la escuela. Estaba escribiendo en su cuaderno.",
+          "La vi en la escuela. Estaba rara. Me evitó.",
+          "La vi en la escuela. Me dijo algo extraño: 'si me preguntan, no digas que viste mi cuaderno'.",
+          "La vi en la escuela a las 5:00 PM. Me pidió que no dijera que ella estaba investigando algo. Y me dijo que si le pasaba algo, buscara a Olivia. No sé por qué Olivia."],
+          en:[
+          "I saw her that afternoon, at school.",
+          "I saw her at school. She was writing in her notebook.",
+          "I saw her at school. She was strange. She avoided me.",
+          "I saw her at school. She said something strange: 'if they ask, don't say you saw my notebook'.",
+          "I saw her at school at 5:00 PM. She asked me not to say she was investigating something. And she told me if anything happened to her, to look for Olivia. I don't know why Olivia."]},
+        q_relation:{panic:3, es:["Compañeras de clase. Nos sentábamos juntas. Pero no éramos amigas cercanas."],
+          en:["Classmates. We sat together. But we weren't close friends."]},
+        q_others:{panic:5, es:["Conozco a Nathan, es el mejor amigo de Elena. A Ryan lo conozco de vista. A Olivia la vi un par de veces."],
+          en:["I know Nathan, he's Elena's best friend. Ryan I know by sight. Olivia I saw a couple of times."]},
+        q_motive:{panic:12, es:[
+          "¿Motivo? Ninguno. Yo no le haría daño a Elena.",
+          "No. Teníamos una relación normal. De compañeras.",
+          "Ella me pidió que le consiguiera el registro de accesos de la biblioteca. Se lo conseguí. No pregunté para qué.",
+          "Ella quería el registro porque creía que alguien había entrado a su casa. Alguien que tenía la llave. Y estaba averiguando quién.",
+          "Ella me dijo que Olivia había entrado a su casa. Yo no le creí al principio. Pero después vi a Olivia saliendo del edificio de Elena. Y no le dije nada a nadie."],
+          en:[
+          "Motive? None. I wouldn't hurt Elena.",
+          "No. We had a normal relationship. Classmates.",
+          "She asked me to get her the library access log. I got it. I didn't ask why.",
+          "She wanted the log because she believed someone had entered her house. Someone who had a key. And she was figuring out who.",
+          "She told me Olivia had entered her house. I didn't believe her at first. But then I saw Olivia leaving Elena's building. And I didn't tell anyone."]},
+        q_2200:{panic:8, es:[
+          "A las 10:00 PM ya estaba en mi casa.",
+          "En mi casa.",
+          "Caminando hacia mi casa. Ya te dije.",
+          "Caminando por la zona. Ya te dije.",
+          "A las 10:00 PM estaba caminando. Pasé cerca del Centro. Vi a alguien entrar. No me detuve. No quería meterme en problemas."],
+          en:[
+          "At 10:00 PM I was already home.",
+          "At home.",
+          "Walking home. I told you.",
+          "Walking around the area. I told you.",
+          "At 10:00 PM I was walking. I passed near the Center. I saw someone go in. I didn't stop. I didn't want to get into trouble."]},
+        q_hiding:{panic:10, es:[
+          "No.",
+          "Nada que importe.",
+          "Escondo que cambié un detalle. Dije que llegué a casa a las 9:30. En realidad llegué a las 10:30.",
+          "Escondo que pasé cerca del Centro. Y que vi a alguien. Pero no quiero que me arrastren a esto.",
+          "Escondo que vi a Olivia entrando al Centro de Estudios esa noche. Con una llave. No con la puerta abierta. Con una llave."],
+          en:[
+          "No.",
+          "Nothing that matters.",
+          "I'm hiding that I changed a detail. I said I got home at 9:30. I actually got home at 10:30.",
+          "I'm hiding that I passed near the Center. And that I saw someone. But I don't want to be dragged into this.",
+          "I'm hiding that I saw Olivia entering the Study Center that night. With a key. Not with the door open. With a key."]},
+        q_message:{panic:8, es:[
+          "Elena no me escribió esa noche.",
+          "No me escribió. Ya te dije.",
+          "No me escribió. Hablamos en persona esa tarde.",
+          "No me escribió. Pero me dijo algo esa tarde: 'si te preguntan por mí, di que no sabes nada'. Y me asusté.",
+          "No me escribió. Pero me dijo 'si algo me pasa, va a parecer que me fui por mi cuenta'. Y me pidió que no confiara en la primera versión."],
+          en:[
+          "Elena didn't text me that night.",
+          "She didn't text me. I told you.",
+          "She didn't text me. We talked in person that afternoon.",
+          "She didn't text me. But she told me something that afternoon: 'if they ask about me, say you know nothing'. And I got scared.",
+          "She didn't text me. But she told me 'if anything happens to me, it will look like I left on my own'. And she asked me not to trust the first version."]},
+        q_who:{panic:8, es:[
+          "No lo sé.",
+          "No voy a dar un nombre sin pruebas.",
+          "Ryan. Ryan le había hecho cosas horribles a Elena la semana pasada.",
+          "Ryan estaba por la zona esa noche. Y le tenía rencor a Elena. Le había dicho que 'iba a lamentarlo'.",
+          "No lo sé con certeza. Pero vi a Olivia entrar al Centro con una llave. Y Elena me dijo que no confiara en la primera versión. Esas dos cosas juntas me dan miedo."],
+          en:[
+          "I don't know.",
+          "I won't give a name without proof.",
+          "Ryan. Ryan had done horrible things to Elena last week.",
+          "Ryan was in the area that night. And he held a grudge against Elena. He had told her she would 'regret it'.",
+          "I don't know for sure. But I saw Olivia enter the Center with a key. And Elena told me not to trust the first version. Those two things together scare me."]},
+        q_calm_down:{panic:-15, es:[
+          "…gracias. Perdón. Es que no quiero que me vean como sospechosa.",
+          "Está bien. Está bien. Hablaré con calma.",
+          "Perdón. No debí ponerme defensiva. Es solo que esto me supera.",
+          "Tienes razón. Voy a respirar. Pregúntame lo que quieras.",
+          "Gracias. A veces me bloqueo. Pero quiero ayudar. De verdad."],
+          en:[
+          "…thank you. Sorry. It's just that I don't want to be seen as a suspect.",
+          "Okay. Okay. I'll speak calmly.",
+          "Sorry. I shouldn't have gotten defensive. It's just that this is overwhelming.",
+          "You're right. I'm going to breathe. Ask me whatever you need.",
+          "Thank you. Sometimes I freeze. But I want to help. I really do."]},
+        q_trust:{panic:-10, es:[
+          "…aprecio eso.",
+          "Está bien. Confío en ti.",
+          "Gracias. No me lo esperaba.",
+          "Está bien. Yo también quiero que aparezca.",
+          "Gracias. A veces siento que todos aquí me miran como si yo lo hubiera hecho."],
+          en:[
+          "…I appreciate that.",
+          "Okay. I trust you.",
+          "Thank you. I wasn't expecting that.",
+          "Okay. I want her to be found too.",
+          "Thank you. Sometimes I feel like everyone here is looking at me like I did it."]},
+        q_claire_changed:{panic:12, reqEv:'E04', es:[
+          "Ya te dije que cambié un detalle. Pero era porque tenía miedo.",
+          "Sí. Cambié la hora. No quería que me vieran cerca del Centro.",
+          "Está bien. Mentí. Llegué a casa a las 10:30, no a las 9:30. Estuve caminando por la zona.",
+          "Llegué a casa a las 10:30. Estuve caminando. Vi a alguien entrando al Centro. Y me asusté. Por eso cambié la hora.",
+          "Sí. Salí de la biblioteca a las 9:30. Caminé hasta las 10:15. Vi a Olivia entrando al Centro con una llave. Y me fui corriendo a mi casa."],
+          en:[
+          "I already told you I changed a detail. But it was because I was scared.",
+          "Yes. I changed the time. I didn't want to be seen near the Center.",
+          "Fine. I lied. I got home at 10:30, not 9:30. I was walking around the area.",
+          "I got home at 10:30. I was walking. I saw someone entering the Center. And I got scared. That's why I changed the time.",
+          "Yes. I left the library at 9:30. I walked until 10:15. I saw Olivia entering the Center with a key. And I ran home."]},
+        q_contradiction:{panic:15, cond:'contradictions', es:[
+          "No veo ninguna contradicción.",
+          "Cambié detalles porque tenía miedo. Eso es todo.",
+          "Sí, cambié mi historia. Porque si digo la verdad, quedo como sospechosa. Y yo no hice nada.",
+          "Sí. Cambié la hora. Estuve caminando. Vi a alguien entrar al Centro. Me asusté. Y me fui.",
+          "Está bien. Vi a Olivia entrar al Centro a las 10:00 PM. Con una llave. Y yo me fui. No le dije a nadie porque tenía miedo."],
+          en:[
+          "I don't see any contradiction.",
+          "I changed details because I was scared. That's all.",
+          "Yes, I changed my story. Because if I tell the truth, I look like a suspect. And I didn't do anything.",
+          "Yes. I changed the time. I was walking. I saw someone entering the Center. I got scared. And I left.",
+          "Fine. I saw Olivia enter the Center at 10:00 PM. With a key. And I left. I didn't tell anyone because I was scared."]},
+        q_file:{panic:12, reqEv:'E08', es:[
+          "El cuaderno. Elena me pidió que consiguiera el registro de la biblioteca para saber quién había estado husmeando.",
+          "El cuaderno. Ahí estaba todo. Yo nunca lo vi, pero ella me lo dijo.",
+          "El cuaderno tiene los horarios de todos. Elena anotaba todo. Y por eso Olivia lo quería.",
+          "Elena usaba el cuaderno para saber quién entraba y salía de su edificio. Y descubrió que Olivia tenía una copia de la llave.",
+          "El cuaderno contiene la prueba. Elena me lo dijo esa tarde: 'si algo me pasa, el cuaderno lo dirá todo'. Y ahora está en evidencia."],
+          en:[
+          "The notebook. Elena asked me to get the library log to know who had been snooping.",
+          "The notebook. Everything was in there. I never saw it, but she told me.",
+          "The notebook has everyone's schedules. Elena wrote everything down. And that's why Olivia wanted it.",
+          "Elena used the notebook to know who came in and out of her building. And she found out Olivia had a copy of the key.",
+          "The notebook contains the proof. Elena told me that afternoon: 'if anything happens to me, the notebook will tell everything'. And now it's in evidence."]},
+        q_lead_olivia:{panic:18, reqLead:'L1', es:[
+          "Olivia dice que yo estoy mintiendo. Olivia es la que tiene la llave del Centro.",
+          "Que diga lo que quiera. Yo la vi entrar. Con una llave.",
+          "Olivia me acusa porque sabe que yo la vi. Esa noche. Con la llave. Entrando al Centro.",
+          "Olivia tiene acceso al Centro porque trabaja ahí. Y yo la vi usar su llave esa noche. Elena me dijo que Olivia había copiado su llave de casa. Y yo creo que es verdad.",
+          "Es Olivia. Ella tenía la llave. Ella estaba esa noche. Elena le tenía miedo. Y Olivia sabe cosas que no debería saber."],
+          en:[
+          "Olivia says I'm lying. Olivia is the one with the key to the Center.",
+          "Let her say whatever she wants. I saw her go in. With a key.",
+          "Olivia accuses me because she knows I saw her. That night. With the key. Entering the Center.",
+          "Olivia has access to the Center because she works there. And I saw her use her key that night. Elena told me Olivia had copied her house key. And I think it's true.",
+          "It's Olivia. She had the key. She was there that night. Elena was afraid of her. And Olivia knows things she shouldn't know."]},
+        q_lead_ryan:{panic:16, reqLead:'L3', es:[
+          "Ryan me amenazó una vez. Pero no creo que sea él.",
+          "Ryan es agresivo, sí. Pero no lo vi esa noche.",
+          "Ryan no estaba esa noche. Yo pasé por su casa a las 10:30. No había nadie. Estaba oscuro.",
+          "Ryan no pudo ser. Yo pasé por su casa esa noche. Y no estaba. La casa estaba a oscuras. Y su auto no estaba.",
+          "Mira, Ryan es un idiota y me da miedo. Pero Elena me dijo que no era Ryan. Ella me dijo que era alguien de adentro. De su trabajo."],
+          en:[
+          "Ryan threatened me once. But I don't think it was him.",
+          "Ryan is aggressive, yes. But I didn't see him that night.",
+          "Ryan wasn't there that night. I passed by his house at 10:30. No one was there. It was dark.",
+          "Ryan couldn't have done it. I passed by his house that night. He wasn't there. The house was dark. And his car wasn't there.",
+          "Look, Ryan is an idiot and he scares me. But Elena told me it wasn't Ryan. She told me it was someone from inside. From her work."]}
+      }
+    },
+
+    ryan:{
+      id:'ryan', name:'RYAN BLAKE', age:20, initials:'RB', color:'#ffb020',
+      rel:{es:'ANTIGUO AMIGO',en:'FORMER FRIEND'}, relKey:'relFormerFriend',
+      answers:{
+        q_where:{panic:5, es:[
+          "Me fui de la zona antes de las 10:00. Ya te lo dije.",
+          "Me fui temprano. No estuve cerca del Centro.",
+          "Me fui antes de las 10:00. ¿Otra vez con lo mismo?",
+          "Me fui antes. Pero volví. Volví como a las 11:00. Pero no entré al Centro.",
+          "Me fui. Volví. Ya. Volví porque me di cuenta de que había dejado algo en el auto. Recogí la cosa y me fui. Eso es todo."],
+          en:[
+          "I left the area before 10:00. I already told you.",
+          "I left early. I wasn't near the Center.",
+          "I left before 10:00. The same thing again?",
+          "I left earlier. But I came back. I came back around 11:00. But I didn't enter the Center.",
+          "I left. I came back. Fine. I came back because I realized I had left something in the car. I grabbed it and left. That's all."]},
+        q_lastseen:{panic:8, es:[
+          "Hace una semana. Discutimos. Ella dijo cosas de mí que no eran ciertas.",
+          "Hace una semana. Discutimos. Y ella se lo buscó.",
+          "La vi hace una semana. Discutimos fuerte. Yo le dije cosas feas.",
+          "La vi hace una semana. Le dije que iba a lamentar lo que había hecho. Eso fue todo. Solo palabras.",
+          "La vi hace una semana. Le dije que si seguía contando cosas de mí, iba a arrepentirse. Y ella me amenazó con el cuaderno. Y yo me enojé. Pero no la toqué."],
+          en:[
+          "A week ago. We argued. She said things about me that weren't true.",
+          "A week ago. We argued. And she had it coming.",
+          "I saw her a week ago. We argued badly. I said ugly things to her.",
+          "I saw her a week ago. I told her she would regret what she had done. That was all. Just words.",
+          "I saw her a week ago. I told her if she kept spreading things about me, she would regret it. And she threatened me with the notebook. And I got angry. But I didn't touch her."]},
+        q_relation:{panic:3, es:["Antiguos amigos. Pero eso terminó hace mucho. Ahora no nos hablamos."],
+          en:["Former friends. But that ended long ago. Now we don't talk."]},
+        q_others:{panic:5, es:["Conozco a Nathan. Un niño asustadizo. A Claire no la conozco. A Olivia la vi un par de veces en el trabajo de Elena."],
+          en:["I know Nathan. A scared little kid. Claire I don't know. Olivia I saw a couple of times at Elena's work."]},
+        q_motive:{panic:16, es:[
+          "¿Motivo? Sí, estaba enojado. Pero no la maté.",
+          "Sí, le tenía rencor. Le dije que iba a arrepentirse. Pero eso es hablar. No matar.",
+          "Sí, la amenacé. Delante de testigos. Fui un idiota. Pero no la toqué.",
+          "Me enojé porque ella estaba contando cosas de mí. Cosas que no eran ciertas. Y la amenacé. Pero no le hice nada.",
+          "Le dije que iba a lamentarlo. Y lo dije frente a gente. Pero eso no significa que la hice desaparecer. Yo no soy así. Soy un bocón, no un criminal."],
+          en:[
+          "Motive? Yes, I was angry. But I didn't kill her.",
+          "Yes, I held a grudge. I told her she'd regret it. But that's talk. Not murder.",
+          "Yes, I threatened her. In front of witnesses. I was an idiot. But I didn't touch her.",
+          "I got angry because she was spreading things about me. Things that weren't true. And I threatened her. But I didn't do anything to her.",
+          "I told her she'd regret it. And I said it in front of people. But that doesn't mean I made her disappear. I'm not like that. I'm a loudmouth, not a criminal."]},
+        q_2200:{panic:10, es:[
+          "A las 10:00 PM ya me había ido. Ya te dije.",
+          "Ya me había ido.",
+          "Ya te dije que me fui antes de las 10:00.",
+          "Me fui antes de las 10:00. Después volví. Como a las 11:00. Pero no entré a ningún lado.",
+          "A las 10:00 PM ya me había ido. Estaba en mi casa. Volví como a las 11:00 a recoger algo del auto. Y me fui otra vez."],
+          en:[
+          "At 10:00 PM I had already left. I told you.",
+          "I had already left.",
+          "I told you I left before 10:00.",
+          "I left before 10:00. Then I came back. Around 11:00. But I didn't go anywhere.",
+          "At 10:00 PM I had already left. I was at home. I came back around 11:00 to grab something from my car. And I left again."]},
+        q_hiding:{panic:12, es:[
+          "No escondo nada.",
+          "Nada que importe.",
+          "Escondo que volví. Sí. Volví. Pero no entré al Centro.",
+          "Escondo que volví a la zona. Y que estaba enojado. Pero eso no significa nada.",
+          "Escondo que la esperé. En el estacionamiento. Como quince minutos. Para hablarle. Pero no salió. Y me fui."],
+          en:[
+          "I'm not hiding anything.",
+          "Nothing that matters.",
+          "I'm hiding that I came back. Yes. I came back. But I didn't enter the Center.",
+          "I'm hiding that I came back to the area. And that I was angry. But that means nothing.",
+          "I'm hiding that I waited for her. In the parking lot. About fifteen minutes. To talk to her. But she didn't come out. And I left."]},
+        q_message:{panic:8, es:[
+          "No me escribió. No teníamos ese tipo de relación.",
+          "No me escribió. No me habla desde hace una semana.",
+          "No me escribió. Pero me llamó. Una vez. La semana pasada. Para amenazarme.",
+          "No me escribió esa noche. Pero me llamó esa semana. Me dijo que tenía pruebas de que yo había hecho algo. Y que si no dejaba de molestarla, lo iba a contar todo.",
+          "No me escribió esa noche. Pero me llamó a la semana anterior. Me dijo 'tengo todo en el cuaderno'. Y le dije que no me amenazara. Y colgué."],
+          en:[
+          "She didn't text me. We didn't have that kind of relationship.",
+          "She didn't text me. She hasn't talked to me in a week.",
+          "She didn't text me. But she called me. Once. Last week. To threaten me.",
+          "She didn't text me that night. But she called me that week. She told me she had proof I had done something. And that if I didn't stop bothering her, she would tell everyone.",
+          "She didn't text me that night. But she called me the week before. She said 'I have everything in the notebook'. And I told her not to threaten me. And I hung up."]},
+        q_who:{panic:8, es:[
+          "No sé. No me importa.",
+          "No tengo idea. Y no me interesa.",
+          "Nathan. Nathan estaba obsesionado con ella. Todos lo sabían.",
+          "Nathan. Ese chico la seguía a todos lados. Estaba obsesionado. Y esa noche andaba por la zona.",
+          "No voy a dar un nombre. Pero le digo algo: Elena me dijo que tenía miedo de alguien de su trabajo. De alguien que sabía demasiado. Y yo no era de su trabajo."],
+          en:[
+          "I don't know. I don't care.",
+          "I have no idea. And I don't care.",
+          "Nathan. Nathan was obsessed with her. Everyone knew.",
+          "Nathan. That kid followed her everywhere. He was obsessed. And that night he was in the area.",
+          "I won't give a name. But I'll tell you something: Elena told me she was afraid of someone from her work. Someone who knew too much. And I wasn't from her work."]},
+        q_calm_down:{panic:-15, es:[
+          "…está bien. Está bien. No me grites.",
+          "Sí. Sí. Perdón. Me pongo a la defensiva y no debería.",
+          "Gracias. Es que todos me están mirando como si yo la hubiera hecho desaparecer.",
+          "Tienes razón. Estoy a la defensiva. Pero es que siempre me acusan de todo.",
+          "Bueno. Bueno. Está bien. Pregúntame lo que quieras. Pero sin acusarme."],
+          en:[
+          "…fine. Fine. Don't yell at me.",
+          "Yes. Yes. Sorry. I get defensive and I shouldn't.",
+          "Thank you. It's just that everyone is looking at me like I made her disappear.",
+          "You're right. I'm defensive. But it's because I'm always blamed for everything.",
+          "Okay. Okay. Fine. Ask me whatever you want. But without accusing me."]},
+        q_trust:{panic:-10, es:[
+          "…gracias.",
+          "Está bien. Aprecio eso.",
+          "Ok. Sí. Escucho.",
+          "Gracias. Al menos alguien no me mira mal.",
+          "Está bien. Pregunta lo que quieras. Pero sin que me acuses."],
+          en:[
+          "…thank you.",
+          "Okay. I appreciate that.",
+          "Okay. Yes. I'm listening.",
+          "Thank you. At least someone isn't looking at me badly.",
+          "Okay. Ask whatever you want. But without accusing me."]},
+        q_ryan_camera:{panic:18, reqEv:'E05', es:[
+          "Está bien. Volví. Ya lo dije. Pero no entré al Centro.",
+          "La cámara me grabó volviendo. Pero eso no prueba que haya entrado a la habitación.",
+          "Volví porque me di cuenta de que había dejado algo en el auto. Recogí la cosa. Y me fui.",
+          "Volví porque estaba enojado y quería hablar con ella. Pero no salió. Me quedé en el auto. Quince minutos. Y me fui.",
+          "Está bien. Volví. Me quedé en el estacionamiento. Hablando por teléfono con mi hermana. Puedes preguntarle. Ella me llamó a las 11:05. Estuve cuarenta minutos al teléfono."],
+          en:[
+          "Fine. I came back. I already said that. But I didn't enter the Center.",
+          "The camera recorded me coming back. But that doesn't prove I entered the room.",
+          "I came back because I realized I had left something in the car. I grabbed it. And I left.",
+          "I came back because I was angry and wanted to talk to her. But she didn't come out. I stayed in the car. Fifteen minutes. And I left.",
+          "Fine. I came back. I stayed in the parking lot. Talking on the phone with my sister. You can ask her. She called me at 11:05. I was on the phone for forty minutes."]},
+        q_contradiction:{panic:15, cond:'contradictions', es:[
+          "No hay contradicción. Volví porque me di cuenta de algo.",
+          "La cámara me grabó, sí. Pero eso no prueba que haya entrado.",
+          "Volví. Sí. Volví. Pero me quedé en el estacionamiento. No entré al Centro.",
+          "Volví porque quería hablar con ella. Pero no salió. Me quedé en el auto. Y después me fui a las 11:30.",
+          "Está bien. Volví. Estaba en el estacionamiento. Vi a alguien entrar al Centro. Con una llave. A las 10:15. Y después vi a esa misma persona salir a las 11:00."],
+          en:[
+          "There is no contradiction. I came back because I realized something.",
+          "The camera recorded me, yes. But that doesn't prove I entered.",
+          "I came back. Yes. I came back. But I stayed in the parking lot. I didn't enter the Center.",
+          "I came back because I wanted to talk to her. But she didn't come out. I stayed in the car. And then I left at 11:30.",
+          "Fine. I came back. I was in the parking lot. I saw someone enter the Center. With a key. At 10:15. And then I saw the same person leave at 11:00."]},
+        q_file:{panic:12, reqEv:'E08', es:[
+          "El cuaderno. Elena me amenazó con el cuaderno. Me dijo que ahí tenía cosas mías.",
+          "El cuaderno. Ella me dijo 'lo tengo todo aquí'. Yo nunca lo vi. Pero sabía que existía.",
+          "El cuaderno. Yo no lo toqué. Pero sí sé que Elena le mostró una parte a Olivia. La semana pasada. En el trabajo.",
+          "El cuaderno tiene cosas que yo le dije a Elena cuando éramos amigos. Cosas personales. Y ella me amenazó con mostrárselas a todos.",
+          "El cuaderno es de ella. Yo no lo toqué. Pero sé que Olivia lo quería. Elena me lo dijo: 'Olivia me pidió el cuaderno y yo le dije que no'."],
+          en:[
+          "The notebook. Elena threatened me with the notebook. She told me she had things about me in there.",
+          "The notebook. She told me 'I have everything here'. I never saw it. But I knew it existed.",
+          "The notebook. I didn't touch it. But I do know Elena showed part of it to Olivia. Last week. At work.",
+          "The notebook has things I told Elena when we were friends. Personal things. And she threatened to show them to everyone.",
+          "The notebook is hers. I didn't touch it. But I know Olivia wanted it. Elena told me: 'Olivia asked me for the notebook and I said no'."]},
+        q_lead_nathan:{panic:16, reqLead:'L3', es:[
+          "Nathan me acusa a mí. Nathan estaba obsesionado con Elena. Todos lo sabían.",
+          "Nathan dice que yo lo hice. Nathan la seguía a todos lados. Y esa noche andaba por la zona.",
+          "Nathan me acusa. Nathan estuvo en el Centro esa noche. Yo lo vi. A las 10:50. Frente a la ventana. Mirando hacia adentro.",
+          "Nathan me acusa porque sabe que yo lo vi. Frente a la ventana de la habitación 204. Mirando hacia adentro. A las 10:50.",
+          "Es Nathan. Yo lo vi. Estaba en el Centro. Frente a la ventana. Y huyó cuando me vio. Yo estaba en el estacionamiento. Él estaba afuera. Y se fue corriendo."],
+          en:[
+          "Nathan accuses me. Nathan was obsessed with Elena. Everyone knew.",
+          "Nathan says I did it. Nathan followed her everywhere. And that night he was in the area.",
+          "Nathan accuses me. Nathan was at the Center that night. I saw him. At 10:50. In front of the window. Looking inside.",
+          "Nathan accuses me because he knows I saw him. In front of the window of room 204. Looking inside. At 10:50.",
+          "It's Nathan. I saw him. He was at the Center. In front of the window. And he ran when he saw me. I was in the parking lot. He was outside. And he ran off."]},
+        q_lead_claire:{panic:16, reqLead:'L2', es:[
+          "Claire no tiene nada que ver con esto. Claire es una chica tranquila.",
+          "Claire dice que yo amenacé a Elena. Claire también le dijo cosas feas. Todos le dijimos cosas feas.",
+          "Claire me acusa porque yo la vi esa noche. Caminando cerca del Centro. A las 9:45. Y ella sabe que la vi.",
+          "Claire dice que me vio volver. Sí. Volví. Pero no entré. Y Claire también estaba ahí. A las 9:45. Caminando.",
+          "Claire también estaba esa noche. Yo la vi. Iba caminando hacia el Centro a las 9:45. Pero no la delató porque no quiero problemas. Ahora que ella me acusa, se lo digo."],
+          en:[
+          "Claire has nothing to do with this. Claire is a quiet girl.",
+          "Claire says I threatened Elena. Claire also said ugly things to her. We all said ugly things to her.",
+          "Claire accuses me because I saw her that night. Walking near the Center. At 9:45. And she knows I saw her.",
+          "Claire says she saw me come back. Yes. I came back. But I didn't enter. And Claire was there too. At 9:45. Walking.",
+          "Claire was there that night too. I saw her. She was walking toward the Center at 9:45. But I didn't rat her out because I don't want trouble. Now that she's accusing me, I'm telling you."]}
+      }
+    },
+
+    olivia:{
+      id:'olivia', name:'OLIVIA REED', age:19, initials:'OR', color:'#ff7bd5',
+      rel:{es:'COMPAÑERA DE TRABAJO',en:'COWORKER'}, relKey:'relCoworker',
+      answers:{
+        q_where:{panic:5, es:[
+          "En mi casa. No hablé con Elena esa noche.",
+          "En mi casa. Toda la noche. Puedo darles el nombre de mi compañera de cuarto.",
+          "En mi casa. Bueno... salí un rato. A caminar. Pero volví.",
+          "Salí a caminar. Fui al Centro de Estudios. Pero solo miré por la ventana. No entré.",
+          "Fui al Centro. Sí. Tenía una llave porque trabajo ahí. Entré, vi a Elena, hablamos. Y me fui a las 11:00. Estaba viva cuando me fui."],
+          en:[
+          "At home. I didn't talk to Elena that night.",
+          "At home. All night. I can give you my roommate's name.",
+          "At home. Well... I went out for a bit. To walk. But I came back.",
+          "I went for a walk. I went to the Study Center. But I only looked through the window. I didn't go in.",
+          "I went to the Center. Yes. I had a key because I work there. I went in, I saw Elena, we talked. And I left at 11:00. She was alive when I left."]},
+        q_lastseen:{panic:8, es:[
+          "La vi en el trabajo el viernes. Todo normal.",
+          "La vi en el trabajo. No hablamos mucho.",
+          "La vi el viernes en el trabajo. Discutimos. Nada grave.",
+          "La vi el viernes. Discutimos porque ella estaba escribiendo cosas sobre mí en su cuaderno. Me enojé.",
+          "La vi el viernes y la vi esa noche. En el Centro. A las 10:15. Y hablamos. Y a las 11:00 me fui. Y ella estaba viva. Y yo me fui."],
+          en:[
+          "I saw her at work on Friday. Everything normal.",
+          "I saw her at work. We didn't talk much.",
+          "I saw her at work on Friday. We argued. Nothing serious.",
+          "I saw her on Friday. We argued because she was writing things about me in her notebook. I got angry.",
+          "I saw her on Friday and I saw her that night. At the Center. At 10:15. And we talked. And at 11:00 I left. And she was alive. And I left."]},
+        q_relation:{panic:3, es:["Compañeras de trabajo. Nos llevábamos bien. Casi nunca hablábamos fuera del trabajo."],
+          en:["Coworkers. We got along. We almost never talked outside of work."]},
+        q_others:{panic:5, es:["Conozco a Nathan de vista. A Claire no la conozco. A Ryan lo vi un par de veces en el trabajo de Elena."],
+          en:["I know Nathan by sight. Claire I don't know. Ryan I saw a couple of times at Elena's work."]},
+        q_motive:{panic:12, es:[
+          "¿Motivo? Ninguno. Elena y yo éramos compañeras.",
+          "No. No teníamos problemas.",
+          "Teníamos un problema: ella estaba escribiendo cosas sobre mí en su cuaderno. Cosas que no eran ciertas. Y yo le pedí que las borrara. Y ella se negó.",
+          "Ella estaba escribiendo que yo había entrado a su casa sin permiso. Eso era mentira. Le pedí que lo borrara. Se negó. Discutimos.",
+          "Sí, discutimos. Pero eso no significa que la hiciera desaparecer. Elena me dijo 'si algo me pasa, va a parecer que me fui por mi cuenta'. Y ahora está desaparecida. Y ustedes creen que yo la hice. Pero yo no."],
+          en:[
+          "Motive? None. Elena and I were coworkers.",
+          "No. We had no problems.",
+          "We had a problem: she was writing things about me in her notebook. Things that weren't true. And I asked her to erase them. She refused.",
+          "She was writing that I had entered her house without permission. That was a lie. I asked her to erase it. She refused. We argued.",
+          "Yes, we argued. But that doesn't mean I made her disappear. Elena told me 'if anything happens to me, it will look like I left on my own'. And now she's missing. And you think I did it. But I didn't."]},
+        q_2200:{panic:10, es:[
+          "A las 10:00 PM estaba en mi casa.",
+          "En mi casa. Ya te dije.",
+          "Bueno... salí. Ya lo dije. Fui a caminar.",
+          "Fui a caminar. Fui al Centro. Pero solo miré por la ventana. No entré.",
+          "Entré al Centro a las 10:15. Elena estaba ahí. Hablamos. Discutimos. Y me fui a las 11:00. Y ella estaba viva. Y yo me fui."],
+          en:[
+          "At 10:00 PM I was at home.",
+          "At home. I told you.",
+          "Well... I went out. I said that. I went for a walk.",
+          "I went for a walk. I went to the Center. But I only looked through the window. I didn't go in.",
+          "I entered the Center at 10:15. Elena was there. We talked. We argued. And I left at 11:00. And she was alive. And I left."]},
+        q_hiding:{panic:12, es:[
+          "No escondo nada.",
+          "Nada importante.",
+          "Escondo que fui al Centro. Pero solo miré por la ventana.",
+          "Escondo que entré al Centro. Pero no la toqué. Hablamos. Discutimos. Y me fui.",
+          "Escondo que tengo una llave del Centro. Y que la usé esa noche. Y que me encontré con Elena. Pero estaba viva cuando me fui. Estaba viva. Te lo juro."],
+          en:[
+          "I'm not hiding anything.",
+          "Nothing important.",
+          "I'm hiding that I went to the Center. But I only looked through the window.",
+          "I'm hiding that I entered the Center. But I didn't touch her. We talked. We argued. And I left.",
+          "I'm hiding that I have a key to the Center. And that I used it that night. And that I met Elena. But she was alive when I left. She was alive. I swear."]},
+        q_message:{panic:8, es:[
+          "No hablé con Elena esa noche. No le escribí. No la llamé.",
+          "No la llamé. No sé de qué me hablas.",
+          "No la llamé. Bueno... sí. Una vez. Pero fue una llamada corta. No importa.",
+          "Sí, la llamé. A las 9:30. Hablamos cinco minutos. Nada más.",
+          "La llamé a las 9:30. Hablamos unos minutos. Y después fui al Centro a hablar con ella en persona. Y ahí me dijo que tenía cosas sobre mí en el cuaderno. Y discutimos."],
+          en:[
+          "I didn't talk to Elena that night. I didn't text her. I didn't call her.",
+          "I didn't call her. I don't know what you're talking about.",
+          "I didn't call her. Well... yes. Once. But it was a short call. It doesn't matter.",
+          "Yes, I called her. At 9:30. We talked for five minutes. Nothing more.",
+          "I called her at 9:30. We talked for a few minutes. And then I went to the Center to talk to her in person. And there she told me she had things about me in the notebook. And we argued."]},
+        q_who:{panic:8, es:[
+          "No lo sé.",
+          "No tengo idea.",
+          "Ryan. Ryan la había amenazado delante de gente. Todos lo sabían.",
+          "Ryan. Él le dijo que iba a lamentarlo. Y esa noche estaba por la zona.",
+          "No lo sé. Pero si quieren un nombre, Ryan le tenía rencor. Yo no. Yo solo quería que borrara unas páginas del cuaderno. Pero no la haría desaparecer por eso."],
+          en:[
+          "I don't know.",
+          "I have no idea.",
+          "Ryan. Ryan had threatened her in front of people. Everyone knew.",
+          "Ryan. He told her she'd regret it. And that night he was in the area.",
+          "I don't know. But if you want a name, Ryan held a grudge. I didn't. I just wanted her to erase some pages from the notebook. But I wouldn't make her disappear for that."]},
+        q_calm_down:{panic:-15, es:[
+          "…gracias. Aprecio eso.",
+          "Está bien. Hablaré con calma.",
+          "Perdón. Es que esto me supera. Pero quiero colaborar.",
+          "Tienes razón. Estoy a la defensiva. Voy a respirar.",
+          "Gracias. Necesitaba eso. Pregúntame lo que quieras. Con calma."],
+          en:[
+          "…thank you. I appreciate that.",
+          "Okay. I'll speak calmly.",
+          "Sorry. This is overwhelming. But I want to cooperate.",
+          "You're right. I'm defensive. I'm going to breathe.",
+          "Thank you. I needed that. Ask me whatever you want. Calmly."]},
+        q_trust:{panic:-10, es:[
+          "…gracias.",
+          "Está bien. Confío en ti.",
+          "Aprecio eso. De verdad.",
+          "Gracias. Al menos alguien aquí no me trata como culpable.",
+          "Está bien. Yo también quiero que aparezca. Y quiero ayudar."],
+          en:[
+          "…thank you.",
+          "Okay. I trust you.",
+          "I appreciate that. Really.",
+          "Thank you. At least someone here isn't treating me like a criminal.",
+          "Okay. I want her to be found too. And I want to help."]},
+        q_olivia_call:{panic:20, reqEv:'E06', minPanic:0, es:[
+          "No sé de qué llamada hablas.",
+          "Los registros telefónicos se equivocan. Yo no la llamé.",
+          "Está bien. La llamé. Una vez. Cinco minutos. Nada más. No es un crimen.",
+          "La llamé a las 9:30. Hablamos unos minutos. Y después fui al Centro a hablar con ella en persona.",
+          "La llamé a las 9:30. Y me dijo 'ven al Centro, necesito hablar contigo'. Y yo fui. Y cuando llegué, ella estaba escribiendo en el cuaderno. Y me dijo que había escrito cosas sobre mí. Y discutimos. Y me fui a las 11:00."],
+          en:[
+          "I don't know what call you're talking about.",
+          "Phone records make mistakes. I didn't call her.",
+          "Fine. I called her. Once. Five minutes. Nothing more. It's not a crime.",
+          "I called her at 9:30. We talked for a few minutes. And then I went to the Center to talk to her in person.",
+          "I called her at 9:30. And she told me 'come to the Center, I need to talk to you'. And I went. And when I got there, she was writing in the notebook. And she told me she had written things about me. And we argued. And I left at 11:00."]},
+        q_olivia_knew:{panic:20, reqEv:'E09', minPanic:50, es:[
+          "No sé por qué estoy aquí. No sé nada.",
+          "Yo no debía saber eso. Lo escuché por casualidad.",
+          "Lo sé porque Elena me lo dijo. Una vez. Antes de desaparecer.",
+          "Lo sé porque yo estaba en el Centro esa noche. Y ella me lo dijo. Y discutimos. Y me fui.",
+          "Está bien. Yo estaba ahí. Ella me dijo 'si algo me pasa, no confíes en la primera versión'. Y yo le dije '¿qué primera versión?'. Y ella me dijo 'la que vas a contar tú'. Y yo me asusté. Y me fui. Y no la toqué."],
+          en:[
+          "I don't know why I'm here. I don't know anything.",
+          "I wasn't supposed to know that. I heard it by accident.",
+          "I know it because Elena told me. Once. Before she disappeared.",
+          "I know it because I was at the Center that night. And she told me. And we argued. And I left.",
+          "Fine. I was there. She told me 'if anything happens to me, don't trust the first version'. And I said 'what first version?'. And she said 'the one you're going to tell'. And I got scared. And I left. And I didn't touch her."]},
+        q_contradiction:{panic:15, cond:'contradictions', es:[
+          "No hay ninguna contradicción.",
+          "Los registros telefónicos se equivocan. No sé de qué hablan.",
+          "Está bien. La llamé. Sí. Pero no la vi esa noche.",
+          "Está bien. La llamé y fui al Centro. Pero me fui a las 11:00. Y ella estaba viva.",
+          "Está bien. Estuve en el Centro. Discutimos. Me fui. Cuando me fui, ella estaba viva. Estaba escribiendo en el cuaderno. Y yo me fui. Y no volví."],
+          en:[
+          "There is no contradiction.",
+          "Phone records make mistakes. I don't know what they're talking about.",
+          "Fine. I called her. Yes. But I didn't see her that night.",
+          "Fine. I called her and I went to the Center. But I left at 11:00. And she was alive.",
+          "Fine. I was at the Center. We argued. I left. When I left, she was alive. She was writing in the notebook. And I left. And I didn't come back."]},
+        q_file:{panic:12, reqEv:'E08', es:[
+          "El cuaderno. Elena escribía cosas sobre mí en el cuaderno. Cosas que no eran ciertas.",
+          "El cuaderno. Yo le pedí que borrara unas páginas. Se negó.",
+          "El cuaderno tiene mentiras sobre mí. Elena lo usaba para manipular a la gente.",
+          "El cuaderno. Elena lo usaba para controlar a todos. Y cuando yo le pedí que borrara lo que había escrito sobre mí, me dijo que no. Y discutimos.",
+          "El cuaderno. Elena me dijo esa noche 'lo tengo todo aquí. Todo lo que haces. Todo lo que dices.' Y yo le dije 'no puedes hacer eso'. Y ella se rió. Y yo me fui. Y no la toqué."],
+          en:[
+          "The notebook. Elena wrote things about me in the notebook. Things that weren't true.",
+          "The notebook. I asked her to erase some pages. She refused.",
+          "The notebook has lies about me. Elena used it to manipulate people.",
+          "The notebook. Elena used it to control everyone. And when I asked her to erase what she had written about me, she said no. And we argued.",
+          "The notebook. Elena told me that night 'I have everything here. Everything you do. Everything you say.' And I told her 'you can't do that'. And she laughed. And I left. And I didn't touch her."]},
+        q_lead_nathan:{panic:18, reqLead:'L1', es:[
+          "Nathan dice que yo estaba en la habitación. Nathan estaba obsesionado con Elena.",
+          "Nathan dice que vio a alguien entrando con una llave. Ese alguien era yo. Pero entré para hablar con ella.",
+          "Está bien. Entré al Centro con mi llave. Pero no para hacerle daño. Para hablar. Para pedirle que borrara las páginas. Y me fui.",
+          "Nathan me acusa porque sabe que yo entré al Centro. Sí. Entré. Pero me fui a las 11:00. Y ella estaba viva. Y él estaba afuera. Mirando por la ventana.",
+          "Está bien. Entré al Centro. Discutimos. Ella me dijo 'si algo me pasa, no confíes en la primera versión'. Y yo me asusté. Y me fui. Cuando me fui, ella estaba viva. Yo no la toqué. Pero Nathan estaba ahí. Afuera. Mirando por la ventana. Y él me vio salir."],
+          en:[
+          "Nathan says I was in the room. Nathan was obsessed with Elena.",
+          "Nathan says he saw someone entering with a key. That someone was me. But I went in to talk to her.",
+          "Fine. I entered the Center with my key. But not to hurt her. To talk. To ask her to erase the pages. And I left.",
+          "Nathan accuses me because he knows I entered the Center. Yes. I entered. But I left at 11:00. And she was alive. And he was outside. Looking through the window.",
+          "Fine. I entered the Center. We argued. She told me 'if anything happens to me, don't trust the first version'. And I got scared. And I left. When I left, she was alive. I didn't touch her. But Nathan was there. Outside. Looking through the window. And he saw me leave."]},
+        q_lead_claire:{panic:16, reqLead:'L2', es:[
+          "Claire dice que me vio entrar. Claire también estaba esa noche. Yo la vi. Caminando cerca del Centro.",
+          "Claire también estaba ahí esa noche. Caminando. A las 9:45. Yo la vi desde la ventana.",
+          "Claire me acusa porque sabe que yo la vi caminando cerca del Centro esa noche. Y ella no quiere que se sepa que estaba ahí.",
+          "Claire estaba cerca del Centro a las 9:45. Caminando. Y yo la vi desde la ventana de la habitación. Y ella sabe que yo la vi.",
+          "Claire también estuvo en el Centro esa noche. Pero a las 9:45. Antes que yo. Y después se fue. Y a las 10:15 llegué yo. Y a las 11:00 me fui. Y a las 11:15 llegó otra persona. No sé quién. Pero cuando me fui, ella estaba viva."],
+          en:[
+          "Claire says she saw me entering. Claire was there that night too. I saw her. Walking near the Center.",
+          "Claire was there that night too. Walking. At 9:45. I saw her from the window.",
+          "Claire accuses me because she knows I saw her walking near the Center that night. And she doesn't want it known that she was there.",
+          "Claire was near the Center at 9:45. Walking. And I saw her from the room window. And she knows I saw her.",
+          "Claire was at the Center that night too. But at 9:45. Before me. And then she left. And at 10:15 I arrived. And at 11:00 I left. And at 11:15 someone else arrived. I don't know who. But when I left, she was alive."]}
+      }
+    }
+  },
+
+  questions:[
+    {id:'q_where', panic:5, text:{es:'¿Dónde estabas la noche en que desapareció Elena?', en:'Where were you the night Elena disappeared?'}},
+    {id:'q_lastseen', panic:8, text:{es:'¿Cuándo viste a Elena por última vez?', en:'When did you last see Elena?'}},
+    {id:'q_relation', panic:3, text:{es:'¿Cuál era tu relación con Elena?', en:'What was your relationship with Elena?'}},
+    {id:'q_others', panic:5, text:{es:'¿Conoces a los otros sospechosos?', en:'Do you know the other suspects?'}},
+    {id:'q_motive', panic:12, text:{es:'¿Tenías alguna razón para querer que Elena desapareciera?', en:'Did you have any reason to want Elena gone?'}},
+    {id:'q_2200', panic:8, text:{es:'¿Qué estabas haciendo a las 10:00 PM?', en:'What were you doing at 10:00 PM?'}},
+    {id:'q_hiding', panic:10, text:{es:'¿Estás escondiendo algo?', en:'Are you hiding something?'}},
+    {id:'q_message', panic:8, text:{es:'¿Elena te dijo o escribió algo antes de desaparecer?', en:'Did Elena tell you or write to you anything before she disappeared?'}},
+    {id:'q_who', panic:8, text:{es:'¿Quién crees que está detrás de su desaparición?', en:'Who do you think is behind her disappearance?'}},
+    {id:'q_calm_down', panic:-15, maxPanic:95,
+      text:{es:'Tómate un momento. No quiero acusarte todavía. Solo quiero entender qué ocurrió.', en:'Take a moment. I don\'t want to accuse you yet. I just want to understand what happened.'}},
+    {id:'q_trust', panic:-10,
+      text:{es:'Quiero escuchar tu versión completa, sin interrumpirte.', en:'I want to hear your full version, without interrupting.'}},
+    {id:'q_file', panic:12, reqEv:'E08',
+      text:{es:'¿Qué sabes del cuaderno de Elena?', en:'What do you know about Elena\'s notebook?'}},
+    {id:'q_contradiction', panic:15, cond:'contradictions',
+      text:{es:'¿Por qué tu historia contradice la evidencia?', en:'Why does your story contradict the evidence?'}},
+    {id:'q_nathan_online', panic:15, reqEv:'E03', only:['nathan'],
+      text:{es:'Tu historial de conexión muestra un corte de tres minutos. ¿Qué pasó?', en:'Your connection history shows a three-minute drop. What happened?'}},
+    {id:'q_claire_changed', panic:12, reqEv:'E04', only:['claire'],
+      text:{es:'Cambiaste la hora a la que llegaste a casa. ¿Por qué?', en:'You changed the time you got home. Why?'}},
+    {id:'q_ryan_camera', panic:18, reqEv:'E05', only:['ryan'],
+      text:{es:'Una cámara te grabó regresando a la zona después de las 11:00. ¿Por qué?', en:'A camera recorded you returning to the area after 11:00. Why?'}},
+    {id:'q_olivia_call', panic:20, reqEv:'E06', only:['olivia'],
+      text:{es:'Existe un registro de una llamada tuya a Elena que eliminaste. ¿Por qué?', en:'There is a record of a call from you to Elena that you deleted. Why?'}},
+    {id:'q_olivia_knew', panic:20, reqEv:'E09', only:['olivia'], minPanic:50,
+      text:{es:'¿Cómo sabías lo del cuaderno antes de que fuera hallado?', en:'How did you know about the notebook before it was found?'}},
+    {id:'q_lead_olivia', panic:18, reqLead:'L1', only:['nathan','claire'],
+      text:{es:'Los demás apuntan a Olivia. ¿Qué sabes de eso?', en:'The others point at Olivia. What do you know about that?'}},
+    {id:'q_lead_claire', panic:16, reqLead:'L2', only:['nathan','ryan'],
+      text:{es:'Claire te mencionó directamente. ¿Qué respondes?', en:'Claire mentioned you directly. What do you say?'}},
+    {id:'q_lead_ryan', panic:16, reqLead:'L3', only:['claire','olivia'],
+      text:{es:'Ryan te señaló. ¿Qué sabes de él?', en:'Ryan pointed at you. What do you know about him?'}},
+    {id:'q_lead_nathan', panic:16, reqLead:'L4', only:['ryan','olivia'],
+      text:{es:'Nathan te acusó. ¿Qué tienes que decir?', en:'Nathan accused you. What do you have to say?'}}
+  ],
+
+  evidence:{
+    E01:{num:'01',cat:'catPhysical',
+      name:{es:'Teléfono de Elena',en:'Elena\'s phone'},
+      desc:{es:'El teléfono de Elena fue hallado dentro de la habitación 204, sobre la mesa, junto a su cuaderno. Estaba desbloqueado. La última actividad fue a las 10:15 PM.',en:'Elena\'s phone was found inside room 204, on the table, next to her notebook. It was unlocked. Last activity was at 10:15 PM.'},
+      confront:{
+        nathan:{panic:4, es:'Su teléfono. Ella nunca se separaba de él.', en:'Her phone. She never let it out of her sight.'},
+        claire:{panic:4, es:'Si el teléfono estaba ahí, ella también debía estar ahí. O alguien lo puso.', en:'If the phone was there, she must have been there too. Or someone put it there.'},
+        ryan:{panic:6, es:'Ese es su teléfono. No lo toqué.', en:'That\'s her phone. I didn\'t touch it.'},
+        olivia:{panic:6, es:'El teléfono estaba ahí cuando llegué. Y también cuando me fui.', en:'The phone was there when I arrived. And also when I left.'}}},
+    E02:{num:'02',cat:'catMessages',
+      name:{es:'Mensaje "No confíes en la primera versión"',en:'Message "Don\'t trust the first version"'},
+      desc:{es:'Elena envió un mensaje a Nathan a las 9:45 PM: "Si mañana no aparezco, no confíes en la primera versión." El mensaje sugiere que ella esperaba que algo pasara.',en:'Elena sent a message to Nathan at 9:45 PM: "If I don\'t show up tomorrow, don\'t trust the first version." The message suggests she expected something to happen.'},
+      confront:{
+        nathan:{panic:12, es:'Ese es el mensaje. Me lo mandó a mí. Y yo no le di importancia. No le di importancia.', en:'That\'s the message. She sent it to me. And I didn\'t take it seriously. I didn\'t take it seriously.'},
+        claire:{panic:8, es:'Ella me dijo algo parecido esa tarde. Me dijo que no confiara en la primera versión.', en:'She told me something similar that afternoon. She told me not to trust the first version.'},
+        ryan:{panic:6, es:'Nunca me mandó mensajes. No sé de qué hablas.', en:'She never texted me. I don\'t know what you\'re talking about.'},
+        olivia:{panic:14, es:'Yo no sabía de ese mensaje. No sabía que ella había escrito eso.', en:'I didn\'t know about that message. I didn\'t know she had written that.'}}},
+    E03:{num:'03',cat:'catContradiction',contradiction:true,
+      name:{es:'Registro de conexión de Nathan',en:'Nathan\'s connection log'},
+      desc:{es:'Nathan declaró haber estado jugando toda la noche. Su historial muestra una desconexión de tres minutos a las 10:35 PM, incompatible con su declaración.',en:'Nathan stated he was gaming all night. His history shows a three-minute drop at 10:35 PM, incompatible with his statement.'},
+      confront:{
+        nathan:{panic:25, es:'Está bien. Salí. Mi conexión se cayó. Pero no entré al Centro. Solo miré por la ventana.', en:'Fine. I went out. My connection dropped. But I didn\'t enter the Center. I only looked through the window.'},
+        claire:{panic:6, es:'Nathan salió esa noche. Yo lo vi. Frente a la ventana de la habitación 204.', en:'Nathan went out that night. I saw him. In front of the window of room 204.'},
+        ryan:{panic:6, es:'¿Nathan salió? Ese chico está obsesionado con Elena. Todos lo saben.', en:'Nathan went out? That kid is obsessed with Elena. Everyone knows.'},
+        olivia:{panic:8, es:'Vi a Nathan afuera cuando llegué. Estaba mirando por la ventana. Y huyó cuando me vio.', en:'I saw Nathan outside when I arrived. He was looking through the window. And he ran when he saw me.'}}},
+    E04:{num:'04',cat:'catContradiction',contradiction:true,
+      name:{es:'Testimonio cambiado de Claire',en:'Claire\'s changed testimony'},
+      desc:{es:'Claire declaró inicialmente haber llegado a casa a las 9:30 PM. Posteriormente admitió que llegó a las 10:30. Estuvo caminando cerca del Centro de Estudios durante la ventana crítica.',en:'Claire initially stated she got home at 9:30 PM. She later admitted she arrived at 10:30. She was walking near the Study Center during the critical window.'},
+      confront:{
+        nathan:{panic:6, es:'Claire cambió su historia. Eso no significa que ella lo hiciera. Pero sí significa que estuvo ahí.', en:'Claire changed her story. That doesn\'t mean she did it. But it does mean she was there.'},
+        claire:{panic:25, es:'Está bien. Cambié la hora. Estuve caminando. Vi a Olivia entrar al Centro con una llave.', en:'Fine. I changed the time. I was walking. I saw Olivia enter the Center with a key.'},
+        ryan:{panic:5, es:'Claire estaba ahí. Yo la vi caminando a las 9:45.', en:'Claire was there. I saw her walking at 9:45.'},
+        olivia:{panic:12, es:'Claire estaba cerca del Centro a las 9:45. Yo la vi desde la ventana.', en:'Claire was near the Center at 9:45. I saw her from the window.'}}},
+    E05:{num:'05',cat:'catTimeline',contradiction:true,
+      name:{es:'Grabación de cámara de Ryan',en:'Ryan\'s camera recording'},
+      desc:{es:'Ryan declaró haber abandonado la zona antes de las 10:00 PM. Una cámara de la calle lo registra regresando al estacionamiento del Centro de Estudios a las 11:03 PM.',en:'Ryan stated he left the area before 10:00 PM. A street camera records him returning to the Study Center parking lot at 11:03 PM.'},
+      confront:{
+        nathan:{panic:6, es:'Ryan volvió. Sí. Pero cuando yo llegué, él no estaba.', en:'Ryan came back. Yes. But when I got there, he wasn\'t there.'},
+        claire:{panic:8, es:'Ryan volvió a la zona. Yo lo vi pasar en su auto a las 11:00.', en:'Ryan came back to the area. I saw his car go by at 11:00.'},
+        ryan:{panic:25, es:'Está bien. Volví. Me quedé en el estacionamiento. Vi a alguien entrar al Centro. Con una llave. A las 10:15. Y salir a las 11:00.', en:'Fine. I came back. I stayed in the parking lot. I saw someone enter the Center. With a key. At 10:15. And leave at 11:00.'},
+        olivia:{panic:8, es:'No vi a Ryan. Estaba adentro. Con Elena.', en:'I didn\'t see Ryan. I was inside. With Elena.'}}},
+    E06:{num:'06',cat:'catDigital',contradiction:true,
+      name:{es:'Registro de llamada eliminada de Olivia',en:'Olivia\'s deleted call record'},
+      desc:{es:'Se recuperó un registro de una llamada de Olivia a Elena a las 9:30 PM que Olivia había eliminado. Olivia declaró inicialmente que no había hablado con Elena esa noche.',en:'A record was recovered of a call from Olivia to Elena at 9:30 PM that Olivia had deleted. Olivia initially stated she had not spoken to Elena that night.'},
+      confront:{
+        nathan:{panic:6, es:'Olivia la llamó. Y ella me dijo que no habló con nadie. Está mintiendo.', en:'Olivia called her. And she told me she didn\'t talk to anyone. She\'s lying.'},
+        claire:{panic:8, es:'Olivia la llamó. Y después fue al Centro. Con una llave.', en:'Olivia called her. And then she went to the Center. With a key.'},
+        ryan:{panic:6, es:'No sabía que Olivia la había llamado. Eso no me incumbe.', en:'I didn\'t know Olivia had called her. That\'s not my concern.'},
+        olivia:{panic:25, es:'Está bien. La llamé. Sí. Y después fui al Centro. Pero me fui a las 11:00. Y ella estaba viva.', en:'Fine. I called her. Yes. And then I went to the Center. But I left at 11:00. And she was alive.'}}},
+    E07:{num:'07',cat:'catPhysical',
+      name:{es:'Registro de acceso a la habitación',en:'Room access log'},
+      desc:{es:'El registro electrónico de la habitación 204 muestra que fue abierta con una llave maestra —no con la tarjeta de Elena— a las 10:15 PM. Solo tres personas tienen llave maestra del Centro.',en:'The electronic log of room 204 shows it was opened with a master key — not with Elena\'s card — at 10:15 PM. Only three people have a master key to the Center.'},
+      confront:{
+        nathan:{panic:8, es:'Yo no tengo llave maestra. Solo los empleados del Centro.', en:'I don\'t have a master key. Only the Center staff do.'},
+        claire:{panic:6, es:'Yo tampoco tengo llave. Solo los empleados. Y Olivia es empleada.', en:'I don\'t have a key either. Only staff. And Olivia is staff.'},
+        ryan:{panic:8, es:'No tengo llave. Entré al estacionamiento pero no al Centro.', en:'I don\'t have a key. I entered the parking lot but not the Center.'},
+        olivia:{panic:18, es:'Sí. Yo tengo llave maestra. Y la usé. Abrí la puerta a las 10:15. Elena ya estaba adentro. Estaba escribiendo en el cuaderno. Y hablamos.', en:'Yes. I have a master key. And I used it. I opened the door at 10:15. Elena was already inside. She was writing in the notebook. And we talked.'}}},
+    E08:{num:'08',cat:'catDigital',
+      name:{es:'Archivo oculto relacionado con Elena',en:'Hidden file related to Elena'},
+      desc:{es:'El cuaderno de Elena contiene múltiples anotaciones sobre los cuatro sospechosos. Una página en particular documenta que Olivia entró a su casa sin permiso en dos ocasiones y que copió su llave.',en:'Elena\'s notebook contains multiple entries about all four suspects. One page in particular documents that Olivia entered her house without permission on two occasions and copied her key.'},
+      confront:{
+        nathan:{panic:10, es:'El cuaderno. Elena siempre decía que ahí estaba todo. Y ahora entiendo por qué.', en:'The notebook. Elena always said everything was in there. And now I understand why.'},
+        claire:{panic:8, es:'El cuaderno. Ahí es donde Elena escribía sobre todos. Y Olivia lo quería.', en:'The notebook. That\'s where Elena wrote about everyone. And Olivia wanted it.'},
+        ryan:{panic:10, es:'El cuaderno. Yo sabía que existía. Y sabía que había cosas sobre mí. Pero no lo toqué.', en:'The notebook. I knew it existed. And I knew there were things about me. But I didn\'t touch it.'},
+        olivia:{panic:25, es:'El cuaderno tiene mentiras sobre mí. Mentiras. Ella escribía cosas que no eran verdad.', en:'The notebook has lies about me. Lies. She wrote things that weren\'t true.'}}},
+    E09:{num:'09',cat:'catDigital',contradiction:true,
+      name:{es:'Contradicción entre Olivia y el registro telefónico',en:'Contradiction between Olivia and the phone record'},
+      desc:{es:'El registro telefónico de Elena muestra que ella escribió a Nathan a las 10:15 PM: "Olivia está aquí. No me esperaba a ella." Olivia declaró que no había visto a Elena esa noche.',en:'Elena\'s phone record shows she texted Nathan at 10:15 PM: "Olivia is here. I wasn\'t expecting her." Olivia stated she had not seen Elena that night.'},
+      confront:{
+        nathan:{panic:14, es:'Ella me escribió eso. "Olivia está aquí. No me esperaba a ella." Y después nunca más me escribió.', en:'She texted me that. "Olivia is here. I wasn\'t expecting her." And then she never texted me again.'},
+        claire:{panic:12, es:'Olivia le dijo que no la había visto. Eso es mentira. Yo la vi entrar al Centro.', en:'Olivia told you she hadn\'t seen her. That\'s a lie. I saw her enter the Center.'},
+        ryan:{panic:12, es:'Olivia le dijo que no la había visto. Pero ella estaba adentro. Yo la vi entrar a las 10:15.', en:'Olivia told you she hadn\'t seen her. But she was inside. I saw her enter at 10:15.'},
+        olivia:{panic:30, es:'Está bien. Estuve ahí. Ella me escribió eso a Nathan. Sí. Yo estaba en la habitación. Discutimos. Y me fui a las 11:00. Y ella estaba viva.', en:'Fine. I was there. She texted that to Nathan. Yes. I was in the room. We argued. And I left at 11:00. And she was alive.'}}},
+    E10:{num:'10',cat:'catTestimony',contradiction:true,
+      name:{es:'Evidencia final: la llave maestra de Olivia',en:'Final evidence: Olivia\'s master key'},
+      desc:{es:'El registro del sistema de la habitación 204 confirma que la llave maestra de Olivia abrió la puerta a las 10:15 PM y volvió a abrirla a las 11:47 PM — cuando Olivia declaró haber salido a las 11:00. Además, la única huella parcial en el pomo interior corresponde a Olivia.',en:'The log of room 204 confirms Olivia\'s master key opened the door at 10:15 PM and opened it again at 11:47 PM — when Olivia claimed to have left at 11:00. Additionally, the only partial fingerprint on the inner handle belongs to Olivia.'},
+      confront:{
+        nathan:{panic:8, es:'Ella volvió a las 11:47. Eso significa que volvió después de irse. Eso significa que ella...', en:'She came back at 11:47. That means she came back after she left. That means she...'},
+        claire:{panic:6, es:'Ella volvió. A las 11:47. Después de que dijo que se había ido. Eso lo cambia todo.', en:'She came back. At 11:47. After she said she had left. That changes everything.'},
+        ryan:{panic:8, es:'Ella volvió a las 11:47. Cuando yo ya me había ido. Yo me fui a las 11:30.', en:'She came back at 11:47. When I had already left. I left at 11:30.'},
+        olivia:{panic:30, es:'No... no, eso no puede ser. Yo me fui a las 11:00. Y no volví. No volví. Alguien usó mi llave. Alguien...\n\n…está bien. Volví. Volví a buscar el cuaderno. Pero ella ya no estaba. Cuando entré a las 11:47, ella ya no estaba. Estaba el teléfono, estaba el cuaderno, pero ella no estaba. Y yo me llevé el cuaderno. Y después lo devolví. Eso es todo. Eso es todo lo que hice.', en:'No... no, that can\'t be. I left at 11:00. And I didn\'t come back. I didn\'t come back. Someone used my key. Someone...\n\n...fine. I came back. I came back for the notebook. But she wasn\'t there anymore. When I entered at 11:47, she wasn\'t there anymore. The phone was there, the notebook was there, but she wasn\'t. And I took the notebook. And then I put it back. That\'s all. That\'s all I did.'}}}
+  },
+
+  timeline:[
+    {id:'t1', time:'05:00 PM', order:1, start:true,
+      text:{es:'Elena le dice a Claire: "si me preguntan, no digas que viste mi cuaderno".', en:'Elena tells Claire: "if they ask, don\'t say you saw my notebook."'}},
+    {id:'t2', time:'06:00 PM', order:2, start:true,
+      text:{es:'Elena le dice a Nathan: "si algo me pasa, revisa el cuaderno."', en:'Elena tells Nathan: "if anything happens to me, check the notebook."'}},
+    {id:'t3', time:'09:30 PM', order:3, req:'E06', crit:true,
+      text:{es:'Olivia llama a Elena. La llamada dura unos minutos. Después Olivia elimina el registro.', en:'Olivia calls Elena. The call lasts a few minutes. Then Olivia deletes the record.'}},
+    {id:'t4', time:'09:45 PM', order:4, start:true,
+      text:{es:'Elena envía el mensaje a Nathan: "Si mañana no aparezco, no confíes en la primera versión."', en:'Elena sends the message to Nathan: "If I don\'t show up tomorrow, don\'t trust the first version."'}},
+    {id:'t5', time:'09:45 PM', order:5, req:'E05',
+      text:{es:'Ryan es visto caminando cerca del Centro de Estudios por Claire.', en:'Ryan is seen walking near the Study Center by Claire.'}},
+    {id:'t6', time:'10:00 PM', order:6, start:true,
+      text:{es:'Elena entra a la habitación 204 del Centro de Estudios Ashford.', en:'Elena enters room 204 at the Ashford Study Center.'}},
+    {id:'t7', time:'10:15 PM', order:7, req:'E07', crit:true,
+      text:{es:'La habitación 204 es abierta con la llave maestra de Olivia. Elena le escribe a Nathan: "Olivia está aquí. No me esperaba a ella."', en:'Room 204 is opened with Olivia\'s master key. Elena texts Nathan: "Olivia is here. I wasn\'t expecting her."'}},
+    {id:'t8', time:'10:35 PM', order:8, req:'E03',
+      text:{es:'Nathan sale de su casa. Su conexión a internet se corta por tres minutos.', en:'Nathan leaves his house. His internet connection drops for three minutes.'}},
+    {id:'t9', time:'10:50 PM', order:9, req:'E03',
+      text:{es:'Nathan llega al Centro de Estudios. Se queda frente a la ventana de la habitación 204 unos minutos. Escucha voces. Se va.', en:'Nathan arrives at the Study Center. He stands in front of the window of room 204 for a few minutes. Hears voices. Leaves.'}},
+    {id:'t10', time:'11:00 PM', order:10, start:true, crit:true,
+      text:{es:'VENTANA ESTIMADA DE LA DESAPARICIÓN. Última actividad conocida de Elena.', en:'ESTIMATED WINDOW OF DISAPPEARANCE. Last known activity of Elena.'}},
+    {id:'t11', time:'11:03 PM', order:11, req:'E05', crit:true,
+      text:{es:'Ryan regresa al estacionamiento del Centro. Permanece en su auto.', en:'Ryan returns to the Study Center parking lot. He stays in his car.'}},
+    {id:'t12', time:'11:15 PM', order:12, req:'E10', crit:true,
+      text:{es:'La puerta de la habitación 204 vuelve a abrirse con la llave maestra. Permanencia: 32 minutos.', en:'The door of room 204 opens again with the master key. Duration: 32 minutes.'}},
+    {id:'t13', time:'11:47 PM', order:13, req:'E10', crit:true,
+      text:{es:'La puerta de la habitación 204 se cierra desde el exterior. El sistema registra la llave de Olivia Reed.', en:'The door of room 204 closes from the outside. The system logs Olivia Reed\'s key.'}},
+    {id:'t14', time:'07:30 AM', order:14, start:true, crit:true,
+      text:{es:'El personal del Centro encuentra la habitación 204 cerrada por fuera. Elena no está. Solo quedan su teléfono y su cuaderno.', en:'Center staff find room 204 locked from the outside. Elena is not there. Only her phone and notebook remain.'}}
+  ],
+
+  fileSections:{
+    S01:{title:{es:'SECCIÓN 01 — NATHAN',en:'SECTION 01 — NATHAN'},
+      body:{es:'Nathan es mi mejor amigo. Lo conozco desde hace años. Pero últimamente está raro. Me escribió a las 9:45 y le respondí que no viniera. Le dije que podía manejar esto sola.\n\nPero no puedo. No puedo sola.\n\nNathan sale de su casa a las 10:35. Su conexión se cae porque apaga el router. Viene al Centro. Lo veo por la ventana. Está mirando hacia adentro. Lo veo irse a las 10:55. No llama a la policía. Se va. Se va y no vuelve.',
+            en:'Nathan is my best friend. I\'ve known him for years. But lately he\'s been strange. He texted me at 9:45 and I told him not to come. I told him I could handle this alone.\n\nBut I can\'t. I can\'t do it alone.\n\nNathan leaves his house at 10:35. His connection drops because he turns off the router. He comes to the Center. I see him through the window. He\'s looking inside. I see him leave at 10:55. He doesn\'t call the police. He leaves. He leaves and he doesn\'t come back.'}},
+    S02:{title:{es:'SECCIÓN 02 — CLAIRE',en:'SECTION 02 — CLAIRE'},
+      body:{es:'Claire me consiguió el registro de accesos de la biblioteca. Le pedí que no dijera nada sobre el cuaderno. Le pedí que si le preguntaban, dijera que no sabía nada.\n\nClaire caminó cerca del Centro a las 9:45. No entró. No avisó a nadie. Pero al menos no mintió sobre estar ahí. Al menos no cambió la historia por conveniencia.',
+            en:'Claire got me the library access log. I asked her not to say anything about the notebook. I asked her, if they asked, to say she knew nothing.\n\nClaire walked near the Center at 9:45. She didn\'t go in. She didn\'t tell anyone. But at least she didn\'t lie about being there. At least she didn\'t change the story for convenience.'}},
+    S03:{title:{es:'SECCIÓN 03 — RYAN',en:'SECTION 03 — RYAN'},
+      body:{es:'Ryan me amenazó. Frente a testigos. Me dijo que iba a lamentarlo. Y yo le dije que no me asustaba.\n\nMentira. Me asusté. Pero Ryan no es el problema esta vez.\n\nRyan volvió al estacionamiento a las 11:03. Yo ya no estaba en la habitación. Alguien más estaba. Y Ryan se quedó en su auto. Mirando. Sin hacer nada.',
+            en:'Ryan threatened me. In front of witnesses. He told me I\'d regret it. And I told him I wasn\'t scared.\n\nLie. I was scared. But Ryan isn\'t the problem this time.\n\nRyan came back to the parking lot at 11:03. I was no longer in the room. Someone else was. And Ryan stayed in his car. Watching. Doing nothing.'}},
+    S04:{title:{es:'SECCIÓN 04 — OLIVIA',en:'SECTION 04 — OLIVIA'},
+      body:{es:'Olivia entró a mi casa dos veces sin permiso. Tengo las fechas anotadas. Y tengo la prueba de que copió mi llave —la vi en su bolso el 4 de este mes.\n\nHoy me llamó a las 9:30. Me dijo que sabía que yo estaba escribiendo sobre ella. Que no le gustaba. Que fuera al Centro a hablar.\n\nNo le dije que ya estaba en el Centro. No le dije que estaba esperando a otra persona. Le dije que sí.\n\nY vino. Con su llave maestra. Y me encontró escribiendo. Y me dijo que si no le daba el cuaderno, iba a hacer algo de lo que me iba a arrepentir.\n\nY aquí estoy. Y no sé si voy a salir.\n\nEsta es la persona que me va a hacer daño. No Ryan. No Nathan. Olivia.',
+            en:'Olivia entered my house twice without permission. I have the dates written down. And I have proof she copied my key — I saw it in her bag on the 4th of this month.\n\nToday she called me at 9:30. She told me she knew I was writing about her. That she didn\'t like it. That I should go to the Center to talk.\n\nI didn\'t tell her I was already at the Center. I didn\'t tell her I was waiting for someone else. I told her yes.\n\nAnd she came. With her master key. And she found me writing. And she told me that if I didn\'t give her the notebook, she was going to do something I would regret.\n\nAnd here I am. And I don\'t know if I\'m going to get out.\n\nThis is the person who is going to hurt me. Not Ryan. Not Nathan. Olivia.'}},
+    S05:{title:{es:'SECCIÓN 05 — NOTA FINAL',en:'SECTION 05 — FINAL NOTE'},final:true,
+      body:{es:'Si estás leyendo esto, significa que algo salió mal.\n\nEsta noche:\n09:30 — Olivia me llamó.\n09:45 — Le escribí a Nathan.\n10:00 — Entré a la habitación 204.\n10:15 — Olivia llegó. Con su llave.\n11:00 — Todavía estábamos aquí. Discutimos.\n\nEsta no es la primera versión. Esta es la verdad.\n\nSi algo me pasa, no fue porque me fui voluntariamente. Fue porque alguien vino a buscarme.\n\nMiren el cuaderno. Miren el registro de accesos. Miren quién tenía la llave.\n\n— E.M.',
+            en:'If you\'re reading this, something went wrong.\n\nTonight:\n09:30 — Olivia called me.\n09:45 — I texted Nathan.\n10:00 — I entered room 204.\n10:15 — Olivia arrived. With her key.\n11:00 — We were still here. We argued.\n\nThis is not the first version. This is the truth.\n\nIf anything happens to me, it wasn\'t because I left voluntarily. It was because someone came looking for me.\n\nLook at the notebook. Look at the access log. Look at who had the key.\n\n— E.M.'}}
+  },
+
+  leads:{
+    L1:{from:'nathan', target:'olivia', falseAccusation:false,
+      text:{es:'Nathan ha señalado a Olivia: "Elena me escribió: \'Olivia está aquí. No me esperaba a ella.\'"', en:'Nathan has pointed at Olivia: "Elena texted me: \'Olivia is here. I wasn\'t expecting her.\'"'}},
+    L2:{from:'claire', target:'olivia', falseAccusation:false,
+      text:{es:'Claire ha revelado: "Vi a Olivia entrar al Centro esa noche. Con una llave. No con la puerta abierta. Con una llave."', en:'Claire has revealed: "I saw Olivia entering the Center that night. With a key. Not with the door open. With a key."'}},
+    L3:{from:'ryan', target:'olivia', falseAccusation:false,
+      text:{es:'Ryan ha declarado: "Vi a alguien con llave entrar al Centro a las 10:15 y salir a las 11:00. Era Olivia."', en:'Ryan has stated: "I saw someone with a key enter the Center at 10:15 and leave at 11:00. It was Olivia."'}},
+    L4:{from:'olivia', target:'nathan', falseAccusation:true,
+      text:{es:'Olivia ha acusado a Nathan: "Nathan estaba obsesionado con Elena. Todos lo sabían."', en:'Olivia has accused Nathan: "Nathan was obsessed with Elena. Everyone knew."'}}
+  },
+
+  breaks:{
+    nathan:[
+     {at:26, ev:'E03', lie:true, msg:{es:'Nathan se tensa. Su historial de conexión acaba de llegar.', en:'Nathan tenses up. His connection history just came in.'}},
+     {at:76, lead:'L1', msg:{es:'Nathan ya no puede contenerse. Lo suelta todo.', en:'Nathan can\'t hold it in anymore. He lets it all out.'}},
+     {at:100, confession:true, msg:{es:'Nathan se derrumba y lo cuenta todo.', en:'Nathan breaks down and tells everything.'}}
+    ],
+    claire:[
+     {at:26, ev:'E04', lie:true, msg:{es:'Claire se pone rígida. Su declaración original no coincide.', en:'Claire goes rigid. Her original statement doesn\'t match.'}},
+     {at:61, lead:'L2', msg:{es:'Claire decide hablar. Ya no puede sostener la versión anterior.', en:'Claire decides to speak. She can no longer maintain the previous version.'}},
+     {at:100, confession:true, msg:{es:'Claire finalmente admite todo lo que vio.', en:'Claire finally admits everything she saw.'}}
+    ],
+    ryan:[
+     {at:26, ev:'E05', lie:true, msg:{es:'Ryan se pone rígido. La cámara lo grabó volviendo.', en:'Ryan goes rigid. The camera recorded him returning.'}},
+     {at:76, lead:'L3', msg:{es:'Ryan aprieta los puños. Ya no puede callarse lo que vio.', en:'Ryan clenches his fists. He can\'t stay silent about what he saw.'}},
+     {at:100, confession:true, msg:{es:'Ryan finalmente admite todo.', en:'Ryan finally admits everything.'}}
+    ],
+    olivia:[
+     {at:26, ev:'E06', lie:true, msg:{es:'Olivia se tensa. El registro de la llamada eliminada apareció.', en:'Olivia tenses up. The deleted call record surfaced.'}},
+     {at:55, ev:'E07', msg:{es:'Olivia respira hondo. El registro de accesos la delata.', en:'Olivia takes a deep breath. The access log exposes her.'}},
+     {at:75, ev:'E09', lead:'L4', msg:{es:'Olivia intenta defenderse y señala a Nathan.', en:'Olivia tries to defend herself and points at Nathan.'}},
+     {at:100, confession:true, msg:{es:'Olivia se quiebra por completo.', en:'Olivia breaks completely.'}}
+    ]
+  },
+
+  ending:{
+    solved:{
+      murdererName:'OLIVIA REED',
+      murdererAge:19,
+      motive:{es:'Olivia Reed había estado manipulando información sobre Elena durante semanas. Elena había anotado en su cuaderno que Olivia entró dos veces a su casa sin permiso y que copió su llave. Olivia trabajaba en el Centro de Estudios y tenía una llave maestra de la habitación 204. La noche del 14, Olivia llamó a Elena a las 9:30, fue al Centro a las 10:15 usando su llave maestra, y discutió con Elena durante casi una hora. Cuando Elena se negó a entregarle el cuaderno, Olivia forcejeó con ella. Elena cayó y se golpeó la cabeza. Olivia entró en pánico, salió de la habitación, y volvió a las 11:47 para recuperar el cuaderno —el cual fotografió y devolvió, pero que ya contenía las anotaciones sobre ella. Elena fue sacada del Centro y su cuerpo sigue sin ser localizado.',
+              en:'Olivia Reed had been manipulating information about Elena for weeks. Elena had written in her notebook that Olivia entered her house twice without permission and that she copied her key. Olivia worked at the Study Center and had a master key to room 204. On the night of the 14th, Olivia called Elena at 9:30, went to the Center at 10:15 using her master key, and argued with Elena for nearly an hour. When Elena refused to hand over the notebook, Olivia struggled with her. Elena fell and hit her head. Olivia panicked, left the room, and came back at 11:47 to retrieve the notebook — which she photographed and returned, but which already contained the notes about her. Elena was taken out of the Center and her body has not been located.'},
+      keyEvidenceIds:['E04','E06','E07','E09','E10'],
+      contradiction:{es:'Olivia declaró inicialmente que no había hablado con Elena esa noche. Sin embargo, (1) el registro de la llamada eliminada muestra que la llamó a las 9:30, (2) el mensaje que Elena le envió a Nathan a las 10:15 confirma que Olivia estaba presente, (3) el registro de accesos de la habitación 204 muestra que la llave maestra de Olivia abrió la puerta a las 10:15 y otra vez a las 11:47, y (4) la única huella en el pomo interior es suya.',
+                     en:'Olivia initially stated she had not spoken to Elena that night. However, (1) the deleted call record shows she called her at 9:30, (2) the message Elena sent Nathan at 10:15 confirms Olivia was present, (3) the room 204 access log shows Olivia\'s master key opened the door at 10:15 and again at 11:47, and (4) the only fingerprint on the inner handle is hers.'},
+      confession:{es:'"Está bien. Sí. Fui yo. No quería que le pasara nada. Solo quería el cuaderno. Ella escribía cosas horribles sobre mí. Mentiras. Que yo había entrado a su casa. Que le había copiado la llave. Todo eso era mentira. O... parcialmente verdad. Pero no así.\n\nLa llamé a las 9:30. Me dijo que fuera al Centro. Fui. Usé mi llave porque era más rápido. Entré a las 10:15. Ella estaba escribiendo. Le pedí el cuaderno. Se rió. Se rió de mí.\n\nForcejeamos. No quería hacerle daño. Solo quería el cuaderno. Se cayó. Se golpeó la cabeza con la esquina de la mesa. Se quedó quieta. No se movía.\n\nEntré en pánico. Salí. Caminé como veinte minutos. Volví a las 11:47 para recuperar el cuaderno. Lo fotografié. Lo devolví. Y me fui.\n\nNo sé dónde está. Eso es todo lo que sé. No sé dónde está. Lo juro."',
+                  en:'"Fine. Yes. It was me. I didn\'t want anything to happen to her. I just wanted the notebook. She was writing horrible things about me. Lies. That I had entered her house. That I had copied her key. All of that was a lie. Or... partially true. But not like that.\n\nI called her at 9:30. She told me to come to the Center. I went. I used my key because it was faster. I entered at 10:15. She was writing. I asked for the notebook. She laughed. She laughed at me.\n\nWe struggled. I didn\'t mean to hurt her. I just wanted the notebook. She fell. She hit her head on the corner of the table. She went still. She wasn\'t moving.\n\nI panicked. I left. I walked for like twenty minutes. I came back at 11:47 to retrieve the notebook. I photographed it. I returned it. And I left.\n\nI don\'t know where she is. That\'s all I know. I don\'t know where she is. I swear."'}
+    }
+  }
+};
+
+/* ============================================================================
+   5. CASE REGISTRY
    ============================================================================ */
 const CASES = {
   case001: CASE001,
-  case002: CASE002
+  case002: CASE002,
+  case003: CASE003
 };
 
 const LOCKED_CASES = [
-  { id:'case003', number:'003', title:{es:'PRÓXIMAMENTE',en:'COMING SOON'}, locked:true },
   { id:'case004', number:'004', title:{es:'PRÓXIMAMENTE',en:'COMING SOON'}, locked:true }
 ];
 
 /* ============================================================================
-   5. GAME STATE
+   6. GAME STATE
    ============================================================================ */
 const SETTINGS_KEY = 'cfu_settings';
 const SAVE_PREFIX = 'cfu_case_';
+const CURRENT_VERSION = "1.0.2";
 
 function freshSuspects(caseData){
   const out = {};
@@ -2738,7 +3695,6 @@ function freshSuspects(caseData){
   });
   return out;
 }
-
 function freshCaseState(caseId){
   const cd = CASES[caseId];
   return {
@@ -2762,14 +3718,12 @@ function freshCaseState(caseId){
     decoded: []
   };
 }
-
 function freshGlobalSettings(){
   return {
     lang: localStorage.getItem('cfu_lang') || 'es',
     sound: true
   };
 }
-
 let gameState = {
   screen: 'menu',
   currentCaseId: null,
@@ -2835,7 +3789,7 @@ function resetAllCases(){
 }
 
 /* ============================================================================
-   6. AUDIO
+   7. AUDIO
    ============================================================================ */
 let audioCtx = null;
 function ac(){
@@ -2865,6 +3819,7 @@ const SFX = {
   contradiction(){ tone(180,0.18,'sawtooth',0.06); tone(140,0.28,'sawtooth',0.05,0.12); },
   warn(){ tone(110,0.3,'sawtooth',0.06); },
   panic(){ tone(300,0.09,'triangle',0.05); tone(460,0.09,'triangle',0.05,0.07); },
+  calm(){ tone(500,0.1,'sine',0.04); tone(400,0.14,'sine',0.035,0.08); },
   solved(){ [523,659,784,1046].forEach((f,i)=>tone(f,0.35,'sine',0.06,i*0.13)); },
   wrong(){ [340,260,190,130].forEach((f,i)=>tone(f,0.3,'sawtooth',0.06,i*0.13)); },
   lead(){ tone(880,0.08,'sine',0.05); tone(1174,0.12,'sine',0.045,0.08); },
@@ -2873,7 +3828,7 @@ const SFX = {
 };
 
 /* ============================================================================
-   7. HELPERS
+   8. HELPERS
    ============================================================================ */
 const $ = id => document.getElementById(id);
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
@@ -2913,7 +3868,6 @@ function addScore(n, silent){
   }
   updateTopbar();
 }
-
 function addEvidence(id){
   const cs = currentCaseState(); const cd = currentCase();
   if(!cs || !cd) return false;
@@ -2937,9 +3891,12 @@ function addEvidence(id){
 function updateFileSections(){
   const cs = currentCaseState(); const cd = currentCase();
   if(!cs || !cd) return;
-  const map = {S01:'E03', S02:'E04', S03:'E05', S04:'E06'};
-  const map2 = {S01:'E08', S02:'E05', S03:'E06', S04:'E07'};
-  const activeMap = cd.id === 'case001' ? map : map2;
+  const maps = {
+    case001:{S01:'E03', S02:'E04', S03:'E05', S04:'E06'},
+    case002:{S01:'E08', S02:'E05', S03:'E06', S04:'E07'},
+    case003:{S01:'E03', S02:'E04', S03:'E05', S04:'E06'}
+  };
+  const activeMap = maps[cd.id] || {};
   Object.keys(activeMap).forEach(s=>{
     if(cs.evidence.includes(activeMap[s]) && !cs.fileSections.includes(s)){
       cs.fileSections.push(s);
@@ -2967,7 +3924,6 @@ function raiseSuspicion(sid, n){
   const s = cs.suspects[sid];
   s.suspicion = Math.max(0, Math.min(100, s.suspicion + n));
 }
-
 function addPanic(sid, n){
   const cs = currentCaseState();
   if(!cs || !cs.suspects[sid]) return;
@@ -2977,6 +3933,9 @@ function addPanic(sid, n){
   if(s.panic > before && n > 0){
     SFX.panic();
     raiseSuspicion(sid, Math.round(n/3));
+  } else if(s.panic < before && n < 0){
+    SFX.calm();
+    // No cambiar sospecha al bajar el pánico.
   }
   checkBreaks(sid);
 }
@@ -3014,7 +3973,7 @@ function pushLog(sid, entry){
 }
 
 /* ============================================================================
-   8. RENDERING
+   9. RENDERING
    ============================================================================ */
 function updateTopbar(){
   const cs = currentCaseState();
@@ -3045,10 +4004,7 @@ function render(){
   }
   if(gameState.screen === 'case' && currentCaseState() && currentCaseState().screen === 'interrogation'){
     const log = $('log');
-    if(log){
-      // En móvil hacer scroll al final del log suavemente
-      log.scrollTop = log.scrollHeight;
-    }
+    if(log) log.scrollTop = log.scrollHeight;
   }
 }
 
@@ -3057,12 +4013,12 @@ function viewMenu(){
   <div class="menu-wrap">
     <div class="menu-title">${esc(L(GLOBAL_TITLE))}</div>
     <div class="menu-sub">${esc(L(GLOBAL_SUB))}</div>
-    <div class="menu-classified">${esc(t('classified'))} · CASE #001 — CASE #002</div>
+    <div class="menu-classified">${esc(t('classified'))} · CASE #001 — #003</div>
     <div class="menu-buttons">
       <button class="btn green" data-act="database">${esc(t('caseDatabase'))}</button>
       <button class="btn" data-act="instructions">${esc(t('instructions'))}</button>
     </div>
-    <div class="menu-foot">${esc(t('caseDatabase'))}: 2 ${gameState.settings.lang==='es'?'CASOS DISPONIBLES':'CASES AVAILABLE'} · ${esc(t('classified'))}</div>
+    <div class="menu-foot">${esc(t('caseDatabase'))}: 3 ${gameState.settings.lang==='es'?'CASOS DISPONIBLES':'CASES AVAILABLE'} · v${CURRENT_VERSION}</div>
   </div>`;
 }
 
@@ -3128,7 +4084,6 @@ function viewDatabase(){
 function viewCaseScreen(){
   const cd = currentCase(); const cs = currentCaseState();
   if(!cd || !cs){ gameState.screen='database'; return viewDatabase(); }
-
   switch(cs.screen){
     case 'dashboard':   return viewDashboard();
     case 'suspects':    return viewSuspects();
@@ -3264,9 +4219,11 @@ function tabEvidence(){
 function tabRelations(){
   const cd = currentCase(); const cs = currentCaseState();
   const relColor = { adrian:'r-friend', valeria:'r-class', marcos:'r-acq', sofia:'r-girl',
-                     maya:'r-friend', ethan:'r-class', lena:'r-friend', victor:'r-acq' };
+                     maya:'r-friend', ethan:'r-class', lena:'r-friend', victor:'r-acq',
+                     nathan:'r-friend', claire:'r-class', ryan:'r-acq', olivia:'r-girl' };
   const relLabel = { adrian:t('relFriend'), valeria:t('relClass'), marcos:t('relAcq'), sofia:t('relGirl'),
-                     maya:t('relCoworker'), ethan:t('relSupervisor'), lena:t('relFriend2'), victor:t('relSecurity') };
+                     maya:t('relCoworker'), ethan:t('relSupervisor'), lena:t('relFriend2'), victor:t('relSecurity'),
+                     nathan:t('relBestFriend'), claire:t('relClass'), ryan:t('relFormerFriend'), olivia:t('relCoworker') };
   let map = `<span class="node">${cd.victim.name.toUpperCase()}</span>\n│\n`;
   const ids = Object.keys(cd.suspects);
   ids.forEach((id,i)=>{
@@ -3281,12 +4238,19 @@ function tabRelations(){
     if(cs.evidence.includes('E05')) hidden += `<div>▸ Marcos regresó a la zona después de decir que se había ido.</div>`;
     if(cs.evidence.includes('E06')) hidden += `<div>▸ Sofía borró mensajes. No por culpa: por miedo.</div>`;
     if(cs.leads.includes('L4')) hidden += `<div>▸ Yael le tenía miedo a alguien. Sofía lo sabe.</div>`;
-  }else{
+  } else if(cd.id === 'case002'){
     if(cs.evidence.includes('E03')) hidden += `<div>▸ Maya mintió sobre la duración de la llamada.</div>`;
     if(cs.evidence.includes('E04')) hidden += `<div>▸ Ethan firmó la orden de borrado de registros.</div>`;
     if(cs.evidence.includes('E05')) hidden += `<div>▸ N0VA usó la terminal de Ethan para amenazar a Daniel.</div>`;
     if(cs.evidence.includes('E06')) hidden += `<div>▸ Victor apagó las cámaras manualmente. El "fallo" fue intencional.</div>`;
     if(cs.evidence.includes('E07')) hidden += `<div>▸ Lena borró un mensaje que advertía sobre N0VA.</div>`;
+  } else if(cd.id === 'case003'){
+    if(cs.evidence.includes('E03')) hidden += `<div>▸ Nathan salió de su casa y su conexión se cayó por tres minutos.</div>`;
+    if(cs.evidence.includes('E04')) hidden += `<div>▸ Claire cambió la hora a la que llegó a casa.</div>`;
+    if(cs.evidence.includes('E05')) hidden += `<div>▸ Ryan regresó a la zona después de decir que se había ido.</div>`;
+    if(cs.evidence.includes('E06')) hidden += `<div>▸ Olivia borró un registro de llamada a Elena.</div>`;
+    if(cs.evidence.includes('E07')) hidden += `<div>▸ Solo tres personas tienen llave maestra del Centro.</div>`;
+    if(cs.evidence.includes('E09')) hidden += `<div>▸ Olivia estaba presente a las 10:15 PM. Lo dijo el propio mensaje de Elena.</div>`;
   }
   if(!hidden) hidden = `<div class="dim">${esc(t('relHiddenText'))}</div>`;
   return `<div class="panel">
@@ -3301,7 +4265,10 @@ function tabRelations(){
 
 function tabFile(){
   const cd = currentCase(); const cs = currentCaseState();
-  const got = cd.id === 'case001' ? cs.evidence.includes('E07') : cs.evidence.includes('E08');
+  let got = false;
+  if(cd.id === 'case001') got = cs.evidence.includes('E07');
+  else if(cd.id === 'case002') got = cs.evidence.includes('E08');
+  else if(cd.id === 'case003') got = cs.evidence.includes('E08');
   if(!got){
     return `<div class="panel">
       <div class="panel-title red">${esc(t('tabFile'))}</div>
@@ -3444,6 +4411,7 @@ function viewSuspects(){
   </div>`;
 }
 
+/* --- Modificación clave: preguntas filtradas por minPanic / maxPanic + indicador de pánico --- */
 function viewInterrogation(){
   const cd = currentCase(); const cs = currentCaseState();
   const sid = cs.currentSuspect;
@@ -3457,12 +4425,20 @@ function viewInterrogation(){
     if(q.cond === 'contradictions' && cs.contradictions.length === 0) return false;
     if(q.reqEv && !cs.evidence.includes(q.reqEv)) return false;
     if(q.reqLead && !cs.leads.includes(q.reqLead)) return false;
+    if(q.minPanic !== undefined && s.panic < q.minPanic) return false;
+    if(q.maxPanic !== undefined && s.panic > q.maxPanic) return false;
     return true;
   });
   const qHtml = qs.map(q=>{
     const times = s.asked[q.id]||0;
     const cls = 'qbtn' + (times?' used':'') + (q.id.indexOf('q_lead_')===0?' lead':'');
-    return `<button class="${cls}" data-act="ask" data-qid="${q.id}">${esc(L(q.text))}${times?` <span class="dim">(${esc(t('interrogateAgain'))} ${times})</span>`:''}</button>`;
+    const pv = (typeof q.panic === 'number') ? q.panic : 0;
+    const deltaCls = pv > 0 ? 'pos' : (pv < 0 ? 'neg' : 'zero');
+    const deltaTxt = pv > 0 ? ('+'+pv) : (pv < 0 ? (''+pv) : '0');
+    return `<button class="${cls}" data-act="ask" data-qid="${q.id}">
+      <span class="qlabel">${esc(L(q.text))}${times?` <span class="dim">(${esc(t('interrogateAgain'))} ${times})</span>`:''}</span>
+      <span class="qdelta ${deltaCls}">${deltaTxt}</span>
+    </button>`;
   }).join('');
 
   const evHtml = cs.evidence.length
@@ -3496,6 +4472,10 @@ function viewInterrogation(){
     return '';
   }).join('');
 
+  const pressureHint = (cd.id === 'case003')
+    ? `<div class="small" style="color:var(--amber);font-family:var(--mono);letter-spacing:1px;margin-bottom:10px">${esc(t('pressureBalance'))} — ${esc(t('pressureBalanceHint'))}</div>`
+    : '';
+
   return `
   <div class="interro">
     <aside class="panel suspect-panel ${critical?'critical':''}">
@@ -3522,6 +4502,7 @@ function viewInterrogation(){
 
     <section class="panel dialogue-panel">
       <div class="panel-title">${esc(t('interrogating'))}: ${esc(p.name)} <span class="dim">${esc(t('caseNo'))} #${cd.number}</span></div>
+      ${pressureHint}
       <div class="log" id="log">
         ${logHtml || `<div class="msg system">${esc(t('selectEvidence'))}</div>`}
       </div>
@@ -3656,8 +4637,10 @@ function viewEnding(){
   </div>`;
 }
 
+function viewCaseFile(){ return viewDashboard(); }
+
 /* ============================================================================
-   9. MODALS
+   10. MODALS
    ============================================================================ */
 function openModal(html){
   $('modalRoot').innerHTML = html;
@@ -3705,7 +4688,7 @@ function modalAccuse(sid){
 }
 
 /* ============================================================================
-   10. ACTIONS
+   11. ACTIONS
    ============================================================================ */
 function openCase(caseId){
   gameState.currentCaseId = caseId;
@@ -3719,7 +4702,7 @@ function openCase(caseId){
     cs.screen = 'dashboard';
     cs.caseTab = 'victim';
     const cd = CASES[caseId];
-    const initialEv = caseId === 'case001' ? ['E01','E02'] : ['E01','E02'];
+    const initialEv = (caseId === 'case001' || caseId === 'case002' || caseId === 'case003') ? ['E01','E02'] : ['E01','E02'];
     initialEv.forEach(id=>{
       if(!cs.evidence.includes(id)) cs.evidence.push(id);
     });
@@ -3733,13 +4716,7 @@ function openCase(caseId){
   gameState.screen = 'case';
   render();
   window.scrollTo({top:0, behavior:'auto'});
-  if(!cs._welcomeShown){
-    cs._welcomeShown = true;
-    toast(gameState.settings.lang==='es'?'CASO ABIERTO':'CASE OPENED','');
-  }
 }
-function continueCase(caseId){ openCase(caseId); }
-
 function doResetCase(caseId){
   resetCaseProgress(caseId);
   closeModal();
@@ -3760,6 +4737,10 @@ function interrogate(sid){
   render();
   window.scrollTo({top:0, behavior:'auto'});
 }
+
+/* ---------------------------------------------------------------------------
+   askQuestion — MODIFICADO para soportar pánico negativo y repetible
+   --------------------------------------------------------------------------- */
 function askQuestion(qid){
   const cd = currentCase(); const cs = currentCaseState();
   const sid = cs.currentSuspect;
@@ -3768,16 +4749,22 @@ function askQuestion(qid){
   const q = cd.questions.find(x=>x.id===qid);
   if(!q) return;
 
-  const times = s.asked[qid] || 0;
+  const askedBefore = s.asked[qid];
   const band = panicBand(s.panic);
   const ans = p.answers[qid];
+  const panicEffect = (typeof q.panic === 'number') ? q.panic : 0;
 
+  // Lead handling (sin cambios)
   if(qid.indexOf('q_lead_') === 0){
     let leadId = null;
     if(qid === 'q_lead_adrian' || qid === 'q_lead_maya') leadId = 'L1';
     else if(qid === 'q_lead_valeria' || qid === 'q_lead_ethan') leadId = 'L2';
     else if(qid === 'q_lead_marcos' || qid === 'q_lead_victor') leadId = 'L3';
     else if(qid === 'q_lead_sofia') leadId = 'L4';
+    else if(qid === 'q_lead_olivia') leadId = 'L1';
+    else if(qid === 'q_lead_claire') leadId = 'L2';
+    else if(qid === 'q_lead_ryan') leadId = 'L3';
+    else if(qid === 'q_lead_nathan') leadId = 'L4';
     if(leadId && !cs.askedLeads.includes(leadId)){
       cs.askedLeads.push(leadId);
       const ld = cd.leads[leadId];
@@ -3787,31 +4774,41 @@ function askQuestion(qid){
     }
   }
 
-  let panicGain = 0;
-  const prevBest = s.asked[qid] !== undefined ? s.asked[qid] : -1;
-  if(times === 0){
-    panicGain = q.panic;
+  let panicChange = 0;
+
+  if(askedBefore === undefined){
+    // Primera vez: efecto completo
+    panicChange = panicEffect;
     s.asked[qid] = band;
-  }else{
-    if(band > prevBest){
-      panicGain = Math.round(q.panic * 0.6);
-      s.asked[qid] = band;
-    }else{
-      addScore(-5, true);
-      toast(t('irrelevant'), 'red');
-      panicGain = 0;
+  } else {
+    if(panicEffect < 0){
+      // Preguntas calmantes: repetibles con efecto reducido al 50%
+      panicChange = Math.round(panicEffect * 0.5);
+      // No actualizamos s.asked[qid] para no romper la lógica de bandas
+    } else if(panicEffect > 0){
+      // Preguntas agresivas/neutrales-positivas: solo dan info nueva si subió la banda
+      if(band > askedBefore){
+        panicChange = Math.round(panicEffect * 0.6);
+        s.asked[qid] = band;
+      } else {
+        addScore(-5, true);
+        toast(t('irrelevant'), 'red');
+        panicChange = 0;
+      }
+    } else {
+      // panic: 0, neutral
+      panicChange = 0;
     }
   }
 
   pushLog(sid, {kind:'q', qid:qid, band:band});
-  if(panicGain > 0) addPanic(sid, panicGain);
+  if(panicChange !== 0) addPanic(sid, panicChange);
   SFX.click();
 
   if(qid==='q_motive' || qid==='q_hiding') raiseSuspicion(sid, 3);
 
   saveCase(cd.id);
   render();
-  // Scroll al fondo del log
   const log = $('log'); if(log) log.scrollTop = log.scrollHeight;
 }
 function confront(eid){
@@ -3880,7 +4877,7 @@ function confirmAccusation(sid){
 }
 
 /* ============================================================================
-   11. EVENT DELEGATION
+   12. EVENT DELEGATION
    ============================================================================ */
 document.addEventListener('click', function(ev){
   const el = ev.target.closest('[data-act]');
@@ -3901,9 +4898,8 @@ document.addEventListener('click', function(ev){
     return;
   }
   if(ev.target.closest('#menuBtn')){
-    if(gameState.screen === 'menu'){
-      /* stay */
-    }else{
+    if(gameState.screen === 'menu'){ /* stay */ }
+    else {
       gameState.screen = 'menu';
       render();
       window.scrollTo({top:0, behavior:'auto'});
@@ -3920,7 +4916,6 @@ document.addEventListener('click', function(ev){
     case 'database':  SFX.click(); gameState.screen = 'database'; render(); window.scrollTo({top:0,behavior:'auto'}); break;
     case 'instructions': SFX.click(); gameState.screen = 'instructions'; render(); window.scrollTo({top:0,behavior:'auto'}); break;
     case 'understood': SFX.click(); gameState.screen = 'menu'; render(); window.scrollTo({top:0,behavior:'auto'}); break;
-
     case 'open-case':
       SFX.click();
       openCase(el.dataset.cid);
@@ -3934,8 +4929,6 @@ document.addEventListener('click', function(ev){
       break;
     case 'cancel':
       SFX.click(); closeModal(); break;
-
-    /* 'suspects' y 'go-suspects' comparten la misma lógica */
     case 'suspects':
     case 'go-suspects':
       SFX.click();
@@ -3995,7 +4988,7 @@ document.addEventListener('click', function(ev){
 });
 
 /* ============================================================================
-   12. LANGUAGE
+   13. LANGUAGE
    ============================================================================ */
 function setLang(l){
   if(l !== 'es' && l !== 'en') return;
@@ -4008,37 +5001,27 @@ function setLang(l){
 }
 
 /* ============================================================================
-   13. MOBILE / TOUCH ENHANCEMENTS
+   14. MOBILE / TOUCH ENHANCEMENTS
    ============================================================================ */
-
-/* Detectar si es dispositivo táctil y aplicar clase al body */
 function detectTouch(){
   const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
   document.body.classList.toggle('is-touch', isTouch);
 }
-
-/* Prevenir zoom por doble tap (iOS Safari) */
 let lastTouchEnd = 0;
 document.addEventListener('touchend', function(ev){
   const now = Date.now();
   if(now - lastTouchEnd <= 300){
-    // Permite el doble tap sólo en inputs de texto (no aplica aquí)
     if(!ev.target.closest('input, textarea, select')){
       ev.preventDefault();
     }
   }
   lastTouchEnd = now;
 }, {passive:false});
-
-/* Manejar cambios de orientación: re-render para ajustar layout */
 let orientationTimer = null;
 function handleOrientation(){
   if(orientationTimer) clearTimeout(orientationTimer);
   orientationTimer = setTimeout(()=>{
-    // Re-render sólo si estamos en pantalla de caso
-    if(gameState.screen === 'case'){
-      render();
-    }
+    if(gameState.screen === 'case'){ render(); }
   }, 250);
 }
 window.addEventListener('orientationchange', handleOrientation);
@@ -4048,28 +5031,15 @@ if(window.matchMedia){
     window.matchMedia('(orientation: landscape)').addEventListener('change', handleOrientation);
   }catch(e){}
 }
-
-/* Ajustar el viewport cuando aparece el teclado en móvil */
 if(window.visualViewport){
   window.visualViewport.addEventListener('resize', ()=>{
     document.documentElement.style.setProperty('--vh', (window.visualViewport.height*0.01)+'px');
   });
   document.documentElement.style.setProperty('--vh', (window.visualViewport.height*0.01)+'px');
 }
-
-/* Scroll suave al inicio al cambiar de pantalla */
-function scrollTop(){
-  try{ window.scrollTo({top:0, behavior:'smooth'}); }catch(e){ window.scrollTo(0,0); }
-}
-
-/* Manejar clic en el overlay del modal para cerrar (solo si hace clic fuera) */
 $('modalRoot').addEventListener('click', function(ev){
-  if(ev.target === $('modalRoot')){
-    closeModal();
-  }
+  if(ev.target === $('modalRoot')){ closeModal(); }
 });
-
-/* Cerrar menú de idioma al tocar fuera */
 document.addEventListener('touchstart', function(ev){
   const lm = $('langMenu');
   if(lm && lm.classList.contains('open')){
@@ -4080,7 +5050,59 @@ document.addEventListener('touchstart', function(ev){
 }, {passive:true});
 
 /* ============================================================================
-   14. INIT
+   15. UPDATE CHECKER — CASE FILES: UNKNOWN
+   ============================================================================ */
+async function checkForUpdates(){
+  try{
+    const response = await fetch('./version.json?t=' + Date.now());
+    if(!response.ok) return;
+    const data = await response.json();
+    if(data.version && data.version !== CURRENT_VERSION){
+      showUpdateNotification(data);
+    }
+  }catch(e){
+    console.log("Could not check for updates.");
+  }
+}
+function showUpdateNotification(update){
+  if(document.getElementById('updateNotification')) return;
+  const escHtml = (s) => String(s == null ? '' : s)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+  const wrap = document.createElement('div');
+  wrap.id = 'updateNotification';
+  wrap.innerHTML = `
+    <div style="
+      position: fixed; top: 20px; right: 20px;
+      width: 320px; max-width: calc(100vw - 40px);
+      padding: 20px; background: #0b1116; color: #fff;
+      border: 1px solid #2bff9e; border-radius: 8px;
+      z-index: 99999; font-family: 'Courier New', monospace;
+      box-shadow: 0 0 30px rgba(43,255,158,.35), 0 0 20px rgba(0,0,0,.6);
+    ">
+      <div style="font-size:16px;font-weight:bold;margin-bottom:10px;color:#2bff9e;letter-spacing:1px">
+        🔔 UPDATE AVAILABLE
+      </div>
+      <div style="margin-bottom:6px;font-size:12px;color:#b9cbcd">
+        Current: <b>${escHtml(CURRENT_VERSION)}</b>
+      </div>
+      <div style="margin-bottom:12px;font-size:12px;color:#b9cbcd">
+        New: <b style="color:#ffb020">${escHtml(update.version)}</b>
+      </div>
+      <div style="font-size:12px;opacity:.85;margin-bottom:15px;color:#9fb3b6;line-height:1.5">
+        ${escHtml(update.latest_update || "New update available.")}
+      </div>
+      <button onclick="location.reload()" style="
+        padding:10px 15px;cursor:pointer;background:#0d141a;color:#2bff9e;
+        border:1px solid #0b6b45;border-radius:4px;
+        font-family:'Courier New',monospace;font-size:12px;letter-spacing:2px;width:100%;
+      ">UPDATE NOW</button>
+    </div>
+  `;
+  document.body.appendChild(wrap);
+}
+
+/* ============================================================================
+   16. INIT
    ============================================================================ */
 (function init(){
   detectTouch();
@@ -4091,238 +5113,8 @@ document.addEventListener('touchstart', function(ev){
     ac();
     document.removeEventListener('pointerdown', once);
   }, {once:true});
+  setTimeout(checkForUpdates, 1500);
 })();
-/* ============================================================================
-   15. UPDATE CHECKER — CASE FILES: UNKNOWN
-   ============================================================================ */
-
-const CURRENT_VERSION = "1.0.0";
-const UPDATE_STORAGE_KEY = "case_files_unknown_update_seen";
-
-/* ---------------------------------------------------------------------------
-   ESCAPAR TEXTO
-   --------------------------------------------------------------------------- */
-
-function escapeHTML(value) {
-  return String(value == null ? "" : value)
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
-}
-
-/* ---------------------------------------------------------------------------
-   COMPROBAR ACTUALIZACIONES
-   --------------------------------------------------------------------------- */
-
-async function checkForUpdates() {
-  try {
-    const response = await fetch(
-      "./version.json?t=" + Date.now(),
-      {
-        cache: "no-store"
-      }
-    );
-
-    if (!response.ok) return;
-
-    const data = await response.json();
-
-    // Si version.json no tiene una versión válida, no hacemos nada
-    if (!data.version) return;
-
-    // Si estamos en la versión más reciente, no mostramos nada
-    if (data.version === CURRENT_VERSION) {
-      return;
-    }
-
-    // Comprobar si el jugador ya vio/aceptó esta versión
-    const alreadySeen = localStorage.getItem(
-      UPDATE_STORAGE_KEY
-    );
-
-    if (alreadySeen === data.version) {
-      return;
-    }
-
-    showUpdateNotification(data);
-
-  } catch (error) {
-    // Silencioso: si no hay conexión o version.json no está disponible,
-    // el juego continúa funcionando normalmente.
-    console.log("Could not check for updates.");
-  }
-}
-
-/* ---------------------------------------------------------------------------
-   MOSTRAR NOTIFICACIÓN
-   --------------------------------------------------------------------------- */
-
-function showUpdateNotification(update) {
-
-  // Evitar notificaciones duplicadas
-  if (document.getElementById("updateNotification")) {
-    return;
-  }
-
-  const wrap = document.createElement("div");
-
-  wrap.id = "updateNotification";
-
-  wrap.innerHTML = `
-    <div style="
-      position: fixed;
-      top: 20px;
-      right: 20px;
-      width: 320px;
-      max-width: calc(100vw - 40px);
-      padding: 20px;
-      background: #0b1116;
-      color: #ffffff;
-      border: 1px solid #2bff9e;
-      border-radius: 8px;
-      z-index: 99999;
-      font-family: 'Courier New', monospace;
-      box-shadow:
-        0 0 30px rgba(43,255,158,.35),
-        0 0 20px rgba(0,0,0,.6);
-    ">
-
-      <div style="
-        font-size: 16px;
-        font-weight: bold;
-        margin-bottom: 10px;
-        color: #2bff9e;
-        letter-spacing: 1px;
-      ">
-        UPDATE AVAILABLE
-      </div>
-
-      <div style="
-        margin-bottom: 6px;
-        font-size: 12px;
-        color: #b9cbcd;
-      ">
-        CURRENT:
-        <b>${escapeHTML(CURRENT_VERSION)}</b>
-      </div>
-
-      <div style="
-        margin-bottom: 12px;
-        font-size: 12px;
-        color: #b9cbcd;
-      ">
-        NEW:
-        <b style="color:#ffb020;">
-          ${escapeHTML(update.version)}
-        </b>
-      </div>
-
-      <div style="
-        font-size: 12px;
-        opacity: .85;
-        margin-bottom: 15px;
-        color: #9fb3b6;
-        line-height: 1.5;
-      ">
-        ${escapeHTML(
-          update.latest_update ||
-          "New update available."
-        )}
-      </div>
-
-      <button
-        id="updateNowButton"
-        style="
-          padding: 10px 15px;
-          cursor: pointer;
-          background: #0d141a;
-          color: #2bff9e;
-          border: 1px solid #0b6b45;
-          border-radius: 4px;
-          font-family: 'Courier New', monospace;
-          font-size: 12px;
-          letter-spacing: 2px;
-          width: 100%;
-          margin-bottom: 8px;
-        "
-      >
-        UPDATE NOW
-      </button>
-
-      <button
-        id="updateLaterButton"
-        style="
-          padding: 8px 15px;
-          cursor: pointer;
-          background: transparent;
-          color: #9fb3b6;
-          border: none;
-          font-family: 'Courier New', monospace;
-          font-size: 11px;
-          letter-spacing: 1px;
-          width: 100%;
-        "
-      >
-        LATER
-      </button>
-
-    </div>
-  `;
-
-  document.body.appendChild(wrap);
-
-  /* -------------------------------------------------------------------------
-     BOTÓN UPDATE NOW
-     ------------------------------------------------------------------------- */
-
-  document
-    .getElementById("updateNowButton")
-    .addEventListener("click", () => {
-
-      /*
-       * Guardamos la versión que el jugador aceptó.
-       * Así no volveremos a mostrar esta misma actualización
-       * después de recargar.
-       */
-      localStorage.setItem(
-        UPDATE_STORAGE_KEY,
-        update.version
-      );
-
-      /*
-       * Recargar la página para obtener los archivos
-       * más recientes publicados en GitHub Pages.
-       */
-      window.location.reload();
-    });
-
-  /* -------------------------------------------------------------------------
-     BOTÓN LATER
-     ------------------------------------------------------------------------- */
-
-  document
-    .getElementById("updateLaterButton")
-    .addEventListener("click", () => {
-
-      /*
-       * Cerramos la ventana, pero NO guardamos la versión.
-       *
-       * Esto significa que si el jugador vuelve a abrir el juego,
-       * se le volverá a avisar de la actualización.
-       */
-      wrap.remove();
-    });
-}
-
-/* ---------------------------------------------------------------------------
-   COMPROBAR DESPUÉS DE CARGAR EL JUEGO
-   --------------------------------------------------------------------------- */
-
-setTimeout(checkForUpdates, 1500);
-
-
 </script>
 </body>
 </html>
