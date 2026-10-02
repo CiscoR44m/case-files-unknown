@@ -676,94 +676,6 @@ ul.plain.red li::before{color:var(--red)}
 <div id="modalRoot"></div>
 
 <script>
-// ==========================================
-// CASE FILES: UNKNOWN - UPDATE CHECKER
-// ==========================================
-
-const CURRENT_VERSION = "1.0.0";
-
-async function checkForUpdates() {
-    try {
-        const response = await fetch(
-            `./version.json?t=${Date.now()}`
-        );
-
-        if (!response.ok) return;
-
-        const data = await response.json();
-
-        if (data.version !== CURRENT_VERSION) {
-            showUpdateNotification(data);
-        }
-
-    } catch (error) {
-        console.log("Could not check for updates.");
-    }
-}
-
-function showUpdateNotification(update) {
-
-    const notification = document.createElement("div");
-
-    notification.innerHTML = `
-        <div style="
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            width: 320px;
-            padding: 20px;
-            background: #111;
-            color: #fff;
-            border: 1px solid #777;
-            border-radius: 8px;
-            z-index: 99999;
-            font-family: monospace;
-            box-shadow: 0 0 20px rgba(0,0,0,.5);
-        ">
-
-            <div style="
-                font-size: 18px;
-                font-weight: bold;
-                margin-bottom: 10px;
-            ">
-                🔔 UPDATE AVAILABLE
-            </div>
-
-            <div style="margin-bottom: 8px;">
-                Current version: ${CURRENT_VERSION}
-            </div>
-
-            <div style="margin-bottom: 12px;">
-                New version: ${update.version}
-            </div>
-
-            <div style="
-                font-size: 13px;
-                opacity: .8;
-                margin-bottom: 15px;
-            ">
-                ${update.latest_update || "New update available."}
-            </div>
-
-            <button
-                onclick="location.reload(true)"
-                style="
-                    padding: 10px 15px;
-                    cursor: pointer;
-                "
-            >
-                UPDATE
-            </button>
-
-        </div>
-    `;
-
-    document.body.appendChild(notification);
-}
-
-// Check when the game loads
-checkForUpdates();
-  
 "use strict";
 /* ============================================================================
    0. GLOBAL GAME META
@@ -4180,6 +4092,107 @@ document.addEventListener('touchstart', function(ev){
     document.removeEventListener('pointerdown', once);
   }, {once:true});
 })();
+/* ============================================================================
+   15. UPDATE CHECKER — CASE FILES: UNKNOWN
+   ============================================================================ */
+const CURRENT_VERSION = "1.0.0";
+
+async function checkForUpdates() {
+  try {
+    const response = await fetch('./version.json?t=' + Date.now());
+
+    if (!response.ok) return;
+
+    const data = await response.json();
+
+    if (data.version && data.version !== CURRENT_VERSION) {
+      showUpdateNotification(data);
+    }
+  } catch (error) {
+    // Silencioso: si no hay version.json o estamos offline, no pasa nada.
+    console.log("Could not check for updates.");
+  }
+}
+
+function showUpdateNotification(update) {
+  // Evitar duplicados si se llama varias veces
+  if (document.getElementById('updateNotification')) return;
+
+  // Escapar HTML por seguridad (por si latest_update trae caracteres raros)
+  const esc = (s) => String(s == null ? '' : s)
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;');
+
+  const wrap = document.createElement('div');
+  wrap.id = 'updateNotification';
+  wrap.innerHTML = `
+    <div style="
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      width: 320px;
+      max-width: calc(100vw - 40px);
+      padding: 20px;
+      background: #0b1116;
+      color: #fff;
+      border: 1px solid #2bff9e;
+      border-radius: 8px;
+      z-index: 99999;
+      font-family: 'Courier New', monospace;
+      box-shadow: 0 0 30px rgba(43,255,158,.35), 0 0 20px rgba(0,0,0,.6);
+    ">
+      <div style="
+        font-size: 16px;
+        font-weight: bold;
+        margin-bottom: 10px;
+        color: #2bff9e;
+        letter-spacing: 1px;
+      ">
+        🔔 UPDATE AVAILABLE
+      </div>
+      <div style="margin-bottom: 6px; font-size: 12px; color: #b9cbcd;">
+        Current: <b>${esc(CURRENT_VERSION)}</b>
+      </div>
+      <div style="margin-bottom: 12px; font-size: 12px; color: #b9cbcd;">
+        New: <b style="color:#ffb020;">${esc(update.version)}</b>
+      </div>
+      <div style="
+        font-size: 12px;
+        opacity: .85;
+        margin-bottom: 15px;
+        color: #9fb3b6;
+        line-height: 1.5;
+      ">
+        ${esc(update.latest_update || "New update available.")}
+      </div>
+      <button
+        onclick="location.reload()"
+        style="
+          padding: 10px 15px;
+          cursor: pointer;
+          background: #0d141a;
+          color: #2bff9e;
+          border: 1px solid #0b6b45;
+          border-radius: 4px;
+          font-family: 'Courier New', monospace;
+          font-size: 12px;
+          letter-spacing: 2px;
+          width: 100%;
+        "
+      >
+        UPDATE NOW
+      </button>
+    </div>
+  `;
+
+  document.body.appendChild(wrap);
+}
+
+// Chequear después de que el juego cargue (no bloquea el render)
+setTimeout(checkForUpdates, 1500);
+  
 </script>
 </body>
 </html>
