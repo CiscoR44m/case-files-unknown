@@ -4092,41 +4092,85 @@ document.addEventListener('touchstart', function(ev){
     document.removeEventListener('pointerdown', once);
   }, {once:true});
 })();
+```javascript
 /* ============================================================================
    15. UPDATE CHECKER — CASE FILES: UNKNOWN
    ============================================================================ */
+
 const CURRENT_VERSION = "1.0.0";
+const UPDATE_STORAGE_KEY = "case_files_unknown_update_seen";
+
+/* ---------------------------------------------------------------------------
+   ESCAPAR TEXTO
+   --------------------------------------------------------------------------- */
+
+function escapeHTML(value) {
+  return String(value == null ? "" : value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
+
+/* ---------------------------------------------------------------------------
+   COMPROBAR ACTUALIZACIONES
+   --------------------------------------------------------------------------- */
 
 async function checkForUpdates() {
   try {
-    const response = await fetch('./version.json?t=' + Date.now());
+    const response = await fetch(
+      "./version.json?t=" + Date.now(),
+      {
+        cache: "no-store"
+      }
+    );
 
     if (!response.ok) return;
 
     const data = await response.json();
 
-    if (data.version && data.version !== CURRENT_VERSION) {
-      showUpdateNotification(data);
+    // Si version.json no tiene una versión válida, no hacemos nada
+    if (!data.version) return;
+
+    // Si estamos en la versión más reciente, no mostramos nada
+    if (data.version === CURRENT_VERSION) {
+      return;
     }
+
+    // Comprobar si el jugador ya vio/aceptó esta versión
+    const alreadySeen = localStorage.getItem(
+      UPDATE_STORAGE_KEY
+    );
+
+    if (alreadySeen === data.version) {
+      return;
+    }
+
+    showUpdateNotification(data);
+
   } catch (error) {
-    // Silencioso: si no hay version.json o estamos offline, no pasa nada.
+    // Silencioso: si no hay conexión o version.json no está disponible,
+    // el juego continúa funcionando normalmente.
     console.log("Could not check for updates.");
   }
 }
 
+/* ---------------------------------------------------------------------------
+   MOSTRAR NOTIFICACIÓN
+   --------------------------------------------------------------------------- */
+
 function showUpdateNotification(update) {
-  // Evitar duplicados si se llama varias veces
-  if (document.getElementById('updateNotification')) return;
 
-  // Escapar HTML por seguridad (por si latest_update trae caracteres raros)
-  const esc = (s) => String(s == null ? '' : s)
-    .replace(/&/g,'&amp;')
-    .replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;')
-    .replace(/"/g,'&quot;');
+  // Evitar notificaciones duplicadas
+  if (document.getElementById("updateNotification")) {
+    return;
+  }
 
-  const wrap = document.createElement('div');
-  wrap.id = 'updateNotification';
+  const wrap = document.createElement("div");
+
+  wrap.id = "updateNotification";
+
   wrap.innerHTML = `
     <div style="
       position: fixed;
@@ -4136,13 +4180,16 @@ function showUpdateNotification(update) {
       max-width: calc(100vw - 40px);
       padding: 20px;
       background: #0b1116;
-      color: #fff;
+      color: #ffffff;
       border: 1px solid #2bff9e;
       border-radius: 8px;
       z-index: 99999;
       font-family: 'Courier New', monospace;
-      box-shadow: 0 0 30px rgba(43,255,158,.35), 0 0 20px rgba(0,0,0,.6);
+      box-shadow:
+        0 0 30px rgba(43,255,158,.35),
+        0 0 20px rgba(0,0,0,.6);
     ">
+
       <div style="
         font-size: 16px;
         font-weight: bold;
@@ -4150,14 +4197,29 @@ function showUpdateNotification(update) {
         color: #2bff9e;
         letter-spacing: 1px;
       ">
-        🔔 UPDATE AVAILABLE
+        UPDATE AVAILABLE
       </div>
-      <div style="margin-bottom: 6px; font-size: 12px; color: #b9cbcd;">
-        Current: <b>${esc(CURRENT_VERSION)}</b>
+
+      <div style="
+        margin-bottom: 6px;
+        font-size: 12px;
+        color: #b9cbcd;
+      ">
+        CURRENT:
+        <b>${escapeHTML(CURRENT_VERSION)}</b>
       </div>
-      <div style="margin-bottom: 12px; font-size: 12px; color: #b9cbcd;">
-        New: <b style="color:#ffb020;">${esc(update.version)}</b>
+
+      <div style="
+        margin-bottom: 12px;
+        font-size: 12px;
+        color: #b9cbcd;
+      ">
+        NEW:
+        <b style="color:#ffb020;">
+          ${escapeHTML(update.version)}
+        </b>
       </div>
+
       <div style="
         font-size: 12px;
         opacity: .85;
@@ -4165,10 +4227,14 @@ function showUpdateNotification(update) {
         color: #9fb3b6;
         line-height: 1.5;
       ">
-        ${esc(update.latest_update || "New update available.")}
+        ${escapeHTML(
+          update.latest_update ||
+          "New update available."
+        )}
       </div>
+
       <button
-        onclick="location.reload()"
+        id="updateNowButton"
         style="
           padding: 10px 15px;
           cursor: pointer;
@@ -4180,19 +4246,84 @@ function showUpdateNotification(update) {
           font-size: 12px;
           letter-spacing: 2px;
           width: 100%;
+          margin-bottom: 8px;
         "
       >
         UPDATE NOW
       </button>
+
+      <button
+        id="updateLaterButton"
+        style="
+          padding: 8px 15px;
+          cursor: pointer;
+          background: transparent;
+          color: #9fb3b6;
+          border: none;
+          font-family: 'Courier New', monospace;
+          font-size: 11px;
+          letter-spacing: 1px;
+          width: 100%;
+        "
+      >
+        LATER
+      </button>
+
     </div>
   `;
 
   document.body.appendChild(wrap);
+
+  /* -------------------------------------------------------------------------
+     BOTÓN UPDATE NOW
+     ------------------------------------------------------------------------- */
+
+  document
+    .getElementById("updateNowButton")
+    .addEventListener("click", () => {
+
+      /*
+       * Guardamos la versión que el jugador aceptó.
+       * Así no volveremos a mostrar esta misma actualización
+       * después de recargar.
+       */
+      localStorage.setItem(
+        UPDATE_STORAGE_KEY,
+        update.version
+      );
+
+      /*
+       * Recargar la página para obtener los archivos
+       * más recientes publicados en GitHub Pages.
+       */
+      window.location.reload();
+    });
+
+  /* -------------------------------------------------------------------------
+     BOTÓN LATER
+     ------------------------------------------------------------------------- */
+
+  document
+    .getElementById("updateLaterButton")
+    .addEventListener("click", () => {
+
+      /*
+       * Cerramos la ventana, pero NO guardamos la versión.
+       *
+       * Esto significa que si el jugador vuelve a abrir el juego,
+       * se le volverá a avisar de la actualización.
+       */
+      wrap.remove();
+    });
 }
 
-// Chequear después de que el juego cargue (no bloquea el render)
+/* ---------------------------------------------------------------------------
+   COMPROBAR DESPUÉS DE CARGAR EL JUEGO
+   --------------------------------------------------------------------------- */
+
 setTimeout(checkForUpdates, 1500);
-  
+```
+
 </script>
 </body>
 </html>
