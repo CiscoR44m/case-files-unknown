@@ -676,6 +676,94 @@ ul.plain.red li::before{color:var(--red)}
 <div id="modalRoot"></div>
 
 <script>
+// ==========================================
+// CASE FILES: UNKNOWN - UPDATE CHECKER
+// ==========================================
+
+const CURRENT_VERSION = "1.0.0";
+
+async function checkForUpdates() {
+    try {
+        const response = await fetch(
+            `./version.json?t=${Date.now()}`
+        );
+
+        if (!response.ok) return;
+
+        const data = await response.json();
+
+        if (data.version !== CURRENT_VERSION) {
+            showUpdateNotification(data);
+        }
+
+    } catch (error) {
+        console.log("Could not check for updates.");
+    }
+}
+
+function showUpdateNotification(update) {
+
+    const notification = document.createElement("div");
+
+    notification.innerHTML = `
+        <div style="
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            width: 320px;
+            padding: 20px;
+            background: #111;
+            color: #fff;
+            border: 1px solid #777;
+            border-radius: 8px;
+            z-index: 99999;
+            font-family: monospace;
+            box-shadow: 0 0 20px rgba(0,0,0,.5);
+        ">
+
+            <div style="
+                font-size: 18px;
+                font-weight: bold;
+                margin-bottom: 10px;
+            ">
+                🔔 UPDATE AVAILABLE
+            </div>
+
+            <div style="margin-bottom: 8px;">
+                Current version: ${CURRENT_VERSION}
+            </div>
+
+            <div style="margin-bottom: 12px;">
+                New version: ${update.version}
+            </div>
+
+            <div style="
+                font-size: 13px;
+                opacity: .8;
+                margin-bottom: 15px;
+            ">
+                ${update.latest_update || "New update available."}
+            </div>
+
+            <button
+                onclick="location.reload(true)"
+                style="
+                    padding: 10px 15px;
+                    cursor: pointer;
+                "
+            >
+                UPDATE
+            </button>
+
+        </div>
+    `;
+
+    document.body.appendChild(notification);
+}
+
+// Check when the game loads
+checkForUpdates();
+  
 "use strict";
 /* ============================================================================
    0. GLOBAL GAME META
