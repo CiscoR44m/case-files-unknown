@@ -3667,7 +3667,901 @@ const CASE003 = {
     }
   }
 };
+/* ============================================================================
+   4b. CASE #004 — BAÑO DE SANGRE / BLOODBATH
+   ============================================================================ */
+const CASE004 = {
+  id:'case004',
+  number:'004',
+  title:{ es:'BAÑO DE SANGRE', en:'BLOODBATH' },
+  shortTitle:{ es:'Damián Ríos', en:'Damian Ríos' },
+  description:{
+    es:'Un asesinato público en un complejo acuático durante una fiesta nocturna. Cincuenta testigos. Nadie vio la cara del asesino. Y las descripciones no coinciden entre sí.',
+    en:'A public murder at a swimming complex during a night event. Fifty witnesses. No one saw the killer\'s face. And the descriptions don\'t match each other.'
+  },
+  accent:'#22d3ee',
+  murderer:'camila',
+  minEvidence:8, minContradictions:3,
+  hasLies:true,
+  hasWitnessReconstruction:true,
 
+  victim:{
+    name:'Damián Ríos', age:34,
+    statusKey:'deceased',
+    occ:{es:'GERENTE NOCTURNO — COMPLEJO ACUÁTICO AQUA NOVA',en:'NIGHT MANAGER — AQUA NOVA SWIMMING COMPLEX'},
+    interests:{es:'Fotografía amateur, apuestas, negocios turbios. Le gustaba saber cosas de los demás.',en:'Amateur photography, gambling, shady business. He liked knowing things about other people.'},
+    personality:{es:'Carismático en público, manipulador en privado. Encantador con quien le servía, despiadado con quien le estorbaba.',en:'Charming in public, manipulative in private. Lovely to whoever was useful, ruthless to whoever got in his way.'},
+    lastAct:{es:'Coordinaba la "Noche de Neón" en el complejo Aqua Nova. Fue apuñalado junto a la piscina de saltos a las 22:47.',en:'Coordinating the "Neon Night" at Aqua Nova complex. Stabbed near the diving pool at 10:47 PM.'},
+    lastMsg:{es:'Ninguno. El asesinato ocurrió en público. No hubo mensaje final.',en:'None. The murder happened in public. There was no final message.'},
+    estTime:{es:'22:47 — 22:49',en:'10:47 PM — 10:49 PM'},
+    lastLoc:{es:'Borde este de la piscina de saltos, Aqua Nova.',en:'East edge of the diving pool, Aqua Nova.'},
+    unknown:{es:'• Identidad real del asesino.\n• Por qué las descripciones de los testigos no coinciden.\n• Cómo el asesino escapó entre cincuenta personas.\n• Quién manipuló los registros de seguridad.',
+             en:'• Real identity of the killer.\n• Why witness descriptions don\'t match.\n• How the killer escaped among fifty people.\n• Who manipulated the security logs.'},
+    story:{es:'Damián Ríos, 34 años, gerente nocturno del complejo acuático Aqua Nova, fue asesinado a las 22:47 durante la "Noche de Neón", un evento público con más de cincuenta asistentes. El asesino portaba una capucha negra, una máscara reflectante y guantes. Nadie vio su rostro. Doce testigos dieron declaraciones. Las descripciones no coinciden: algunos dicen que era alto, otros que era de estatura media; algunos dicen que hablaba con voz grave, otros que no habló. El asesino escapó durante el caos. El arma —un cuchillo de cocina— fue hallada en una papelera. No hay huellas utilizables. El caso está clasificado como HOMICIDIO PÚBLICO.',
+           en:'Damián Ríos, 34, night manager of the Aqua Nova swimming complex, was murdered at 10:47 PM during "Neon Night," a public event with over fifty attendees. The killer wore a black hoodie, a reflective mask and gloves. No one saw their face. Twelve witnesses gave statements. Descriptions don\'t match: some say they were tall, others say medium height; some say they spoke in a deep voice, others say they didn\'t speak at all. The killer escaped in the chaos. The weapon — a kitchen knife — was found in a trash bin. No usable prints. The case is classified as PUBLIC HOMICIDE.'}
+  },
+
+  suspects:{
+    renata:{
+      id:'renata', name:'RENATA VELA', age:30, initials:'RV', color:'#22d3ee',
+      rel:{es:'JEFA DE SEGURIDAD',en:'HEAD OF SECURITY'}, relKey:'relSecurity',
+      answers:{
+        q_where:{panic:6, es:[
+          "En la sala de monitoreo. Vi todo por las cámaras. Cuando reaccioné ya era tarde.",
+          "En la sala de monitoreo. Como siempre. Estaba sola —mi turno es solitario.",
+          "En la sala de monitoreo. Sí. Estaba sola. Ya sé cómo se ve eso.",
+          "Estaba en la sala de monitoreo. Pero hay un tramo de siete minutos donde las cámaras 3 y 5 parpadearon. Y no lo reporté. Por eso miento.",
+          "Estaba en la sala de monitoreo. Manipulé dos timestamps. No para proteger al asesino. Para protegerme a mí. Estaba vendiendo accesos a invitados no autorizados. Y si eso salía, yo perdía el trabajo."],
+          en:[
+          "In the monitoring room. I saw everything through the cameras. By the time I reacted, it was too late.",
+          "In the monitoring room. As always. I was alone —my shift is solo.",
+          "In the monitoring room. Yes. I was alone. I know how that looks.",
+          "I was in the monitoring room. But there\'s a seven-minute stretch where cameras 3 and 5 flickered. And I didn\'t report it. That\'s why I\'m lying.",
+          "I was in the monitoring room. I manipulated two timestamps. Not to protect the killer. To protect myself. I was selling access to unauthorized guests. If that came out, I lost my job."]},
+        q_lastseen:{panic:8, es:[
+          "Lo vi a las 22:30 en la entrada principal. Saludando gente. Como siempre.",
+          "Lo vi a las 22:30. Estaba con alguien. No distinguí con quién.",
+          "Lo vi a las 22:30. Discutía con alguien. No pude oír qué decían.",
+          "Lo vi a las 22:30 discutiendo con una persona de capucha negra. Pensé que era un invitado. Después vi al asesino con la misma capucha. Y entendí. Demasiado tarde.",
+          "Lo vi a las 22:30 discutiendo con alguien con capucha negra. La persona tenía las manos en los bolsillos. No le vi la cara. Cuando lo encontraron muerto, entendí que la discusión era con el asesino."],
+          en:[
+          "I saw him at 10:30 PM at the main entrance. Greeting people. As always.",
+          "I saw him at 10:30. He was with someone. I couldn\'t tell who.",
+          "I saw him at 10:30. He was arguing with someone. I couldn\'t hear what they said.",
+          "I saw him at 10:30 arguing with a person in a black hoodie. I thought it was a guest. Later I saw the killer in the same hoodie. And I understood. Too late.",
+          "I saw him at 10:30 arguing with someone in a black hoodie. The person had their hands in their pockets. I didn\'t see their face. When they found him dead, I understood that argument was with the killer."]},
+        q_relation:{panic:3, es:["Era mi jefe. Un mal jefe. Pero un jefe."],
+          en:["He was my boss. A bad boss. But a boss."]},
+        q_motive:{panic:12, es:[
+          "¿Motivo? Ninguno. Yo no gano nada con que él muera.",
+          "Tenía problemas con él. Sí. Pero no lo maté.",
+          "Estaba vendiendo accesos sin autorización. Él lo descubrió. Me dijo que iba a despedirme el lunes.",
+          "Él lo descubrió. Me amenazó. Pero yo no lo maté. Yo solo manipulé las cámaras después para que no saliera mi nombre.",
+          "Sí, tenía motivos. Sí, manipulé las cámaras. Pero no fui yo. Cuando llegué al lugar —después de ver el parpadeo en las pantallas— ya había gente alrededor. Ya estaba muerto."],
+          en:[
+          "Motive? None. I gain nothing from his death.",
+          "I had problems with him. Yes. But I didn\'t kill him.",
+          "I was selling access without authorization. He found out. He told me he was going to fire me on Monday.",
+          "He found out. He threatened me. But I didn\'t kill him. I only manipulated the cameras afterward so my name wouldn\'t come up.",
+          "Yes, I had motives. Yes, I manipulated the cameras. But it wasn\'t me. When I got there —after seeing the flicker on the screens— there were already people around. He was already dead."]},
+        q_2247:{panic:10, es:[
+          "A las 22:47 estaba mirando los monitores. Como siempre.",
+          "En la sala. Ya te dije.",
+          "En la sala. Pero las cámaras 3 y 5 parpadearon entre las 22:44 y las 22:51. No vi nada en ese tramo.",
+          "En la sala. Cuando el sistema volvió, vi gente corriendo hacia la piscina de saltos. Llegué 90 segundos después. Ya estaba muerto.",
+          "En la sala. Cuando las cámaras parpadearon —entre 22:44 y 22:51— yo estaba mirando el tramo que sí funcionaba. El asesino sabía qué cámaras iban a fallar. O las hizo fallar. Nunca sabremos cuál."],
+          en:[
+          "At 10:47 PM I was watching the monitors. As always.",
+          "In the room. I told you.",
+          "In the room. But cameras 3 and 5 flickered between 10:44 and 10:51. I didn\'t see anything in that window.",
+          "In the room. When the system came back, I saw people running toward the diving pool. I got there 90 seconds later. He was already dead.",
+          "In the room. When the cameras flickered —between 10:44 and 10:51— I was watching the segment that was still working. The killer knew which cameras would fail. Or made them fail. We\'ll never know which."]},
+        q_hiding:{panic:12, es:[
+          "No escondo nada.",
+          "No importa.",
+          "Escondo que manipulé las cámaras. Eso es todo.",
+          "Escondo que vendía accesos. Y que manipé los timestamps para que no se viera mi nombre en los registros.",
+          "Escondo que esa noche tenía dos invitados no autorizados adentro. Uno de ellos fue el que me pagó. El otro era un amigo. Y uno de los dos pudo haber sido el asesino. Eso es lo que escondo."],
+          en:[
+          "I\'m not hiding anything.",
+          "Doesn\'t matter.",
+          "I\'m hiding that I manipulated the cameras. That\'s all.",
+          "I\'m hiding that I was selling access. And that I edited the timestamps so my name wouldn\'t appear in the logs.",
+          "I\'m hiding that I had two unauthorized guests inside that night. One of them was the one who paid me. The other was a friend. And one of the two could have been the killer. That\'s what I\'m hiding."]},
+        q_disguise:{panic:10, es:[
+          "La capucha negra. Sí. La vi. En las cámaras 3 y 5, antes del parpadeo.",
+          "Sí. La vi. Capucha negra. Es todo lo que puedo decir.",
+          "Vi la capucha. Y algo brillante. Como una máscara. Pensé que era parte del evento.",
+          "Vi la capucha y la máscara reflectante. Pensé que era un disfraz para la Noche de Neón. Pero la máscara no era del evento —yo supervisé el inventario de props. Esa máscara no estaba en la lista.",
+          "Vi la capucha y la máscara. Y vi las manos. Con guantes. Y vi los zapatos. Grandes. Demasiado grandes para el cuerpo. Lo anoté. En mi cuaderno. Porque algo me pareció raro. Y después nunca lo reporté."],
+          en:[
+          "The black hoodie. Yes. I saw it. On cameras 3 and 5, before the flicker.",
+          "Yes. I saw it. Black hoodie. That\'s all I can say.",
+          "I saw the hoodie. And something shiny. Like a mask. I thought it was part of the event.",
+          "I saw the hoodie and the reflective mask. I thought it was a costume for Neon Night. But the mask wasn\'t part of the event —I supervised the prop inventory. That mask wasn\'t on the list.",
+          "I saw the hoodie and the mask. And I saw the hands. With gloves. And I saw the shoes. Big. Too big for the body. I wrote it down. In my notebook. Because something felt off. And then I never reported it."]},
+        q_who:{panic:8, es:[
+          "No lo sé. No quiero especular.",
+          "No puedo dar un nombre sin pruebas.",
+          "Nadie. Todos estaban adentro. Todos vieron. Nadie vio.",
+          "Si tengo que decir un nombre: Paula. La fotógrafa. Desapareció cuatro minutos justo en el tramo que las cámaras parpadearon.",
+          "Paula. La fotógrafa. Desapareció cuatro minutos. Y cuando volvió, tenía la cámara apagada. Paula nunca apaga la cámara. Nunca."],
+          en:[
+          "I don\'t know. I don\'t want to speculate.",
+          "I can\'t give a name without proof.",
+          "No one. Everyone was inside. Everyone saw. No one saw.",
+          "If I have to give a name: Paula. The photographer. She disappeared for four minutes right in the window where the cameras flickered.",
+          "Paula. The photographer. She disappeared for four minutes. And when she came back, her camera was off. Paula never turns off her camera. Never."]},
+        q_lie_reaction:{panic:15, es:[
+          "…¿en serio? ¿Eso es todo lo que tienes?",
+          "Mientes. Y no muy bien.",
+          "No tienes nada. Lo sé. Conozco el sistema mejor que tú.",
+          "Mientes. Y yo también. Estamos empatados. Pregúntame algo real.",
+          "Mientes. Pero no me importa. Yo también mentí sobre las cámaras. Hablemos en serio."],
+          en:[
+          "…really? That\'s all you have?",
+          "You\'re lying. And not very well.",
+          "You have nothing. I know. I know the system better than you do.",
+          "You\'re lying. And so am I. We\'re even. Ask me something real.",
+          "You\'re lying. But I don\'t care. I lied about the cameras too. Let\'s talk seriously."]}
+      }
+    },
+
+    tomas:{
+      id:'tomas', name:'TOMÁS IRIARTE', age:28, initials:'TI', color:'#2bff9e',
+      rel:{es:'SALVAVIDAS / MANTENIMIENTO',en:'LIFEGUARD / MAINTENANCE'}, relKey:'relCoworker',
+      answers:{
+        q_where:{panic:6, es:[
+          "En la piscina poco profunda. Turno de vigilancia. Como siempre.",
+          "En la piscina poco profunda. No me moví.",
+          "En la piscina poco profunda. Pero a las 22:45 fui al cuarto de mantenimiento. Cinco minutos. Nada más.",
+          "Fui al cuarto de mantenimiento a las 22:45. A buscar cloro. Volví a las 22:52. Cuando volví, ya estaba la policía llegando.",
+          "Fui al cuarto de mantenimiento porque Damián me mandó. Me mandó a buscar una cosa que él sabía que no existía. Fue una excusa para sacarme de la zona. Y yo fui. Como un idiota."],
+          en:[
+          "At the shallow pool. Lifeguard duty. As always.",
+          "At the shallow pool. I didn\'t move.",
+          "At the shallow pool. But at 10:45 I went to the maintenance room. Five minutes. Nothing more.",
+          "I went to the maintenance room at 10:45. To grab chlorine. I came back at 10:52. When I came back, the police were already arriving.",
+          "I went to the maintenance room because Damián sent me. He sent me to fetch something he knew didn\'t exist. It was an excuse to get me out of the area. And I went. Like an idiot."]},
+        q_lastseen:{panic:8, es:[
+          "Lo vi a las 22:00. Estaba en la entrada. Saludando.",
+          "Lo vi a las 22:00. Estaba de buen humor. Raro en él.",
+          "Lo vi a las 22:00 y a las 22:40. En la segunda vez me mandó al cuarto de mantenimiento.",
+          "Lo vi a las 22:40. Me dijo 've a buscar el cloro del estante 3'. Y yo fui. Y el estante 3 no tiene cloro. Nunca lo tuvo.",
+          "Lo vi a las 22:40. Me mandó al cuarto de mantenimiento. Y cuando volví, vi a alguien saliendo por la puerta lateral este. Con capucha negra. Corriendo. No le vi la cara. Pero vi los zapatos. Eran enormes."],
+          en:[
+          "I saw him at 10:00 PM. He was at the entrance. Greeting.",
+          "I saw him at 10:00 PM. He was in a good mood. Rare for him.",
+          "I saw him at 10:00 PM and at 10:40. On the second time he sent me to the maintenance room.",
+          "I saw him at 10:40. He said 'go get the chlorine from shelf 3'. And I went. Shelf 3 doesn\'t have chlorine. Never did.",
+          "I saw him at 10:40. He sent me to the maintenance room. And when I came back, I saw someone leaving through the east side door. In a black hoodie. Running. I didn\'t see their face. But I saw the shoes. They were huge."]},
+        q_relation:{panic:3, es:["Era mi jefe. Me iba a despedir el lunes."],
+          en:["He was my boss. He was going to fire me on Monday."]},
+        q_motive:{panic:12, es:[
+          "¿Motivo? Sí, uno grande. Me iba a despedir.",
+          "Sí, tenía motivos. Estaba vendiendo accesos a invitados y él lo descubrió.",
+          "Sí. Estaba vendiendo accesos. Para pagar deudas médicas de mi mamá. Él lo descubrió. Me iba a despedir. Y sí, pensé en hacerle daño. Pero no lo hice.",
+          "Sí, pensé en hacerle daño. Le dije a mi novia que 'ojalá se muera'. Lo dije esa semana. Frente a testigos. Fui un idiota.",
+          "Sí. Lo amenacé. Y lo dije delante de gente. Pero cuando él me mandó al cuarto de mantenimiento, yo fui. Como un empleado obediente. Y él me mandó ahí para sacarme. Porque sabía lo que iba a pasar. Y no me avisó."],
+          en:[
+          "Motive? Yes, a big one. He was going to fire me.",
+          "Yes, I had motives. I was selling access to guests and he found out.",
+          "Yes. I was selling access. To pay my mom\'s medical bills. He found out. He was going to fire me. And yes, I thought about hurting him. But I didn\'t do it.",
+          "Yes, I thought about hurting him. I told my girlfriend 'I wish he\'d die'. I said it that week. In front of witnesses. I was an idiot.",
+          "Yes. I threatened him. And I said it in front of people. But when he sent me to the maintenance room, I went. Like an obedient employee. And he sent me there to get me out. Because he knew what was about to happen. And he didn\'t warn me."]},
+        q_2247:{panic:10, es:[
+          "En el cuarto de mantenimiento. Ya te dije.",
+          "En el cuarto. Buscando cloro que no existía.",
+          "En el cuarto. Solo. Nadie me vio entrar ni salir. Ya sé cómo se ve.",
+          "En el cuarto. Volví a las 22:52. Vi al asesino saliendo. Corriendo. Hacia el estacionamiento.",
+          "En el cuarto. Volví a las 22:52. Vi al asesino saliendo. Capucha negra. Zapatos enormes. Corriendo. Y no lo seguí. No lo seguí porque tenía miedo. Y eso es lo que no me perdono."],
+          en:[
+          "In the maintenance room. I told you.",
+          "In the room. Looking for chlorine that didn\'t exist.",
+          "In the room. Alone. No one saw me come in or leave. I know how that looks.",
+          "In the room. I came back at 10:52. I saw the killer leaving. Running. Toward the parking lot.",
+          "In the room. I came back at 10:52. I saw the killer leaving. Black hoodie. Huge shoes. Running. And I didn\'t follow. I didn\'t follow because I was scared. And that\'s what I can\'t forgive myself for."]},
+        q_hiding:{panic:12, es:[
+          "No escondo nada.",
+          "Nada que importe.",
+          "Escondo que vendía accesos. Eso es todo.",
+          "Escondo que cuando vi al asesino salir, no lo seguí. Me quedé parado. Y después mentí. Le dije a la policía que no había visto a nadie.",
+          "Escondo que vi al asesino saliendo. Y vi una cosa más: la persona corrió hacia el estacionamiento, pero se detuvo un segundo, se quitó los zapatos grandes, los tiró en un arbusto, y siguió corriendo. Eso es lo que escondo. Porque si lo digo, la policía va a saber que mentí antes."],
+          en:[
+          "I\'m not hiding anything.",
+          "Nothing that matters.",
+          "I\'m hiding that I was selling access. That\'s all.",
+          "I\'m hiding that when I saw the killer leave, I didn\'t follow. I just stood there. And then I lied. I told the police I hadn\'t seen anyone.",
+          "I\'m hiding that I saw the killer leave. And I saw one more thing: the person ran toward the parking lot, but stopped for a second, took off the big shoes, threw them in a bush, and kept running. That\'s what I\'m hiding. Because if I say it, the police will know I lied before."]},
+        q_disguise:{panic:8, es:[
+          "La vi de lejos. Capucha negra. Nada más.",
+          "La vi corriendo. Capucha. Y zapatos grandes.",
+          "Vi la capucha y los zapatos. Y algo brillante en la cara. Como un reflejo.",
+          "Vi la capucha, la máscara reflectante y los zapatos. Y vi que la persona era más baja de lo que aparentaba. Los zapatos grandes la hacían parecer alta. Pero cuando se detuvo a quitárselos, se veía claramente más baja.",
+          "Vi todo. Capucha. Máscara reflectante. Guantes. Zapatos enormes. Y la vi quitarse los zapatos a mitad de la huida. Y entendí: los zapatos eran parte del disfraz. La persona no era alta. Solo lo parecía."],
+          en:[
+          "I saw it from afar. Black hoodie. Nothing more.",
+          "I saw it running. Hoodie. And big shoes.",
+          "I saw the hoodie and the shoes. And something shiny on the face. Like a reflection.",
+          "I saw the hoodie, the reflective mask and the shoes. And I saw that the person was shorter than they appeared. The big shoes made them look tall. But when they stopped to take them off, they were clearly shorter.",
+          "I saw everything. Hoodie. Reflective mask. Gloves. Huge shoes. And I saw them take the shoes off mid-escape. And I understood: the shoes were part of the disguise. The person wasn\'t tall. They just looked tall."]},
+        q_who:{panic:8, es:[
+          "No lo sé. No quiero pensar.",
+          "No puedo decir un nombre. Pero no era alto. Eso lo sé.",
+          "No era alto. Era de estatura media. O baja. Los zapatos la hacían parecer alta.",
+          "No lo sé. Pero si tengo que decir: no era Renata. Renata es alta de verdad. La persona del asesino era baja. Los zapatos eran el truco.",
+          "No sé quién era. Pero sé que no era alta. Y sé que llevaba guantes. Y sé que se movía como alguien que conoce el complejo. Conocía las cámaras. Sabía por dónde salir. Conocía los turnos."],
+          en:[
+          "I don\'t know. I don\'t want to think.",
+          "I can\'t give a name. But it wasn\'t tall. That I know.",
+          "It wasn\'t tall. It was medium height. Or short. The shoes made it look tall.",
+          "I don\'t know. But if I have to say: it wasn\'t Renata. Renata is actually tall. The killer was short. The shoes were the trick.",
+          "I don\'t know who it was. But I know it wasn\'t tall. And I know they were wearing gloves. And I know they moved like someone who knows the complex. They knew the cameras. They knew where to exit. They knew the shifts."]},
+        q_lie_reaction:{panic:15, es:[
+          "…¿qué? No. Eso no es verdad.",
+          "Mientes. Yo no dije eso.",
+          "No. Yo no dije eso. Pero... ¿de dónde sacaste eso?",
+          "No dije eso. Pero sí pensé eso. ¿Cómo lo sabes?",
+          "Mientes. Yo nunca dije eso. Pero... da igual. Ya te dije todo. Ya te dije que vendía accesos. Ya te dije que vi al asesino. ¿Qué más quieres?"],
+          en:[
+          "…what? No. That\'s not true.",
+          "You\'re lying. I didn\'t say that.",
+          "No. I didn\'t say that. But... where did you get that?",
+          "I didn\'t say that. But I did think it. How do you know?",
+          "You\'re lying. I never said that. But... it doesn\'t matter. I already told you everything. I already told you I was selling access. I already told you I saw the killer. What else do you want?"]}
+      }
+    },
+
+    paula:{
+      id:'paula', name:'PAULA QUINTANA', age:26, initials:'PQ', color:'#ff7bd5',
+      rel:{es:'FOTÓGRAFA DEL EVENTO',en:'EVENT PHOTOGRAPHER'}, relKey:'relCoworker',
+      answers:{
+        q_where:{panic:6, es:[
+          "Tomando fotos por todo el complejo. Es mi trabajo.",
+          "En el área del bar y la piscina principal. Rotando. Como siempre.",
+          "Rotando por el complejo. Entre las 22:35 y las 22:50 estuve en la zona del vestuario. Cuatro minutos. Nada más.",
+          "Estuve en la zona del vestuario entre 22:46 y 22:50. Cuatro minutos. Cuando volví, ya había caos.",
+          "Estuve en el vestuario. Sí. Cuatro minutos. Fui a cambiar la batería de la cámara. La batería estaba al 80%. No necesitaba cambiarla. Pero yo necesitaba estar sola cuatro minutos."],
+          en:[
+          "Taking photos all over the complex. It\'s my job.",
+          "At the bar area and the main pool. Rotating. As always.",
+          "Rotating through the complex. Between 10:35 and 10:50 I was in the locker area. Four minutes. Nothing more.",
+          "I was in the locker area between 10:46 and 10:50. Four minutes. When I came back, it was already chaos.",
+          "I was in the locker room. Yes. Four minutes. I went to change the camera battery. The battery was at 80%. I didn\'t need to change it. But I needed to be alone for four minutes."]},
+        q_lastseen:{panic:8, es:[
+          "Lo vi a las 22:15. Estaba con Bruno. Discutían.",
+          "Lo vi a las 22:15. Estaba con Bruno. Y con Camila después.",
+          "Lo vi a las 22:15 con Bruno. Y a las 22:30 con Camila, la bartender. Discutían también.",
+          "Lo vi a las 22:30 discutiendo con Camila. Bajo. Muy bajo. Como si no quisieran que nadie los oyera. Y vi a Camila salir de la discusión con la mandíbula apretada.",
+          "Lo vi a las 22:30 discutiendo con Camila. Y vi a Camila hacer algo raro: se sacó el delantal, lo dobló, y lo metió en su bolso. Como si no quisiera que se viera después. Eso fue a las 22:34."],
+          en:[
+          "I saw him at 10:15 PM. He was with Bruno. They were arguing.",
+          "I saw him at 10:15 PM. He was with Bruno. And later with Camila.",
+          "I saw him at 10:15 PM with Bruno. And at 10:30 with Camila, the bartender. They were arguing too.",
+          "I saw him at 10:30 arguing with Camila. Quietly. Very quietly. Like they didn\'t want anyone to hear. And I saw Camila leave the argument with her jaw clenched.",
+          "I saw him at 10:30 arguing with Camila. And I saw Camila do something strange: she took off her apron, folded it, and put it in her bag. Like she didn\'t want it seen later. That was at 10:34."]},
+        q_relation:{panic:3, es:["Yo era la fotógrafa del evento. Él me contrató. Pero no era una relación solo profesional."],
+          en:["I was the event photographer. He hired me. But it wasn\'t just a professional relationship."]},
+        q_motive:{panic:12, es:[
+          "¿Motivo? Sí, uno grande. Él arruinó la carrera de mi hermano.",
+          "Sí. Él chantajeaba a mi hermano. Con fotos. Fotos que yo saqué. Fotos que él me robó.",
+          "Él me robó un portafolio completo hace dos años. Lo usó para chantajear a tres personas. Una de ellas era mi hermano. Y yo nunca pude probarlo.",
+          "Sí, tenía motivos. Estaba reuniendo pruebas para exponerlo. Esa noche. Llevaba seis meses grabando conversaciones. Y ese día iba a terminar de armarlo todo.",
+          "Sí. Lo iba a exponer esa noche. Tenía todo: las fotos, las grabaciones, los nombres. Iba a mandar todo a la prensa el lunes. Pero alguien se me adelantó. Alguien lo mató antes de que yo pudiera destruirlo de otra manera."],
+          en:[
+          "Motive? Yes, a big one. He ruined my brother\'s career.",
+          "Yes. He was blackmailing my brother. With photos. Photos I took. Photos he stole from me.",
+          "He stole a full portfolio from me two years ago. He used it to blackmail three people. One of them was my brother. And I could never prove it.",
+          "Yes, I had motives. I was gathering evidence to expose him. That night. I had been recording conversations for six months. And that day I was going to finish putting it all together.",
+          "Yes. I was going to expose him that night. I had everything: the photos, the recordings, the names. I was going to send it all to the press on Monday. But someone beat me to it. Someone killed him before I could destroy him another way."]},
+        q_2247:{panic:10, es:[
+          "Tomando fotos. Cerca del bar.",
+          "En el vestuario. Ya te dije.",
+          "En el vestuario. Cuatro minutos. Cuando salí, ya estaba el caos.",
+          "En el vestuario. Cuando salí a las 22:50, vi a Camila saliendo del área de la piscina de saltos. Con el pelo mojado. Y yo sabía que ella no se había metido a la piscina.",
+          "En el vestuario. Cuando salí, vi a Camila saliendo del área de la piscina de saltos. Con el pelo mojado. Y vi que su delantal —el que había guardado en su bolso— estaba de vuelta en su cintura. Mojado también. Y ella no se había metido al agua."],
+          en:[
+          "Taking photos. Near the bar.",
+          "In the locker room. I told you.",
+          "In the locker room. Four minutes. When I came out, it was already chaos.",
+          "In the locker room. When I came out at 10:50, I saw Camila leaving the diving pool area. With wet hair. And I knew she hadn\'t gotten in the pool.",
+          "In the locker room. When I came out, I saw Camila leaving the diving pool area. With wet hair. And I saw that her apron —the one she had put in her bag— was back at her waist. Wet too. And she hadn\'t gotten in the water."]},
+        q_hiding:{panic:12, es:[
+          "No escondo nada.",
+          "Nada que importe.",
+          "Escondo que estuve grabando conversaciones de Damián durante seis meses. Eso es todo.",
+          "Escondo que estuve grabando conversaciones. Y que esa noche iba a grabar la mía con él. Tenía la grabadora en el bolsillo. Pero no llegué. Él ya estaba muerto.",
+          "Escondo que vi a Camila saliendo de la zona con el pelo mojado. Y que no lo reporté antes. Porque yo también estaba escondiendo algo. Y ahora que lo pienso, Camila era la única persona que no estaba donde debía estar en el momento exacto."],
+          en:[
+          "I\'m not hiding anything.",
+          "Nothing that matters.",
+          "I\'m hiding that I was recording Damián\'s conversations for six months. That\'s all.",
+          "I\'m hiding that I was recording conversations. And that I was going to record mine with him that night. I had the recorder in my pocket. But I never made it. He was already dead.",
+          "I\'m hiding that I saw Camila leaving the area with wet hair. And that I didn\'t report it earlier. Because I was hiding something too. And now that I think about it, Camila was the only person who wasn\'t where she should have been at the exact moment."]},
+        q_disguise:{panic:8, es:[
+          "La vi. Capucha negra. Pero solo de lejos.",
+          "Vi la capucha. Y algo brillante. Como si llevara una máscara metálica.",
+          "Vi la capucha, la máscara reflectante, los guantes. Y vi los zapatos. Enormes. Como si fueran dos tallas más grandes.",
+          "Vi los zapatos. Enormes. Y vi cómo la persona caminaba: como si le costara. Como si no fueran sus zapatos. Eso es lo que más me llamó la atención. La forma de caminar.",
+          "Vi los zapatos, la máscara, la capucha, los guantes. Y vi una cosa más: cuando la persona pasó junto a mí, saqué una foto. La cámara enfocó mal. Pero la foto muestra el reflejo de la máscara. Y en el reflejo... se ve el pelo de la persona. Corto. Oscuro. Y mojado."],
+          en:[
+          "I saw it. Black hoodie. But only from afar.",
+          "I saw the hoodie. And something shiny. Like a metal mask.",
+          "I saw the hoodie, the reflective mask, the gloves. And I saw the shoes. Huge. Like two sizes too big.",
+          "I saw the shoes. Huge. And I saw how the person walked: like it was hard. Like the shoes weren\'t theirs. That\'s what struck me the most. The way they walked.",
+          "I saw the shoes, the mask, the hoodie, the gloves. And I saw one more thing: when the person passed by me, I took a photo. The camera missed focus. But the photo shows the reflection of the mask. And in the reflection... you can see the person\'s hair. Short. Dark. And wet."]},
+        q_who:{panic:8, es:[
+          "No lo sé.",
+          "No quiero decir un nombre sin pruebas. Pero tengo una teoría.",
+          "Camila. La bartender. Salió del área con el pelo mojado. No se había metido al agua.",
+          "Camila. Salió con el pelo mojado. Y vi a Damián discutiendo con ella a las 22:30. Bajo. Muy bajo.",
+          "Camila. Salió con el pelo mojado. Vi la discusión a las 22:30. Y su delantal —que había guardado— volvió a su cintura mojado. Nadie más cumplía esos tres detalles a la vez."],
+          en:[
+          "I don\'t know.",
+          "I don\'t want to give a name without proof. But I have a theory.",
+          "Camila. The bartender. She left the area with wet hair. She hadn\'t been in the water.",
+          "Camila. She left with wet hair. And I saw Damián arguing with her at 10:30. Quietly. Very quietly.",
+          "Camila. She left with wet hair. I saw the argument at 10:30. And her apron —the one she had put away— was back at her waist, wet. No one else matched those three details at once."]},
+        q_lie_reaction:{panic:15, es:[
+          "…¿esa foto no existe. Verdad?",
+          "Mientes. No tienes esa foto.",
+          "No tienes la foto. Yo no saqué esa foto. Pero... la idea es buena. Casi me asustas.",
+          "No tienes la foto. Pero tu mentira me dice algo: tú también estás dispuesto a manipular. Bien. Trabajemos así.",
+          "Mientes. Pero no me importa. Yo también he mentido. He mentido sobre las grabaciones. He mentido sobre el vestuario. Estamos todos mintiendo. La pregunta es quién miente por la razón correcta."],
+          en:[
+          "…that photo doesn\'t exist. Right?",
+          "You\'re lying. You don\'t have that photo.",
+          "You don\'t have the photo. I didn\'t take that photo. But... the idea is good. Almost scared me.",
+          "You don\'t have the photo. But your lie tells me something: you\'re willing to manipulate too. Good. Let\'s work like that.",
+          "You\'re lying. But I don\'t care. I\'ve lied too. I lied about the recordings. I lied about the locker room. We\'re all lying. The question is who\'s lying for the right reason."]}
+      }
+    },
+
+    bruno:{
+      id:'bruno', name:'BRUNO AGUIRRE', age:31, initials:'BA', color:'#ffb020',
+      rel:{es:'SOCIO COMERCIAL',en:'BUSINESS PARTNER'}, relKey:'relSupervisor',
+      answers:{
+        q_where:{panic:5, es:[
+          "En el bar. Tomando algo. Toda la noche.",
+          "En el bar. Ya te dije.",
+          "En el bar hasta las 22:40. Después fui al baño. Cinco minutos.",
+          "En el bar hasta las 22:40. Al baño. Cinco minutos. Cuando salí, ya había gente gritando.",
+          "En el bar hasta las 22:40. Al baño. Pero en el baño me quedé veinte minutos. No cinco. Estaba vomitando. Había tomado mucho. Y eso no me enorgullece."],
+          en:[
+          "At the bar. Having a drink. All night.",
+          "At the bar. I told you.",
+          "At the bar until 10:40. Then I went to the bathroom. Five minutes.",
+          "At the bar until 10:40. Bathroom. Five minutes. When I came out, people were already screaming.",
+          "At the bar until 10:40. Bathroom. But I stayed in the bathroom twenty minutes. Not five. I was throwing up. I had too much to drink. And I\'m not proud of it."]},
+        q_lastseen:{panic:8, es:[
+          "Lo vi a las 22:15. Discutimos. Como siempre.",
+          "Lo vi a las 22:15. Discutimos. Fuerte.",
+          "Lo vi a las 22:15. Discutimos por dinero. Frente a varias personas.",
+          "Lo vi a las 22:15. Discutimos por dinero. Le dije que si no me pagaba lo que me debía, se iba a arrepentir. Delante de testigos. Fui un idiota.",
+          "Lo vi a las 22:15. Discutimos. Le dije que se iba a arrepentir. Y después me fui al bar. Y estuve ahí hasta las 22:40. Y en el baño hasta las 23:00. Y cuando salí ya estaba la policía."],
+          en:[
+          "I saw him at 10:15 PM. We argued. As always.",
+          "I saw him at 10:15 PM. We argued. Badly.",
+          "I saw him at 10:15 PM. We argued about money. In front of several people.",
+          "I saw him at 10:15 PM. We argued about money. I told him if he didn\'t pay me what he owed me, he\'d regret it. In front of witnesses. I was an idiot.",
+          "I saw him at 10:15 PM. We argued. I told him he\'d regret it. And then I went to the bar. And I stayed there until 10:40. And in the bathroom until 11:00. And when I came out, the police were already there."]},
+        q_relation:{panic:3, es:["Su socio. Compartíamos tres negocios. Todos turbios. Todos rentables."],
+          en:["His partner. We shared three businesses. All shady. All profitable."]},
+        q_motive:{panic:14, es:[
+          "¿Motivo? Sí, uno grande. Me debía mucho dinero.",
+          "Sí. Me debía mucho dinero. Y sí, lo amenacé. Pero no lo maté.",
+          "Sí, lo amenacé. Frente a testigos. Fui un imbécil. Pero la amenaza era por dinero, no por sangre.",
+          "Sí. Me debía cincuenta mil. Y yo sabía que estaba jugando con fuego con otras personas peores que yo. Pensé que le iba a pasar algo. Pero no pensé que pasaría esa noche.",
+          "Sí. Lo amenacé. Y sí, estaba enojado. Pero yo no estaba en la zona cuando lo mataron. Estaba en el bar. Y después en el baño. Vomitando. Puedo oler a alcohol si te sirve como prueba."],
+          en:[
+          "Motive? Yes, a big one. He owed me a lot of money.",
+          "Yes. He owed me a lot of money. And yes, I threatened him. But I didn\'t kill him.",
+          "Yes, I threatened him. In front of witnesses. I was a jerk. But the threat was about money, not blood.",
+          "Yes. He owed me fifty thousand. And I knew he was playing with fire with other people worse than me. I thought something would happen to him. But I didn\'t think it would happen that night.",
+          "Yes. I threatened him. And yes, I was angry. But I wasn\'t in the area when they killed him. I was at the bar. And then in the bathroom. Throwing up. I can smell like alcohol if that works as proof."]},
+        q_2247:{panic:10, es:[
+          "En el baño.",
+          "En el baño. Ya te dije.",
+          "En el baño. Solo. Vomitando. Nadie me vio.",
+          "En el baño. Sí. Solo. Nadie me vio. Y sí, ya sé cómo se ve. Pero era eso o vomitar en la barra.",
+          "En el baño. Solo. Vomitando. Nadie me vio. Y ya que estamos: si yo hubiera querido matarlo, no habría usado una capucha y una máscara. Lo habría hecho al aire libre, delante de todos, y me habría quedado a firmar el reporte."],
+          en:[
+          "In the bathroom.",
+          "In the bathroom. I told you.",
+          "In the bathroom. Alone. Throwing up. No one saw me.",
+          "In the bathroom. Yes. Alone. No one saw me. And yes, I know how that looks. But it was that or throw up on the bar.",
+          "In the bathroom. Alone. Throwing up. No one saw me. And while we\'re at it: if I\'d wanted to kill him, I wouldn\'t have used a hoodie and a mask. I\'d have done it out in the open, in front of everyone, and I\'d have stayed to sign the report."]},
+        q_hiding:{panic:12, es:[
+          "No escondo nada.",
+          "Nada que importe.",
+          "Escondo que estuve veinte minutos en el baño, no cinco. Eso es todo.",
+          "Escondo que cuando salí del baño, vi a alguien corriendo hacia el estacionamiento. Pero yo estaba borracho. Y no le di importancia.",
+          "Escondo que vi a la persona corriendo hacia el estacionamiento. Y que llevaba la capucha negra. Y que la persona era baja. Y que lo vi quitarse algo del pie. Y que tiró algo en un arbusto. Y no lo dije porque estaba borracho y no quería que me metieran en esto."],
+          en:[
+          "I\'m not hiding anything.",
+          "Nothing that matters.",
+          "I\'m hiding that I was in the bathroom for twenty minutes, not five. That\'s all.",
+          "I\'m hiding that when I came out of the bathroom, I saw someone running toward the parking lot. But I was drunk. And I didn\'t think it mattered.",
+          "I\'m hiding that I saw the person running toward the parking lot. And that they were wearing a black hoodie. And that the person was short. And that I saw them take something off their foot. And that they threw something in a bush. And I didn\'t say it because I was drunk and didn\'t want to be dragged into this."]},
+        q_disguise:{panic:8, es:[
+          "Vi la capucha. Nada más.",
+          "Vi la capucha. Y algo brillante. Pero de lejos.",
+          "Vi la capucha, algo brillante en la cara. Y una cosa: la persona parecía bajita. No alta. Bajita.",
+          "Vi la capucha, la máscara brillante, y vi que la persona era baja. Los zapatos no los distinguí, pero la forma de correr era de alguien bajito. Como si los pies le pesaran.",
+          "Vi la capucha, la máscara, y vi que la persona era baja. Y vi algo más: cuando se quitó los zapatos en el estacionamiento, se movía distinto. Más rápido. Más suelto. Como si por fin pudiera correr bien."],
+          en:[
+          "I saw the hoodie. Nothing more.",
+          "I saw the hoodie. And something shiny. But from afar.",
+          "I saw the hoodie, something shiny on the face. And one thing: the person seemed short. Not tall. Short.",
+          "I saw the hoodie, the shiny mask, and I saw that the person was short. I couldn\'t make out the shoes, but the way they ran was of someone short. Like their feet weighed them down.",
+          "I saw the hoodie, the mask, and I saw that the person was short. And I saw something else: when they took off the shoes in the parking lot, they moved differently. Faster. Looser. Like they could finally run properly."]},
+        q_who:{panic:8, es:[
+          "No lo sé. No me importa.",
+          "No sé. Estaba borracho.",
+          "No sé. Pero no era alto. La persona era baja. Y eso elimina a algunas personas.",
+          "No sé. Pero si tengo que decir algo: no era Renata. Renata es alta. Y no era yo. Yo estaba en el baño. Vomitando.",
+          "No sé. Pero la persona era baja. Y conocía el complejo. Y sabía por dónde salir. Eso reduce la lista a los que trabajan ahí. Yo no trabajo ahí. Yo era socio. Yo visitaba. No conocía las salidas laterales."],
+          en:[
+          "I don\'t know. I don\'t care.",
+          "I don\'t know. I was drunk.",
+          "I don\'t know. But it wasn\'t tall. The person was short. And that eliminates some people.",
+          "I don\'t know. But if I have to say something: it wasn\'t Renata. Renata is tall. And it wasn\'t me. I was in the bathroom. Throwing up.",
+          "I don\'t know. But the person was short. And they knew the complex. And they knew where to exit. That narrows the list to those who work there. I don\'t work there. I was a partner. I visited. I didn\'t know the side exits."]},
+        q_lie_reaction:{panic:15, es:[
+          "…¿qué dices? No. Eso no es verdad.",
+          "Mientes. Eso no es verdad.",
+          "Mientes. Pero te creo. Porque tú también estás jugando sucio. Bien.",
+          "Mientes. Pero me da igual. Yo también he mentido. Dije cinco minutos. Fueron veinte. Estamos todos jugando.",
+          "Mientes. Y yo también. Dije cinco minutos. Y dije que no vi nada. Y vi al asesino. Estamos empatados, detective."],
+          en:[
+          "…what? No. That\'s not true.",
+          "You\'re lying. That\'s not true.",
+          "You\'re lying. But I believe you. Because you\'re playing dirty too. Good.",
+          "You\'re lying. But I don\'t care. I\'ve lied too. I said five minutes. It was twenty. We\'re all playing.",
+          "You\'re lying. And so am I. I said five minutes. And I said I saw nothing. And I saw the killer. We\'re even, detective."]}
+      }
+    },
+
+    camila:{
+      id:'camila', name:'CAMILA FERRO', age:29, initials:'CF', color:'#ff2e3a',
+      rel:{es:'BARTENDER',en:'BARTENDER'}, relKey:'relCoworker',
+      answers:{
+        q_where:{panic:5, es:[
+          "En la barra. Toda la noche. Sirviendo.",
+          "En la barra. Como siempre.",
+          "En la barra. Hasta las 22:35. Después salí un momento. Fui al baño. Volví a las 22:40.",
+          "En la barra hasta las 22:35. Fui al baño. Pero no al baño público —al baño del personal. Está más cerca del vestuario.",
+          "En la barra hasta las 22:35. Salí. Volví a las 22:52. En el medio... en el medio estuve en el vestuario. Cambiándome. Porque me había mojado. Es lo que digo. Es lo que voy a seguir diciendo."],
+          en:[
+          "At the bar. All night. Serving.",
+          "At the bar. As always.",
+          "At the bar until 10:35. Then I stepped out for a moment. Went to the bathroom. Came back at 10:40.",
+          "At the bar until 10:35. I went to the bathroom. But not the public one —the staff one. It\'s closer to the locker room.",
+          "At the bar until 10:35. I stepped out. I came back at 10:52. In between... in between I was in the locker room. Changing. Because I had gotten wet. That\'s what I say. That\'s what I\'ll keep saying."]},
+        q_lastseen:{panic:8, es:[
+          "Lo vi a las 22:00. Le serví un trago. Nada más.",
+          "Lo vi a las 22:00. Le serví un trago. Corto. Rápido.",
+          "Lo vi a las 22:00 y a las 22:30. En la segunda vez discutimos. Bajo. Muy bajo.",
+          "Lo vi a las 22:30. Discutimos. Me dijo algo que no quiero repetir. Y yo le dije algo que no debería haber dicho.",
+          "Lo vi a las 22:30. Me dijo que si hablaba, iba a lamentarlo. Y yo le dije 'ya no tengo nada que perder'. Y me fui. Y él se rió. Se rió de mí. Y eso fue lo último que le vi hacer."],
+          en:[
+          "I saw him at 10:00 PM. I served him a drink. Nothing more.",
+          "I saw him at 10:00 PM. I served him a drink. Short. Quick.",
+          "I saw him at 10:00 PM and at 10:30. On the second time we argued. Quietly. Very quietly.",
+          "I saw him at 10:30. We argued. He said something I don\'t want to repeat. And I said something I shouldn\'t have said.",
+          "I saw him at 10:30. He told me if I talked, I\'d regret it. And I told him 'I have nothing left to lose'. And I left. And he laughed. He laughed at me. And that was the last thing I saw him do."]},
+        q_relation:{panic:3, es:["Bartender del complejo. Y... algo más. Algo que terminó mal hace dos años."],
+          en:["Bartender at the complex. And... something else. Something that ended badly two years ago."]},
+        q_motive:{panic:12, es:[
+          "¿Motivo? Ninguno.",
+          "No. Yo solo sirvo tragos.",
+          "Tenía problemas con él. Sí. Me chantajeaba. Con fotos. Íntimas. Desde hace dos años.",
+          "Me chantajeaba. Sí. Con fotos íntimas. Y descubrí que también le estaba haciendo lo mismo a mi hermana. Tiene dieciséis años. Dieciséis. Y él tenía fotos de ella. ¿Entiendes lo que eso significa?",
+          "Sí. Tenía motivos. Los mejores de todos. Y sí, salí de la barra. Y sí, estuve en el vestuario. Pero no fui yo. Lo juro. No fui yo."],
+          en:[
+          "Motive? None.",
+          "No. I just serve drinks.",
+          "I had problems with him. Yes. He was blackmailing me. With photos. Intimate photos. For two years.",
+          "He was blackmailing me. Yes. With intimate photos. And I found out he was doing the same to my sister. She\'s sixteen. Sixteen. And he had photos of her. Do you understand what that means?",
+          "Yes. I had motives. The best of all. And yes, I left the bar. And yes, I was in the locker room. But it wasn\'t me. I swear. It wasn\'t me."]},
+        q_2247:{panic:10, es:[
+          "En el vestuario. Ya te dije.",
+          "En el vestuario. Cambiándome.",
+          "En el vestuario. Estaba mojada. Por el agua. Por el agua de la piscina.",
+          "En el vestuario. Estaba mojada. Sí. Y ya te dije por qué. Por el agua.",
+          "En el vestuario. Estaba mojada porque me había caído en la piscina. Sí. Me caí. Hacia las 22:47. ¿Contento? Ya te dije. Ya te dije todo."],
+          en:[
+          "In the locker room. I told you.",
+          "In the locker room. Changing.",
+          "In the locker room. I was wet. From the water. From the pool water.",
+          "In the locker room. I was wet. Yes. And I told you why. From the water.",
+          "In the locker room. I was wet because I had fallen into the pool. Yes. I fell. Around 10:47. Happy? I already told you. I already told you everything."]},
+        q_hiding:{panic:12, es:[
+          "No escondo nada.",
+          "Nada importante.",
+          "Escondo que salí de la barra. Eso es todo.",
+          "Escondo que estuve en el vestuario. Y que me mojé. Pero no por caerme. Por otra cosa.",
+          "Escondo que cuando salí de la barra, fui al vestuario. Y en el vestuario... me encontré con alguien. Alguien que me ayudó a calmarme. Y no voy a decir quién. Eso es lo único que escondo."],
+          en:[
+          "I\'m not hiding anything.",
+          "Nothing important.",
+          "I\'m hiding that I left the bar. That\'s all.",
+          "I\'m hiding that I was in the locker room. And that I got wet. But not from falling. From something else.",
+          "I\'m hiding that when I left the bar, I went to the locker room. And in the locker room... I met someone. Someone who helped me calm down. And I\'m not going to say who. That\'s the only thing I\'m hiding."]},
+        q_disguise:{panic:8, es:[
+          "No vi al asesino. Estaba en el vestuario.",
+          "No vi nada. Ya te dije.",
+          "No vi al asesino. Pero oí algo: alguien corriendo. Hacia el este.",
+          "No vi al asesino. Pero sí oí algo. Una voz. Una voz que se cortó de golpe. Como si alguien hubiera apagado un micrófono. Nunca olvidaré eso.",
+          "No vi al asesino. Pero oí algo que nadie más oyó: una voz grave. Muy grave. Grave de hombre. Y después un 'clic'. Y después silencio. Y después nada. Como si alguien hubiera apagado algo. Y yo sé cómo suena eso. Yo uso una app para cambiar la voz cuando hago karaoke los viernes."],
+          en:[
+          "I didn\'t see the killer. I was in the locker room.",
+          "I didn\'t see anything. I told you.",
+          "I didn\'t see the killer. But I heard something: someone running. Toward the east.",
+          "I didn\'t see the killer. But I did hear something. A voice. A voice that cut off suddenly. Like someone had turned off a microphone. I\'ll never forget that.",
+          "I didn\'t see the killer. But I heard something no one else heard: a deep voice. Very deep. Man-deep. And then a 'click'. And then silence. And then nothing. Like someone had turned something off. And I know how that sounds. I use an app to change my voice when I do karaoke on Fridays."]},
+        q_who:{panic:8, es:[
+          "No lo sé.",
+          "No tengo idea.",
+          "No sé. Pero si tengo que decir algo: no era yo. Porque yo estaba en el vestuario. Y en el vestuario me vio alguien. Alguien que puede confirmarlo.",
+          "No sé. Pero no era alta. La persona era baja. Y llevaba la voz cambiada. Y conocía el complejo. Eso descarta a la mayoría.",
+          "No sé quién fue. Pero sé que no fui yo. Y sé que la persona que lo hizo usaba una app para cambiar la voz. Porque yo la oí apagarse. Y sé que la persona era baja. Porque la oí correr. Y sé que conocía las salidas. Porque yo conozco las salidas. Y la persona salió por la que yo habría salido."],
+          en:[
+          "I don\'t know.",
+          "I have no idea.",
+          "I don\'t know. But if I have to say something: it wasn\'t me. Because I was in the locker room. And in the locker room someone saw me. Someone who can confirm it.",
+          "I don\'t know. But it wasn\'t tall. The person was short. And they had their voice changed. And they knew the complex. That rules out most people.",
+          "I don\'t know who did it. But I know it wasn\'t me. And I know the person who did it was using an app to change their voice. Because I heard it turn off. And I know the person was short. Because I heard them run. And I know they knew the exits. Because I know the exits. And the person left through the one I would have left through."]},
+        q_lie_reaction:{panic:15, es:[
+          "…¿qué? No. Eso no es verdad.",
+          "Mientes. Y no muy bien.",
+          "Mientes. Pero... ¿cómo lo supiste? ¿Cómo supiste lo de la app?",
+          "Mientes. Pero da igual. Ya te lo dije. Ya te lo dije todo. Lo de la app. Lo del vestuario. Lo de mi hermana. Ya no me queda nada.",
+          "Mientes. Pero ya no me importa. Ya no me importa nada. Ya no me importa lo que creas. Ya no me importa lo que hagas. Ya no me importa nada de esto. ¿Contento? Ya está."],
+          en:[
+          "…what? No. That\'s not true.",
+          "You\'re lying. And not very well.",
+          "You\'re lying. But... how did you know? How did you know about the app?",
+          "You\'re lying. But it doesn\'t matter. I already told you. I already told you everything. The app. The locker room. My sister. I have nothing left.",
+          "You\'re lying. But I don\'t care anymore. I don\'t care about anything anymore. I don\'t care what you believe. I don\'t care what you do. I don\'t care about any of this. Happy? It\'s done."]}
+      }
+    }
+  },
+
+  questions:[
+    {id:'q_where', panic:6, text:{es:'¿Dónde estabas la noche del asesinato?', en:'Where were you the night of the murder?'}},
+    {id:'q_lastseen', panic:8, text:{es:'¿Cuándo viste a Damián por última vez?', en:'When did you last see Damián?'}},
+    {id:'q_relation', panic:3, text:{es:'¿Cuál era tu relación con Damián?', en:'What was your relationship with Damián?'}},
+    {id:'q_motive', panic:12, text:{es:'¿Tenías motivos para querer que Damián muriera?', en:'Did you have motives to want Damián dead?'}},
+    {id:'q_2247', panic:10, text:{es:'¿Qué estabas haciendo a las 22:47?', en:'What were you doing at 10:47 PM?'}},
+    {id:'q_hiding', panic:12, text:{es:'¿Estás escondiendo algo?', en:'Are you hiding something?'}},
+    {id:'q_disguise', panic:8, text:{es:'¿Qué viste del asesino?', en:'What did you see of the killer?'}},
+    {id:'q_who', panic:8, text:{es:'¿Quién crees que lo mató?', en:'Who do you think killed him?'}},
+    {id:'q_lie_reaction', panic:15, only:['__never__'],
+      text:{es:'Reacción a mentira', en:'Lie reaction'}},
+    {id:'q_contradiction', panic:15, cond:'contradictions',
+      text:{es:'¿Por qué tu historia contradice la evidencia?', en:'Why does your story contradict the evidence?'}}
+  ],
+
+  evidence:{
+    E01:{num:'01',cat:'catPhysical',
+      name:{es:'Arma del crimen',en:'Murder weapon'},
+      desc:{es:'Un cuchillo de cocina hallado en una papelera cercana a la piscina de saltos. La hoja presenta sangre compatible con la víctima. No hay huellas utilizables.',en:'A kitchen knife found in a trash bin near the diving pool. The blade has blood compatible with the victim. No usable prints.'},
+      confront:{
+        renata:{panic:6, es:'No lo vi antes. Solo después, cuando lo reportaron.', en:'I didn\'t see it before. Only after, when it was reported.'},
+        tomas:{panic:8, es:'Yo trabajo con herramientas. Pero no con cuchillos de cocina.', en:'I work with tools. But not kitchen knives.'},
+        paula:{panic:6, es:'Es un cuchillo de la cocina del bar. Cualquiera del staff podía tomarlo.', en:'It\'s a knife from the bar kitchen. Anyone on staff could have taken it.'},
+        bruno:{panic:10, es:'Yo no entro a la cocina. Nunca. No es lo mío.', en:'I don\'t go into the kitchen. Never. Not my thing.'},
+        camila:{panic:12, es:'Los cuchillos de la cocina están a la vista. Cualquiera puede tomarlos. Yo sirvo tragos, no corto nada.', en:'The kitchen knives are in plain sight. Anyone can take them. I serve drinks, I don\'t cut anything.'}}},
+    E02:{num:'02',cat:'catTestimony',
+      name:{es:'Descripción contradictoria del asesino',en:'Contradictory description of the killer'},
+      desc:{es:'Doce testigos describen al asesino. Seis dicen que era alto. Cuatro dicen que era de estatura media. Dos dicen que era bajo. Todos coinciden: llevaba capucha negra, máscara reflectante y guantes.',en:'Twelve witnesses describe the killer. Six say tall. Four say medium. Two say short. All agree: black hoodie, reflective mask and gloves.'},
+      confront:{
+        renata:{panic:8, es:'Yo soy alta. Y por eso mismo me fijé: el asesino no era tan alto como parecía.', en:'I\'m tall. And that\'s exactly why I noticed: the killer wasn\'t as tall as they seemed.'},
+        tomas:{panic:8, es:'No era alto. Yo lo vi correr. Los zapatos lo hacían parecer alto, pero era bajo.', en:'It wasn\'t tall. I saw them run. The shoes made them look tall, but they were short.'},
+        paula:{panic:10, es:'Yo también lo vi. Estatura media. Y caminaba como si le costara. Como si los zapatos no fueran suyos.', en:'I saw them too. Medium height. And they walked like it was hard. Like the shoes weren\'t theirs.'},
+        bruno:{panic:8, es:'Yo lo vi bajo. Bajito. Y corriendo como si le pesaran los pies.', en:'I saw them short. Short. And running like their feet weighed them down.'},
+        camila:{panic:14, es:'Yo no vi al asesino. Ya te lo dije. Pero si todos dicen que era alto, entonces no era yo. Yo soy baja.', en:'I didn\'t see the killer. I told you. But if everyone says tall, then it wasn\'t me. I\'m short.'}}},
+    E03:{num:'03',cat:'catTimeline',contradiction:true,
+      name:{es:'Parpadeo de cámaras 3 y 5',en:'Flicker of cameras 3 and 5'},
+      desc:{es:'Las cámaras 3 y 5 del sistema de seguridad parpadearon entre las 22:44 y las 22:51. El informe original de Renata Vela reporta un parpadeo "de 30 segundos". El sistema registra 7 minutos.',en:'Cameras 3 and 5 of the security system flickered between 10:44 and 10:51 PM. Renata Vela\'s original report states a "30-second" flicker. The system logs 7 minutes.'},
+      confront:{
+        renata:{panic:25, es:'Está bien. Manipulé el reporte. Yo vendía accesos a invitados no autorizados. Y si eso salía, yo perdía el trabajo.', en:'Fine. I manipulated the report. I was selling access to unauthorized guests. If that came out, I lost my job.'},
+        tomas:{panic:5, es:'Yo no toco el sistema de cámaras. Eso es cosa de seguridad.', en:'I don\'t touch the camera system. That\'s security\'s thing.'},
+        paula:{panic:8, es:'Renata manipuló el reporte. Eso explica el tramo. Pero no explica al asesino.', en:'Renata manipulated the report. That explains the window. But it doesn\'t explain the killer.'},
+        bruno:{panic:6, es:'Yo no sabía nada de las cámaras. Ni siquiera sabía que había cámaras ahí.', en:'I didn\'t know anything about the cameras. I didn\'t even know there were cameras there.'},
+        camila:{panic:10, es:'Renata manipuló el reporte. Renata me vendió el acceso. Pero eso es otra cosa. Eso no me convierte en asesina.', en:'Renata manipulated the report. Renata sold me the access. But that\'s something else. That doesn\'t make me a killer.'}}},
+    E04:{num:'04',cat:'catTestimony',contradiction:true,
+      name:{es:'Los zapatos de talla grande',en:'The oversized shoes'},
+      desc:{es:'Tomás Iriarte y Bruno Aguirre declaran haber visto a la persona quitarse unos zapatos grandes y arrojarlos a un arbusto del estacionamiento. Los zapatos fueron hallados. Talla 45. El asesino medía 1.65m aproximadamente.',en:'Tomás Iriarte and Bruno Aguirre state they saw the person take off large shoes and throw them into a bush in the parking lot. The shoes were found. Size 12 (EU 45). The killer was approximately 1.65m tall.'},
+      confront:{
+        renata:{panic:8, es:'Zapatos talla 45. Yo calzo 39. Eso no puede ser mío.', en:'Size 45 shoes. I wear 39. Those can\'t be mine.'},
+        tomas:{panic:15, es:'Yo vi cuando se los quitó. Y vi cómo corrió después. Corría como alguien bajito. Sin los zapatos.', en:'I saw them take them off. And I saw how they ran after. Like someone short. Without the shoes.'},
+        paula:{panic:12, es:'Los zapatos eran parte del disfraz. No eran del asesino. Los usó para alterar su altura aparente.', en:'The shoes were part of the disguise. They weren\'t the killer\'s. They used them to alter their apparent height.'},
+        bruno:{panic:14, es:'Yo vi cuando tiró algo al arbusto. Pensé que era basura. Era un zapato. Un zapato enorme.', en:'I saw them throw something into the bush. I thought it was trash. It was a shoe. A huge shoe.'},
+        camila:{panic:18, es:'Zapatos talla 45. Yo calzo 37. Y no me los pondría aunque quisiera —me harían tropezar.', en:'Size 45 shoes. I wear 37. And I wouldn\'t wear them even if I wanted to —I\'d trip.'}}},
+    E05:{num:'05',cat:'catDigital',
+      name:{es:'Registro de llamada eliminada',en:'Deleted call record'},
+      desc:{es:'Se recuperó un registro de una llamada entre Camila Ferro y Damián Ríos a las 22:20 PM. Camila declaró inicialmente que no había hablado con Damián esa noche.',en:'A record was recovered of a call between Camila Ferro and Damián Ríos at 10:20 PM. Camila initially stated she had not spoken to Damián that night.'},
+      confront:{
+        renata:{panic:6, es:'No sabía de esa llamada. Renata no me lo dijo.', en:'I didn\'t know about that call. Renata didn\'t tell me.'},
+        tomas:{panic:6, es:'No sabía que Camila lo había llamado. Pero no me sorprende.', en:'I didn\'t know Camila had called him. But it doesn\'t surprise me.'},
+        paula:{panic:8, es:'Camila lo llamó. Y después discutieron en persona. Eso es lo que vi.', en:'Camila called him. And then they argued in person. That\'s what I saw.'},
+        bruno:{panic:5, es:'No sabía nada de esa llamada.', en:'I knew nothing about that call.'},
+        camila:{panic:25, es:'Está bien. Lo llamé. Sí. A las 22:20. Para pedirle que dejara de mandarme fotos. Y él se rió. Y me dijo que fuera a hablar con él en persona.', en:'Fine. I called him. Yes. At 10:20. To ask him to stop sending me photos. And he laughed. And told me to come talk to him in person.'}}},
+    E06:{num:'06',cat:'catPhysical',
+      name:{es:'Máscara reflectante abandonada',en:'Abandoned reflective mask'},
+      desc:{es:'Una máscara reflectante —del tipo usado en fiestas de neón— fue hallada en el fondo de un armario del vestuario de personal. Presenta fibras de sudor. El ADN está siendo analizado. La máscara no estaba en el inventario de props del evento.',en:'A reflective mask —the kind used at neon parties— was found at the back of a staff locker. It has sweat fibers. DNA is being analyzed. The mask was not in the event\'s prop inventory.'},
+      confront:{
+        renata:{panic:12, es:'No estaba en el inventario. Lo confirmé antes. Lo anoté en mi cuaderno.', en:'It wasn\'t in the inventory. I confirmed that earlier. I wrote it down in my notebook.'},
+        tomas:{panic:10, es:'Yo no entré al vestuario de personal esa noche. Nadie me vio ahí.', en:'I didn\'t enter the staff locker room that night. No one saw me there.'},
+        paula:{panic:14, es:'Esa máscara es de una sesión mía. La usé para un ensayo. Alguien la tomó de mi equipo.', en:'That mask is from one of my shoots. I used it for a rehearsal. Someone took it from my gear.'},
+        bruno:{panic:12, es:'Yo no sé qué es eso. Nunca he visto una máscara así.', en:'I don\'t know what that is. I\'ve never seen a mask like that.'},
+        camila:{panic:20, es:'Esa máscara es de la sesión de Paula. Y yo la vi. En el vestuario. Antes de que empezara el evento. Sobre una banca.', en:'That mask is from Paula\'s shoot. And I saw it. In the locker room. Before the event started. On a bench.'}}},
+    E07:{num:'07',cat:'catTestimony',
+      name:{es:'Testimonio: la voz cortada',en:'Testimony: the cut voice'},
+      desc:{es:'Camila Ferro declara haber escuchado una voz grave que se cortó de golpe, seguida de un "clic" y luego silencio. El patrón coincide con el uso de una aplicación de cambio de voz.',en:'Camila Ferro states she heard a deep voice that cut off suddenly, followed by a "click" and then silence. The pattern matches the use of a voice-changing app.'},
+      confront:{
+        renata:{panic:8, es:'Eso explica la inconsistencia de las voces. Yo no escuché nada. Estaba en la sala.', en:'That explains the voice inconsistency. I didn\'t hear anything. I was in the room.'},
+        tomas:{panic:8, es:'Yo escuché la voz grave. Antes del clic. Y después nada.', en:'I heard the deep voice. Before the click. And then nothing.'},
+        paula:{panic:10, es:'Una voz cambiada. Eso explica por qué algunos testigos dicen grave y otros agudo.', en:'A changed voice. That explains why some witnesses say deep and others high.'},
+        bruno:{panic:10, es:'Yo no oí nada. Estaba en el baño.', en:'I didn\'t hear anything. I was in the bathroom.'},
+        camila:{panic:22, es:'Yo la oí. Y sé cómo suena. Yo uso una app así para karaoke. Y esa noche escuché el mismo 'clic' cuando se apaga.', en:'I heard it. And I know how it sounds. I use an app like that for karaoke. And that night I heard the same \'click\' when it turns off.'}}},
+    E08:{num:'08',cat:'catDigital',
+      name:{es:'Registro de acceso al vestuario de personal',en:'Staff locker room access log'},
+      desc:{es:'El sistema de tarjetas del vestuario de personal registra un acceso con la tarjeta de Camila Ferro a las 22:36 y una salida a las 22:51. Camila declaró haber salido a las 22:40.',en:'The staff locker room card system logs an entry with Camila Ferro\'s card at 10:36 PM and an exit at 10:51. Camila stated she left at 10:40.'},
+      confront:{
+        renata:{panic:8, es:'La tarjeta de Camila entró a las 22:36. Y salió a las 22:51. Quince minutos, no cuatro.', en:'Camila\'s card entered at 10:36. And left at 10:51. Fifteen minutes, not four.'},
+        tomas:{panic:6, es:'No sabía eso. Pero no me sorprende.', en:'I didn\'t know that. But it doesn\'t surprise me.'},
+        paula:{panic:10, es:'Quince minutos. Eso coincide con mi ventana de cuatro minutos vista desde el otro lado.', en:'Fifteen minutes. That matches my four-minute window seen from the other side.'},
+        bruno:{panic:6, es:'Yo no tengo tarjeta del vestuario de personal. No trabajo ahí.', en:'I don\'t have a card to the staff locker room. I don\'t work there.'},
+        camila:{panic:25, es:'Está bien. Quince minutos. No cuatro. Y sí, me mojé. Pero no me caí a la piscina. Me metí al agua a propósito. Para lavarme. Porque tenía sangre en el brazo. Y no era mía.', en:'Fine. Fifteen minutes. Not four. And yes, I got wet. But I didn\'t fall into the pool. I got in on purpose. To wash myself. Because I had blood on my arm. And it wasn\'t mine.'}}},
+    E09:{num:'09',cat:'catTestimony',contradiction:true,
+      name:{es:'Testimonio: el pelo mojado',en:'Testimony: the wet hair'},
+      desc:{es:'Paula Quintana declara haber visto a Camila Ferro saliendo del área de la piscina de saltos a las 22:50 con el pelo mojado, cuando Camila declaró estar en el vestuario en ese momento.',en:'Paula Quintana states she saw Camila Ferro leaving the diving pool area at 10:50 PM with wet hair, when Camila stated she was in the locker room at that time.'},
+      confront:{
+        renata:{panic:10, es:'Paula lo vio saliendo. Eso es lo que importa. Con el pelo mojado.', en:'Paula saw her leaving. That\'s what matters. With wet hair.'},
+        tomas:{panic:10, es:'Paula vio a Camila saliendo. Y yo la vi entrando al vestuario a las 22:36. Los dos la vimos.', en:'Paula saw Camila leaving. And I saw her entering the locker room at 10:36. We both saw her.'},
+        paula:{panic:18, es:'Yo la vi. Con el pelo mojado. Saliendo del área de la piscina de saltos. A las 22:50.', en:'I saw her. With wet hair. Leaving the diving pool area. At 10:50.'},
+        bruno:{panic:6, es:'Yo no vi a Camila. Yo estaba en el baño.', en:'I didn\'t see Camila. I was in the bathroom.'},
+        camila:{panic:30, es:'Paula me vio. Sí. Estaba saliendo del área. Con el pelo mojado. Porque me metí al agua. Para lavarme. Ya te lo dije. Ya te lo dije todo.', en:'Paula saw me. Yes. I was leaving the area. With wet hair. Because I got in the water. To wash myself. I already told you. I already told you everything.'}}},
+    E10:{num:'10',cat:'catPhysical',
+      name:{es:'Grabadora de Paula',en:'Paula\'s recorder'},
+      desc:{es:'En la mochila de Paula Quintana se halló una grabadora digital con seis meses de conversaciones de Damián Ríos. No contiene nada relacionado con el asesinato.',en:'A digital recorder was found in Paula Quintana\'s backpack with six months of Damián Ríos\'s conversations. It contains nothing related to the murder.'},
+      confront:{
+        renata:{panic:6, es:'No sabía que grababa. Pero eso explica algunas cosas que él decía.', en:'I didn\'t know she recorded. But that explains some things he said.'},
+        tomas:{panic:6, es:'Paula grababa. Yo no. Nunca. Yo no tengo nada que grabar.', en:'Paula recorded. I didn\'t. Never. I have nothing to record.'},
+        paula:{panic:14, es:'Sí. Esa grabadora es mía. Y no tiene nada del asesinato. Porque yo no lo maté.', en:'Yes. That recorder is mine. And it has nothing about the murder. Because I didn\'t kill him.'},
+        bruno:{panic:6, es:'No sabía que grababa. Me alegro de no haber dicho nada estúpido.', en:'I didn\'t know she recorded. I\'m glad I didn\'t say anything stupid.'},
+        camila:{panic:14, es:'Paula grababa. ¿Y? Yo no dije nada en esas grabaciones. Nunca hablé con él cerca de ella.', en:'Paula recorded. So what? I didn\'t say anything in those recordings. I never talked to him near her.'}}},
+    E11:{num:'11',cat:'catDigital',
+      name:{es:'Análisis de la máscara',en:'Mask analysis'},
+      desc:{es:'El sudor en la máscara reflectante contiene ADN de una persona con marcadores compatibles con Camila Ferro. La probabilidad es de 1 en 8.000. No es una identificación positiva.',en:'The sweat on the reflective mask contains DNA from a person with markers compatible with Camila Ferro. The probability is 1 in 8,000. It is not a positive identification.'},
+      confront:{
+        renata:{panic:14, es:'La máscara tiene ADN de Camila. Eso no es coincidencia. Pero tampoco es prueba.', en:'The mask has Camila\'s DNA. That\'s not a coincidence. But it\'s not proof either.'},
+        tomas:{panic:10, es:'Si la máscara tiene ADN de Camila, entonces fue ella. ¿O no? Yo no entiendo de eso.', en:'If the mask has Camila\'s DNA, then it was her. Or not? I don\'t understand that stuff.'},
+        paula:{panic:12, es:'La máscara es de mi sesión. Es normal que tenga ADN de quien la tocó. Pero Camila la tocó. La vi en la banca del vestuario antes del evento.', en:'The mask is from my shoot. It\'s normal it has DNA from whoever touched it. But Camila touched it. I saw it on the locker room bench before the event.'},
+        bruno:{panic:8, es:'La máscara es de Camila. Está claro. Pero yo no soy detective.', en:'The mask is Camila\'s. It\'s clear. But I\'m not a detective.'},
+        camila:{panic:25, es:'La máscara tiene mi ADN porque la toqué. Antes del evento. La moví porque estaba en el paso. Eso es todo. Eso es todo lo que tengo que decir sobre esa máscara.', en:'The mask has my DNA because I touched it. Before the event. I moved it because it was in the way. That\'s all. That\'s all I have to say about that mask.'}}},
+    E12:{num:'12',cat:'catTestimony',
+      name:{es:'Testimonio del flash',en:'Testimony of the flash'},
+      desc:{es:'Tres testigos declaran haber visto un flash de luz blanca durante los segundos previos al asesinato. Ninguno de ellos pudo ver al asesino durante ese flash.',en:'Three witnesses state they saw a flash of white light during the seconds before the murder. None of them could see the killer during that flash.'},
+      confront:{
+        renata:{panic:8, es:'El flash. Lo vi en el monitor antes del parpadeo. Pensé que era la cámara de Paula.', en:'The flash. I saw it on the monitor before the flicker. I thought it was Paula\'s camera.'},
+        tomas:{panic:12, es:'El flash me cegó. Cuando volví a mirar, ya estaba el caos.', en:'The flash blinded me. When I looked again, it was already chaos.'},
+        paula:{panic:16, es:'El flash no era mío. Mi cámara tiene un flash cálido. El del evento era blanco frío. Es otro tipo de flash.', en:'The flash wasn\'t mine. My camera has a warm flash. The one at the event was cold white. It\'s a different type of flash.'},
+        bruno:{panic:8, es:'Yo vi el flash desde el bar. Después oí los gritos.', en:'I saw the flash from the bar. Then I heard the screams.'},
+        camila:{panic:20, es:'El flash no era de Paula. Yo conozco el flash de Paula. Es cálido. El flash de esa noche era blanco. Y era de una cámara pequeña. Como la que alguien podría esconder en el bolsillo.', en:'The flash wasn\'t Paula\'s. I know Paula\'s flash. It\'s warm. The flash that night was white. And it was from a small camera. Like one someone could hide in their pocket.'}}},
+    E13:{num:'13',cat:'catTimeline',
+      name:{es:'Registro de salida del estacionamiento',en:'Parking lot exit log'},
+      desc:{es:'El registro del estacionamiento muestra que el auto de Camila Ferro no salió del complejo esa noche. Camila vivía a 800 metros y llegó caminando.',en:'The parking lot log shows Camila Ferro\'s car did not leave the complex that night. Camila lived 800 meters away and arrived on foot.'},
+      confront:{
+        renata:{panic:6, es:'Camila llegó caminando. Eso no cambia nada.', en:'Camila arrived on foot. That changes nothing.'},
+        tomas:{panic:6, es:'Yo no sabía eso. Pero es lógico. Ella vive cerca.', en:'I didn\'t know that. But it makes sense. She lives nearby.'},
+        paula:{panic:8, es:'Camila caminó a su casa. Eso significa que después del asesinato, se fue a pie. Y no dejó rastro en el estacionamiento.', en:'Camila walked home. That means after the murder, she left on foot. And left no trace in the parking lot.'},
+        bruno:{panic:6, es:'Yo me fui en mi auto. Pero el auto de Camila no se movió. Eso lo vi.', en:'I left in my car. But Camila\'s car didn\'t move. I saw that.'},
+        camila:{panic:16, es:'Mi auto no se movió. Yo llegué caminando. Y me fui caminando. Y eso es exactamente lo que hice. Llegué caminando. Y me fui caminando.', en:'My car didn\'t move. I arrived on foot. And I left on foot. And that\'s exactly what I did. Arrived on foot. Left on foot.'}}},
+    E14:{num:'14',cat:'catDigital',contradiction:true,
+      name:{es:'Historial de la app de voz',en:'Voice app history'},
+      desc:{es:'El teléfono de Camila Ferro muestra el uso de una aplicación de cambio de voz entre las 22:30 y las 22:49 PM. La app fue cerrada abruptamente a las 22:49.',en:'Camila Ferro\'s phone shows use of a voice-changing app between 10:30 and 10:49 PM. The app was closed abruptly at 10:49.'},
+      confront:{
+        renata:{panic:12, es:'La app de voz se cerró a las 22:49. Dos minutos después del asesinato. Eso no es coincidencia.', en:'The voice app closed at 10:49. Two minutes after the murder. That\'s not a coincidence.'},
+        tomas:{panic:10, es:'Eso explica el clic que Camila escuchó. Es la app apagándose.', en:'That explains the click Camila heard. It\'s the app turning off.'},
+        paula:{panic:14, es:'La app. Eso cierra el caso. Todo apunta a Camila.', en:'The app. That closes the case. Everything points to Camila.'},
+        bruno:{panic:8, es:'No entiendo esas cosas. Pero si la app estaba activa durante el asesinato, entonces...', en:'I don\'t understand those things. But if the app was active during the murder, then...'},
+        camila:{panic:30, es:'Está bien. La app estaba activa. Y yo estaba en el área. Y yo usé la máscara. Y yo tomé el cuchillo. Y yo discutí con él. Pero no fui yo. No fui yo. No fui yo.', en:'Fine. The app was active. And I was in the area. And I used the mask. And I took the knife. And I argued with him. But it wasn\'t me. It wasn\'t me. It wasn\'t me.'}}},
+    E15:{num:'15',cat:'catTestimony',
+      name:{es:'Confesión de Camila Ferro',en:'Camila Ferro\'s confession'},
+      desc:{es:'Camila Ferro confiesa el asesinato de Damián Ríos durante el interrogatorio. Declara que usó la máscara reflectante del equipo de Paula, un par de zapatos talla 45 del lost-and-found, y una app de cambio de voz en su teléfono. Su motivo: dos años de chantaje con fotos íntimas, y el descubrimiento de que Damián estaba haciendo lo mismo con su hermana de 16 años.',en:'Camila Ferro confesses to the murder of Damián Ríos during interrogation. She states she used the reflective mask from Paula\'s equipment, a pair of size-45 shoes from lost-and-found, and a voice-changing app on her phone. Her motive: two years of blackmail with intimate photos, and the discovery that Damián was doing the same to her 16-year-old sister.'},
+      confront:{
+        renata:{panic:4, es:'Ella lo confesó. Bien. Se acabó.', en:'She confessed. Good. It\'s over.'},
+        tomas:{panic:4, es:'Ella lo hizo. Y yo la vi saliendo. Lo sabía. Lo sabía.', en:'She did it. And I saw her leaving. I knew it. I knew it.'},
+        paula:{panic:6, es:'Camila. Lo sabía. Lo vi todo. Lo vi todo.', en:'Camila. I knew it. I saw everything. I saw everything.'},
+        bruno:{panic:4, es:'Camila. La bartender. Nunca me lo esperé.', en:'Camila. The bartender. I never expected it.'},
+        camila:{panic:20, es:'Sí. Fui yo. Sí. Y no me arrepiento. No me arrepiento de haberlo hecho. Me arrepiento de no haberlo hecho antes.', en:'Yes. It was me. Yes. And I don\'t regret it. I don\'t regret doing it. I regret not doing it sooner.'}}}
+  },
+
+  timeline:[
+    {id:'t1', time:'21:30', order:1, start:true,
+      text:{es:'Damián Ríos coordina los últimos detalles de la Noche de Neón. Todo normal.', en:'Damián Ríos coordinates the last details of Neon Night. All normal.'}},
+    {id:'t2', time:'22:00', order:2, start:true,
+      text:{es:'Se sirve el primer trago de la noche. Damián circula entre los invitados.', en:'First drink of the night is served. Damián circulates among the guests.'}},
+    {id:'t3', time:'22:15', order:3, req:'E12',
+      text:{es:'Damián discute con Bruno Aguirre por dinero. Delante de testigos.', en:'Damián argues with Bruno Aguirre about money. In front of witnesses.'}},
+    {id:'t4', time:'22:20', order:4, req:'E05',
+      text:{es:'Camila Ferro llama a Damián. La llamada dura 3 minutos. Ella le pide que deje de mandarle fotos.', en:'Camila Ferro calls Damián. The call lasts 3 minutes. She asks him to stop sending her photos.'}},
+    {id:'t5', time:'22:30', order:5, req:'E09',
+      text:{es:'Damián discute con Camila Ferro en persona. Bajo. Muy bajo. Él se ríe de ella.', en:'Damián argues with Camila Ferro in person. Quiet. Very quiet. He laughs at her.'}},
+    {id:'t6', time:'22:36', order:6, req:'E08',
+      text:{es:'Camila Ferro entra al vestuario de personal con su tarjeta.', en:'Camila Ferro enters the staff locker room with her card.'}},
+    {id:'t7', time:'22:40', order:7, req:'E12',
+      text:{es:'Damián manda a Tomás Iriarte al cuarto de mantenimiento con una excusa falsa.', en:'Damián sends Tomás Iriarte to the maintenance room with a false excuse.'}},
+    {id:'t8', time:'22:44', order:8, req:'E03', crit:true,
+      text:{es:'Las cámaras 3 y 5 comienzan a parpadear. El sistema registra el fallo.', en:'Cameras 3 and 5 begin to flicker. The system logs the failure.'}},
+    {id:'t9', time:'22:46', order:9, req:'E12',
+      text:{es:'Un flash blanco ilumina el área junto a la piscina de saltos. Tres testigos lo ven.', en:'A white flash lights the area near the diving pool. Three witnesses see it.'}},
+    {id:'t10', time:'22:47', order:10, start:true, crit:true,
+      text:{es:'ASESINATO. Damián Ríos es apuñalado junto a la piscina de saltos. El asesino escapa entre el caos.', en:'MURDER. Damián Ríos is stabbed near the diving pool. The killer escapes in the chaos.'}},
+    {id:'t11', time:'22:48', order:11, req:'E14', crit:true,
+      text:{es:'La app de cambio de voz en el teléfono de Camila es cerrada abruptamente. Un testigo escucha el clic.', en:'The voice-changing app on Camila\'s phone is closed abruptly. A witness hears the click.'}},
+    {id:'t12', time:'22:50', order:12, req:'E09', crit:true,
+      text:{es:'Paula Quintana ve a Camila saliendo del área con el pelo mojado.', en:'Paula Quintana sees Camila leaving the area with wet hair.'}},
+    {id:'t13', time:'22:51', order:13, req:'E08', crit:true,
+      text:{es:'Camila Ferro sale del vestuario de personal. Quince minutos después de haber entrado.', en:'Camila Ferro exits the staff locker room. Fifteen minutes after entering.'}},
+    {id:'t14', time:'23:02', order:14, start:true, crit:true,
+      text:{es:'Los servicios de emergencia llegan al complejo. Damián Ríos es declarado muerto en el lugar.', en:'Emergency services arrive at the complex. Damián Ríos is declared dead on scene.'}},
+    {id:'t15', time:'23:15', order:15, req:'E04',
+      text:{es:'Un oficial encuentra un par de zapatos talla 45 en un arbusto del estacionamiento.', en:'An officer finds a pair of size-45 shoes in a bush in the parking lot.'}}
+  ],
+
+  witnesses:[
+    {id:'W1', name:{es:'LUIS PRADO — VISITANTE',en:'LUIS PRADO — VISITOR'},
+      text:{es:'"El asesino era alto. Llevaba una capucha negra. Tenía una voz grave. Caminaba rápido."',en:'"The killer was tall. Black hoodie. Deep voice. Walked fast."'},
+      observations:['tall','deep_voice','hoodie','walks_fast']},
+    {id:'W2', name:{es:'SOFÍA MÉNDEZ — VISITANTE',en:'SOFÍA MÉNDEZ — VISITOR'},
+      text:{es:'"No era tan alto. Llevaba unos zapatos negros enormes. Caminaba raro, como incómodo."',en:'"Not that tall. Huge black shoes. Walked weird, like uncomfortable."'},
+      observations:['medium_height','big_shoes','awkward_gait']},
+    {id:'W3', name:{es:'ANDRÉS K. — EMPLEADO',en:'ANDRÉS K. — EMPLOYEE'},
+      text:{es:'"Tenía algo brillante en la cara. Como una máscara. No habló en ningún momento."',en:'"Something shiny on the face. Like a mask. Didn\'t speak at any point."'},
+      observations:['mask','silent','reflective_face']},
+    {id:'W4', name:{es:'VALENTINA R. — VISITANTE',en:'VALENTINA R. — VISITOR'},
+      text:{es:'"Escuché una voz aguda por un momento. Después grave. Pensé que estaba loca."',en:'"I heard a high voice for a moment. Then deep. I thought I was crazy."'},
+      observations:['high_voice','deep_voice','voice_change']},
+    {id:'W5', name:{es:'RICARDO B. — SEGURIDAD',en:'RICARDO B. — SECURITY'},
+      text:{es:'"Llevaba guantes. Y las manos eran pequeñas. No coincidían con el cuerpo."',en:'"Wore gloves. And the hands were small. Didn\'t match the body."'},
+      observations:['gloves','small_hands','mismatch']}
+  ],
+
+  witnessPatterns:[
+    {id:'WP1', name:{es:'PATRÓN: DISFRAZ DE ALTURA',en:'PATTERN: HEIGHT DISGUISE'},
+      desc:{es:'Los zapatos talla 45 alteraban la altura aparente. El asesino era bajo, no alto.',en:'The size-45 shoes altered apparent height. The killer was short, not tall.'},
+      observations:['tall','medium_height','big_shoes','awkward_gait','small_hands','mismatch']},
+    {id:'WP2', name:{es:'PATRÓN: VOZ MODIFICADA',en:'PATTERN: MODIFIED VOICE'},
+      desc:{es:'Una app de cambio de voz generaba voces contradictorias. Un testigo escuchó el clic de apagado.',en:'A voice-changing app produced contradictory voices. One witness heard the shutdown click.'},
+      observations:['deep_voice','high_voice','voice_change','silent']},
+    {id:'WP3', name:{es:'PATRÓN: OCULTAMIENTO DEL ROSTRO',en:'PATTERN: FACE CONCEALMENT'},
+      desc:{es:'La capucha y la máscara reflectante ocultaban completamente el rostro.',en:'The hoodie and reflective mask completely concealed the face.'},
+      observations:['hoodie','mask','reflective_face','gloves']}
+  ],
+
+  lies:{
+    lie_evidence:{
+      name:{es:'"Encontramos la máscara con tu ADN."',en:'"We found the mask with your DNA."'},
+      success:{
+        es:'El sospechoso se queda en silencio demasiado tiempo. Cuando habla, su voz tiembla.',
+        en:'The suspect goes silent for too long. When they speak, their voice shakes.'},
+      fail:{
+        es:'El sospechoso niega con calma y te recuerda que tu mentira es verificable.',
+        en:'The suspect calmly denies it and reminds you that your lie is verifiable.'}},
+    lie_witness:{
+      name:{es:'"Un testigo te vio saliendo del área."',en:'"A witness saw you leaving the area."'},
+      success:{
+        es:'El sospechoso corrige un detalle específico que solo el asesino sabría.',
+        en:'The suspect corrects a specific detail only the killer would know.'},
+      fail:{
+        es:'El sospechoso te pregunta el nombre del testigo. No puedes responder. Se nota.',
+        en:'The suspect asks for the witness\'s name. You can\'t answer. It shows.'}},
+    lie_accusation:{
+      name:{es:'"Otro sospechoso te ha señalado."',en:'"Another suspect has pointed at you."'},
+      success:{
+        es:'El sospechoso se defiende con demasiado detalle. Dice cosas que nadie le preguntó.',
+        en:'The suspect defends themselves with too much detail. Says things no one asked.'},
+      fail:{
+        es:'El sospechoso ríe. Te dice que ese otro sospechoso no podría haberlo señalado porque nunca habló con nadie.',
+        en:'The suspect laughs. Tells you that other suspect couldn\'t have pointed at anyone because they never spoke to anyone.'}},
+    lie_knowledge:{
+      name:{es:'"Sabemos lo que hiciste antes de llegar aquí."',en:'"We know what you did before you got here."'},
+      success:{
+        es:'El sospechoso se pone pálido. Traga. Y empieza a hablar sin que le preguntes.',
+        en:'The suspect goes pale. Swallows. And starts talking without being asked.'},
+      fail:{
+        es:'El sospechoso te mira directamente. "No saben nada. Si supieran, ya me habrían arrestado."',
+        en:'The suspect looks at you directly. "You don\'t know anything. If you did, you\'d have arrested me already."'}}
+  },
+
+  fileSections:{
+    S01:{title:{es:'SECCIÓN 01 — LA VENDEDORA DE ACCESOS',en:'SECTION 01 — THE ACCESS SELLER'},
+      body:{es:'Renata vendía accesos al complejo. Lo sé porque yo era uno de sus clientes. Pagué tres veces para entrar sin pasar por la entrada principal. La tercera vez vi a alguien más usando el mismo sistema. Alguien que no era un invitado. Alguien que se movía como si conociera el complejo demasiado bien.\n\nEsa persona no era Renata. Renata no se mueve así.\n\nAnoté la fecha. La hora. Lo que llevaba puesto. No sé por qué lo anoté. Pero lo anoté.',
+            en:'Renata was selling access to the complex. I know because I was one of her clients. I paid three times to get in without going through the main entrance. The third time I saw someone else using the same system. Someone who wasn\'t a guest. Someone who moved like they knew the complex too well.\n\nThat person wasn\'t Renata. Renata doesn\'t move like that.\n\nI wrote down the date. The time. What they were wearing. I don\'t know why I wrote it. But I wrote it.'}},
+    S02:{title:{es:'SECCIÓN 02 — EL FOTÓGRAFO',en:'SECTION 02 — THE PHOTOGRAPHER'},
+      body:{es:'Paula lleva seis meses grabando a Damián. Lo sé porque me lo dijo. Le dije que dejara de hacerlo. Ella me dijo que no podía.\n\nPaula no es peligrosa. Paula es obsesiva. Pero no peligrosa.\n\nSin embargo, el flash de esa noche no era de su cámara. Yo conozco el flash de Paula. Es cálido. El flash de esa noche era blanco. Frío. De una cámara distinta.\n\nAlguien más tenía una cámara esa noche. Y la usó para cegar a los testigos.',
+            en:'Paula has been recording Damián for six months. I know because she told me. I told her to stop. She told me she couldn\'t.\n\nPaula isn\'t dangerous. Paula is obsessive. But not dangerous.\n\nHowever, the flash that night wasn\'t from her camera. I know Paula\'s flash. It\'s warm. The flash that night was white. Cold. From a different camera.\n\nSomeone else had a camera that night. And used it to blind the witnesses.'}},
+    S03:{title:{es:'SECCIÓN 03 — EL SOCIO',en:'SECTION 03 — THE PARTNER'},
+      body:{es:'Bruno es un bocón. Amenazó a Damián delante de todos. Lo hizo porque estaba enojado. Nada más.\n\nBruno no es un asesino. Bruno es un cobarde que grita. Lo conozco desde hace años. Cuando la situación se pone seria, Bruno se esconde. Se va al baño. Vomita.\n\nY eso fue exactamente lo que hizo esa noche. Estuvo veinte minutos en el baño. Y cuando salió, ya había pasado todo.\n\nBruno no es peligroso. Bruno es predecible.',
+            en:'Bruno is a loudmouth. He threatened Damián in front of everyone. He did it because he was angry. Nothing more.\n\nBruno isn\'t a killer. Bruno is a coward who yells. I\'ve known him for years. When things get serious, Bruno hides. Goes to the bathroom. Throws up.\n\nAnd that\'s exactly what he did that night. He was in the bathroom for twenty minutes. And when he came out, everything had already happened.\n\nBruno isn\'t dangerous. Bruno is predictable.'}},
+    S04:{title:{es:'SECCIÓN 04 — LA BARTENDER',en:'SECTION 04 — THE BARTENDER'},
+      body:{es:'Camila conoce el complejo mejor que nadie. Lleva cuatro años trabajando aquí. Sabe qué cámaras funcionan y cuáles no. Sabe cuándo cambian los turnos. Sabe por dónde salir sin que te vean.\n\nCamila ha estado rara las últimas semanas. Más callada. Más atenta. Como si estuviera esperando algo.\n\nY Damián la miraba distinto. Como si tuviera algo sobre ella. Como si la estuviera apretando.\n\nEsa noche, cuando discutieron, ella no lloró. No gritó. Se quedó quieta. Como si estuviera tomando una decisión. Y eso fue lo que más me asustó.',
+            en:'Camila knows the complex better than anyone. She\'s worked here four years. She knows which cameras work and which don\'t. She knows when the shifts change. She knows where to exit without being seen.\n\nCamila has been strange these last weeks. Quieter. More watchful. Like she was waiting for something.\n\nAnd Damián looked at her differently. Like he had something on her. Like he was squeezing her.\n\nThat night, when they argued, she didn\'t cry. Didn\'t yell. She just stood still. Like she was making a decision. And that was what scared me the most.'}},
+    S05:{title:{es:'SECCIÓN 05 — NOTA FINAL',en:'SECTION 05 — FINAL NOTE'},final:true,
+      body:{es:'No hay mensaje final. No hay nota. No hay despedida.\n\nSolo queda lo que sabemos:\n\nRenata vendió accesos. Manipuló las cámaras. No es la asesina.\nTomás vendía accesos. Fue al cuarto de mantenimiento con una excusa falsa. No es el asesino.\nPaula grababa conversaciones. No es la asesina.\nBruno amenazó a Damián en público. No es el asesino.\n\nCamila.\n\nCamila discutió con Damián a las 22:30. Bajo. Muy bajo.\nCamila entró al vestuario a las 22:36. Salió a las 22:51.\nCamila tenía el pelo mojado a las 22:50. Dijo que se cayó a la piscina.\nCamila tenía la app de voz activa entre 22:30 y 22:49.\nCamila tiene acceso a la máscara de Paula. A los zapatos talla 45. A los guantes.\nCamila conoce el complejo. Sabe por dónde salir. Sabe cuándo cambian los turnos.\n\nY Camila tenía el mejor motivo de todos. El único motivo que no se puede negociar.\n\nSu hermana. Dieciséis años. Damián también le mandaba fotos.\n\n— El investigador',
+            en:'There is no final message. No note. No farewell.\n\nOnly what we know remains:\n\nRenata sold access. Manipulated the cameras. She\'s not the killer.\nTomás sold access. Went to the maintenance room with a false excuse. Not the killer.\nPaula recorded conversations. Not the killer.\nBruno threatened Damián publicly. Not the killer.\n\nCamila.\n\nCamila argued with Damián at 10:30. Quietly. Very quietly.\nCamila entered the locker room at 10:36. Exited at 10:51.\nCamila had wet hair at 10:50. Said she fell into the pool.\nCamila had the voice app active between 10:30 and 10:49.\nCamila has access to Paula\'s mask. To the size-45 shoes. To the gloves.\nCamila knows the complex. Knows where to exit. Knows when shifts change.\n\nAnd Camila had the best motive of all. The only motive that can\'t be negotiated.\n\nHer sister. Sixteen. Damián was sending photos to her too.\n\n— The Investigator'}}
+  },
+
+  leads:{
+    L1:{from:'renata', target:'paula', falseAccusation:true,
+      text:{es:'Renata ha señalado a Paula: "Desapareció cuatro minutos justo en el tramo que las cámaras parpadearon."', en:'Renata has pointed at Paula: "She disappeared for four minutes right in the window where the cameras flickered."'}},
+    L2:{from:'paula', target:'camila', falseAccusation:false,
+      text:{es:'Paula ha señalado a Camila: "Salió del área de la piscina de saltos con el pelo mojado. No se había metido al agua."', en:'Paula has pointed at Camila: "She left the diving pool area with wet hair. She hadn\'t gotten in the water."'}},
+    L3:{from:'tomas', target:'camila', falseAccusation:false,
+      text:{es:'Tomás ha señalado a Camila: "La vi entrar al vestuario a las 22:36 y salir a las 22:51. Quince minutos."', en:'Tomás has pointed at Camila: "I saw her enter the locker room at 10:36 and leave at 10:51. Fifteen minutes."'}},
+    L4:{from:'camila', target:'paula', falseAccusation:true,
+      text:{es:'Camila ha señalado a Paula: "El flash no era suyo. Era una cámara pequeña. Como la que alguien podría esconder en el bolsillo."', en:'Camila has pointed at Paula: "The flash wasn\'t hers. It was from a small camera. Like one someone could hide in their pocket."'}}
+  },
+
+  breaks:{
+    renata:[
+     {at:26, ev:'E03', lie:true, msg:{es:'Renata se tensa. El registro de las cámaras acaba de llegar.', en:'Renata tenses up. The camera log just came in.'}},
+     {at:61, lead:'L1', msg:{es:'Renata empieza a defenderse señalando a Paula.', en:'Renata starts defending herself by pointing at Paula.'}},
+     {at:100, confession:true, msg:{es:'Renata admite que manipuló los reportes.', en:'Renata admits she manipulated the reports.'}}
+    ],
+    tomas:[
+     {at:26, ev:'E04', lie:true, msg:{es:'Tomás se pone rígido. Los zapatos talla 45 acaban de aparecer.', en:'Tomás goes rigid. The size-45 shoes just surfaced.'}},
+     {at:76, lead:'L3', msg:{es:'Tomás ya no puede callar. Señala a Camila.', en:'Tomás can no longer stay silent. He points at Camila.'}},
+     {at:100, confession:true, msg:{es:'Tomás admite que vendía accesos y que mintió sobre lo que vio.', en:'Tomás admits he sold access and lied about what he saw.'}}
+    ],
+    paula:[
+     {at:26, ev:'E10', lie:true, msg:{es:'Paula se tensa. Su grabadora acaba de ser hallada.', en:'Paula tenses up. Her recorder was just found.'}},
+     {at:61, lead:'L2', msg:{es:'Paula ya no puede callar. Señala a Camila.', en:'Paula can no longer stay silent. She points at Camila.'}},
+     {at:100, confession:true, msg:{es:'Paula admite que grababa conversaciones y que vio a Camila salir con el pelo mojado.', en:'Paula admits she recorded conversations and saw Camila leave with wet hair.'}}
+    ],
+    bruno:[
+     {at:26, ev:'E12', lie:true, msg:{es:'Bruno se tensa. El flash acaba de aparecer en los reportes.', en:'Bruno tenses up. The flash just appeared in the reports.'}},
+     {at:76, lead:'L4', msg:{es:'Bruno se defiende señalando a Paula.', en:'Bruno defends himself by pointing at Paula.'}},
+     {at:100, confession:true, msg:{es:'Bruno admite que vio al asesino quitarse los zapatos.', en:'Bruno admits he saw the killer take off the shoes.'}}
+    ],
+    camila:[
+     {at:26, ev:'E05', lie:true, msg:{es:'Camila se tensa. El registro de la llamada eliminada apareció.', en:'Camila tenses up. The deleted call record surfaced.'}},
+     {at:55, ev:'E08', msg:{es:'Camila respira hondo. El registro del vestuario la delata.', en:'Camila takes a deep breath. The locker room log exposes her.'}},
+     {at:75, ev:'E14', lead:'L4', msg:{es:'Camila intenta defenderse y señala a Paula.', en:'Camila tries to defend herself and points at Paula.'}},
+     {at:100, confession:true, msg:{es:'Camila se quiebra por completo. Y lo cuenta todo.', en:'Camila breaks completely. And tells everything.'}}
+    ]
+  },
+
+  ending:{
+    solved:{
+      murdererName:'CAMILA FERRO',
+      murdererAge:29,
+      motive:{es:'Camila Ferro había sido chantajeada por Damián Ríos durante dos años con fotografías íntimas. Cuando descubrió que Damián estaba haciendo exactamente lo mismo con su hermana de 16 años, decidió actuar. No fue un crimen premeditado con meses de antelación: fue una decisión tomada a las 22:30 de esa misma noche, cuando Damián se rió de ella en la cara. Aprovechó que conocía el complejo, que tenía acceso al equipo de Paula, que tenía tarjeta del vestuario de personal, y que sabía cuándo cambiaban los turnos.',
+              en:'Camila Ferro had been blackmailed by Damián Ríos for two years with intimate photographs. When she discovered Damián was doing the exact same thing to her 16-year-old sister, she decided to act. It wasn\'t a crime planned months in advance: it was a decision made at 10:30 PM that same night, when Damián laughed in her face. She took advantage of knowing the complex, having access to Paula\'s equipment, having a staff locker room card, and knowing when shifts changed.'},
+      keyEvidenceIds:['E04','E05','E07','E08','E09','E11','E14'],
+      contradiction:{es:'Camila declaró haber estado en el vestuario solo cuatro minutos. El sistema de tarjetas registró quince. Declaró que se mojó por caerse a la piscina, pero el registro de la app de voz muestra que estuvo activa hasta las 22:49 —dos minutos después del asesinato— y que fue cerrada abruptamente. Y Paula Quintana la vio saliendo del área de la piscina de saltos con el pelo mojado a las 22:50, cuando Camila dijo estar en el vestuario.',
+                     en:'Camila stated she was in the locker room for only four minutes. The card system logged fifteen. She stated she got wet from falling into the pool, but the voice app log shows it was active until 10:49 —two minutes after the murder— and was closed abruptly. And Paula Quintana saw her leaving the diving pool area with wet hair at 10:50, when Camila said she was in the locker room.'},
+      confession:{es:'"Fui yo. Sí. Y no me arrepiento.\n\nÉl me chantajeó durante dos años. Con fotos. Fotos que le robó a Paula. Fotos mías. Fotos de otras tres personas. Y hace dos semanas descubrí que le estaba mandando fotos a mi hermana. A mi hermana. Tiene dieciséis. Y él tenía fotos de ella. \n\nNo pensé hacerlo. Esa noche no. Esa noche fui a trabajar. Y a las 22:30 me dijo algo que me rompió. Se rió de mí. Se rió de mi hermana. Se rió de todo.\n\nFui al vestuario. Vi la máscara de Paula sobre la banca. Vi los zapatos talla 45 del lost-and-found. Me los puse. Me puse los guantes. Bajé la app de voz en mi teléfono. Fui al área. Él estaba solo. Me acerqué. Le dije 'ya no tienes nada sobre mí'. Se rió otra vez. Y yo...\n\nNo recuerdo el momento exacto. Recuerdo el flash. Recuerdo que él ya no se movía. Recuerdo entrar al vestuario. Mojarme el brazo para lavarlo. Y después volver a la barra. Como si nada hubiera pasado.\n\nNo me arrepiento de haberlo hecho. Me arrepiento de no haberlo hecho antes."',
+                  en:'"It was me. Yes. And I don\'t regret it.\n\nHe blackmailed me for two years. With photos. Photos he stole from Paula. Photos of me. Photos of three other people. And two weeks ago I found out he was sending photos to my sister. My sister. She\'s sixteen. And he had photos of her.\n\nI didn\'t plan it. Not that night. That night I went to work. And at 10:30 he said something that broke me. He laughed at me. Laughed at my sister. Laughed at everything.\n\nI went to the locker room. I saw Paula\'s mask on the bench. I saw the size-45 shoes from lost-and-found. I put them on. I put on the gloves. I downloaded the voice app. I went to the area. He was alone. I approached. I told him \'you have nothing on me anymore\'. He laughed again. And I...\n\nI don\'t remember the exact moment. I remember the flash. I remember he wasn\'t moving anymore. I remember going into the locker room. Wetting my arm to wash it. And then going back to the bar. Like nothing had happened.\n\nI don\'t regret doing it. I regret not doing it sooner."'}
+    },
+    perfect:{
+      rank:{es:'INVESTIGACIÓN PERFECTA',en:'PERFECT INVESTIGATION'},
+      murdererName:'CAMILA FERRO',
+      disclosure:{es:'Identificaste a Camila Ferro, reconstruiste el uso del disfraz (máscara + zapatos talla 45 + guantes + app de voz), confirmaste la manipulación de testigos mediante el flash blanco, y estableciste la ruta de escape a pie por la puerta este.',
+                en:'You identified Camila Ferro, reconstructed the use of the disguise (mask + size-45 shoes + gloves + voice app), confirmed witness manipulation through the white flash, and established the escape route on foot through the east door.'}
+    },
+    falseConfession:{
+      rank:{es:'CONFESIÓN FALSA',en:'FALSE CONFESSION'},
+      text:{es:'Has aceptado la versión de otro sospechoso como verdadera. La evidencia no lo sostiene. El verdadero asesino queda libre.',
+            en:'You accepted another suspect\'s version as true. The evidence doesn\'t support it. The real killer walks free.'}
+    }
+  }
+};
 /* ============================================================================
    5. CASE REGISTRY
    ============================================================================ */
