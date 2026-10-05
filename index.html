@@ -757,6 +757,26 @@ es:{
     'Cada caso es independiente. Resolver uno no afecta al otro.'
   ],
   instTip:'CONSEJO: revisa el ARCHIVO DEL CASO con frecuencia. La cronología y las contradicciones son tus mejores herramientas.',
+  tabWitnesses:'TESTIGOS',
+  tabLies:'MENTIRAS',
+  lieButton:'MENTIR',
+  lieIntro:'Elige una mentira. El sospechoso puede creerla o no. Tú decides cómo interpretar su reacción.',
+  lieUse:'USAR',
+  lieAlreadyUsed:'Ya usaste esta mentira',
+  lieSuccess:'La mentira parece haber funcionado…',
+  lieFail:'La mentira ha fallado. El sospechoso no te cree.',
+  lieNeutral:'El sospechoso no reacciona claramente.',
+  witnessTitle:'RECONSTRUCCIÓN DE TESTIMONIOS',
+  witnessSub:'Selecciona observaciones para agruparlas. Si coinciden, encontrarás un PATRÓN.',
+  witnessPatternFound:'PATRÓN ENCONTRADO',
+  witnessInconsistent:'INCONSISTENTE',
+  witnessSelectHint:'Selecciona 2 o más observaciones para agrupar.',
+  witnessPatternUnlocked:'NUEVO PATRÓN REVELADO',
+  endingPerfect:'INVESTIGACIÓN PERFECTA',
+  endingFalseConfession:'CONFESIÓN FALSA',
+  evidenceLinked:'EVIDENCIA CONECTADA',
+  noLieYet:'Aún no puedes mentir a este sospechoso.',
+  lieResistance:'El sospechoso ya no cree tus mentiras.',
   understood:'ENTENDIDO',
 
   finalAccusation:'CONCLUSIÓN FINAL',
@@ -938,6 +958,26 @@ en:{
     'Each case is independent. Solving one does not affect the other.'
   ],
   instTip:'TIP: check the CASE FILE often. The timeline and the contradictions are your best tools.',
+  tabWitnesses:'WITNESSES',
+  tabLies:'LIES',
+  lieButton:'LIE',
+  lieIntro:'Choose a lie. The suspect may or may not believe it. You decide how to interpret their reaction.',
+  lieUse:'USE',
+  lieAlreadyUsed:'You already used this lie',
+  lieSuccess:'The lie seems to have worked…',
+  lieFail:'The lie failed. The suspect doesn\'t believe you.',
+  lieNeutral:'The suspect doesn\'t react clearly.',
+  witnessTitle:'WITNESS RECONSTRUCTION',
+  witnessSub:'Select observations to group them. If they match, you\'ll find a PATTERN.',
+  witnessPatternFound:'PATTERN FOUND',
+  witnessInconsistent:'INCONSISTENT',
+  witnessSelectHint:'Select 2 or more observations to group.',
+  witnessPatternUnlocked:'NEW PATTERN REVEALED',
+  endingPerfect:'PERFECT INVESTIGATION',
+  endingFalseConfession:'FALSE CONFESSION',
+  evidenceLinked:'EVIDENCE LINKED',
+  noLieYet:'You can\'t lie to this suspect yet.',
+  lieResistance:'The suspect no longer believes your lies.',
   understood:'UNDERSTOOD',
 
   finalAccusation:'FINAL CONCLUSION',
@@ -3667,6 +3707,7 @@ const CASE003 = {
     }
   }
 };
+
 /* ============================================================================
    4b. CASE #004 — BAÑO DE SANGRE / BLOODBATH
    ============================================================================ */
@@ -4568,12 +4609,32 @@ const CASE004 = {
 const CASES = {
   case001: CASE001,
   case002: CASE002,
-  case003: CASE003
+  case003: CASE003,
+  case004: CASE004
 };
 
 const LOCKED_CASES = [
-  { id:'case004', number:'004', title:{es:'PRÓXIMAMENTE',en:'COMING SOON'}, locked:true }
+  { id:'case005', number:'005', title:{es:'PRÓXIMAMENTE',en:'COMING SOON'}, locked:true }
 ];
+
+/* Witness observation labels for reconstruction UI */
+const OBSERVATION_LABELS = {
+  tall:{es:'ALTO',en:'TALL'},
+  medium_height:{es:'MEDIANO',en:'MEDIUM'},
+  deep_voice:{es:'VOZ GRAVE',en:'DEEP VOICE'},
+  high_voice:{es:'VOZ AGUDA',en:'HIGH VOICE'},
+  voice_change:{es:'CAMBIO DE VOZ',en:'VOICE CHANGE'},
+  silent:{es:'SILENCIOSO',en:'SILENT'},
+  hoodie:{es:'CAPUCHA',en:'HOODIE'},
+  mask:{es:'MÁSCARA',en:'MASK'},
+  reflective_face:{es:'CARA REFLECTANTE',en:'REFLECTIVE FACE'},
+  gloves:{es:'GUANTES',en:'GLOVES'},
+  big_shoes:{es:'ZAPATOS GRANDES',en:'BIG SHOES'},
+  awkward_gait:{es:'CAMINATA EXTRAÑA',en:'AWKWARD GAIT'},
+  walks_fast:{es:'CAMINA RÁPIDO',en:'WALKS FAST'},
+  small_hands:{es:'MANOS PEQUEÑAS',en:'SMALL HANDS'},
+  mismatch:{es:'INCONSISTENCIA',en:'MISMATCH'}
+};
 
 /* ============================================================================
    6. GAME STATE
@@ -4609,7 +4670,12 @@ function freshCaseState(caseId){
     ending: null,
     accused: null,
     started: false,
-    decoded: []
+    decoded: [],
+    lieAttempts: {},
+    lieResistance: {},
+    witnessGroups: [],
+    witnessPatternsFound: [],
+    endingRank: null
   };
 }
 function freshGlobalSettings(){
@@ -4866,6 +4932,166 @@ function pushLog(sid, entry){
   cs.logs[sid].push(entry);
 }
 
+/* LIE MECHANIC */
+function attemptLie(sid, lieKey){
+  const cd = currentCase(); const cs = currentCaseState();
+  if(!cd || !cs || !cd.lies) return;
+  if(!cs.lieAttempts[sid]) cs.lieAttempts[sid] = {};
+  if(!cs.lieResistance[sid]) cs.lieResistance[sid] = 0;
+
+  if(cs.lieAttempts[sid][lieKey] === 'used'){
+    toast(t('lieAlreadyUsed'), 'amber');
+    return;
+  }
+
+  const s = cs.suspects[sid];
+  const lieData = cd.lies[lieKey];
+  if(!lieData) return;
+
+  let chance = 50;
+  if(s.panic > 40) chance += 25;
+  const suspectContra = Object.keys(cd.evidence).filter(id => cd.evidence[id].contradiction && cs.evidence.includes(id)).length;
+  if(suspectContra > 0) chance += 15;
+  if(cs.lieResistance[sid] >= 30) chance -= 30;
+  if(cs.lieResistance[sid] >= 60) chance -= 60;
+  chance = Math.max(5, Math.min(95, chance));
+
+  const roll = Math.random() * 100;
+  const success = roll < chance;
+
+  const lieResponse = success ? lieData.success : lieData.fail;
+
+  pushLog(sid, {
+    kind:'lie',
+    text:{
+      es:'[MENTIRA] ' + L(lieData.name),
+      en:'[LIE] ' + L(lieData.name)
+    }
+  });
+  pushLog(sid, {
+    kind:'sys',
+    text:{es: 'Su reacción: ' + lieResponse.es, en: 'Their reaction: ' + lieResponse.en},
+    cls: success ? 'amber' : 'red'
+  });
+
+  if(success){
+    cs.lieAttempts[sid][lieKey] = 'used';
+    addPanic(sid, 18);
+    raiseSuspicion(sid, 12);
+    SFX.lead();
+    toast(t('lieSuccess'), 'amber');
+    if(sid === 'camila' && !cs.leads.includes('L2')){
+      addLead('L2');
+    }
+  } else {
+    cs.lieAttempts[sid][lieKey] = 'used';
+    cs.lieResistance[sid] += 25;
+    addScore(-5, true);
+    SFX.wrong();
+    toast(t('lieFail'), 'red');
+  }
+  saveCase(cd.id);
+  render();
+  const log = $('log'); if(log) log.scrollTop = log.scrollHeight;
+}
+
+/* WITNESS RECONSTRUCTION */
+function toggleWitnessObservation(obs){
+  const cs = currentCaseState();
+  if(!cs) return;
+  if(!cs._witnessSelection) cs._witnessSelection = [];
+  const idx = cs._witnessSelection.indexOf(obs);
+  if(idx === -1) cs._witnessSelection.push(obs);
+  else cs._witnessSelection.splice(idx, 1);
+  render();
+}
+function submitWitnessGroup(){
+  const cd = currentCase(); const cs = currentCaseState();
+  if(!cd || !cs || !cd.witnessPatterns) return;
+  const sel = cs._witnessSelection || [];
+  if(sel.length < 2){
+    toast(t('witnessSelectHint'), 'amber');
+    return;
+  }
+  let matched = null;
+  cd.witnessPatterns.forEach(wp=>{
+    const wpSet = new Set(wp.observations);
+    if(sel.length === wp.observations.length && sel.every(o=>wpSet.has(o))){
+      matched = wp;
+    }
+  });
+  if(matched){
+    if(!cs.witnessPatternsFound.includes(matched.id)){
+      cs.witnessPatternsFound.push(matched.id);
+      SFX.decode();
+      toast(t('witnessPatternFound') + ' — ' + L(matched.name), 'purple');
+      addScore(20, true);
+    }
+    cs._witnessSelection = [];
+  } else {
+    SFX.warn();
+    toast(t('witnessInconsistent'), 'red');
+    addScore(-2, true);
+    cs._witnessSelection = [];
+  }
+  saveCase(cd.id);
+  render();
+}
+function clearWitnessSelection(){
+  const cs = currentCaseState();
+  if(cs) cs._witnessSelection = [];
+  render();
+}
+function tabWitnesses(){
+  const cd = currentCase(); const cs = currentCaseState();
+  if(!cd.witnesses) return '';
+  const sel = cs._witnessSelection || [];
+  let html = '';
+  cd.witnesses.forEach(w=>{
+    html += `<div class="evcard">
+      <div class="evhead">
+        <div><div class="evnum">${esc(w.id)}</div><div class="evname">${esc(L(w.name))}</div></div>
+      </div>
+      <div class="evdesc" style="font-style:italic">${esc(L(w.text))}</div>
+    </div>`;
+  });
+  const allObs = [];
+  cd.witnesses.forEach(w=>w.observations.forEach(o=>{ if(!allObs.includes(o)) allObs.push(o); }));
+  let obsHtml = allObs.map(o=>{
+    const isSel = sel.includes(o);
+    return `<button class="qbtn ${isSel?'lead':''}" data-act="toggle-obs" data-obs="${o}" style="padding:8px 12px;min-height:auto">${isSel?'✓ ':''}${esc(L(OBSERVATION_LABELS[o]||{es:o,en:o}))}</button>`;
+  }).join('');
+  let patternsHtml = '';
+  cd.witnessPatterns.forEach(wp=>{
+    const found = cs.witnessPatternsFound.includes(wp.id);
+    if(found){
+      patternsHtml += `<div class="evcard" style="border-left-color:var(--purple)">
+        <div class="evnum" style="color:var(--purple)">${esc(wp.id)}</div>
+        <div class="evname">${esc(L(wp.name))}</div>
+        <div class="evdesc">${esc(L(wp.desc))}</div>
+      </div>`;
+    } else {
+      patternsHtml += `<div class="locked-ev">${esc(wp.id)} — ████████████ BLOQUEADO</div>`;
+    }
+  });
+  return `<div class="panel">
+    <div class="panel-title purple">${esc(t('witnessTitle'))}</div>
+    <p class="dim small" style="margin-bottom:12px">${esc(t('witnessSub'))}</p>
+    ${html}
+  </div>
+  <div class="panel">
+    <div class="panel-title">OBSERVACIONES</div>
+    <div style="display:flex;flex-wrap:wrap;gap:8px">${obsHtml}</div>
+    <div class="row mt16">
+      <button class="btn small" data-act="clear-obs">LIMPIAR</button>
+      <button class="btn small green" data-act="submit-obs">${esc(t('witnessPatternFound'))}</button>
+    </div>
+  </div>
+  <div class="panel">
+    <div class="panel-title purple">PATRONES</div>
+    ${patternsHtml}
+  </div>`;
+}
 /* ============================================================================
    9. RENDERING
    ============================================================================ */
@@ -4991,7 +5217,7 @@ function viewCaseScreen(){
 function viewDashboard(){
   const cd = currentCase(); const cs = currentCaseState();
   if(!cd || !cs) return '';
-  const tabs = [
+    const tabs = [
     ['victim', t('tabVictim')],
     ['timeline', t('tabTimeline')],
     ['evidence', t('tabEvidence')],
@@ -5001,6 +5227,9 @@ function viewDashboard(){
   if(cd.id === 'case002'){
     tabs.push(['transmissions', t('tabTransmissions')]);
     tabs.push(['surveillance', t('tabSurveillance')]);
+  }
+  if(cd.id === 'case004'){
+    tabs.push(['witnesses', t('tabWitnesses')]);
   }
   tabs.push(['leads', t('tabLeads')]);
 
@@ -5033,6 +5262,7 @@ function renderCaseTab(tab){
     case 'leads':        return tabLeads();
     case 'transmissions': return tabTransmissions();
     case 'surveillance': return tabSurveillance();
+    case 'witnesses':    return tabWitnesses();
   }
   return '';
 }
@@ -5365,7 +5595,18 @@ function viewInterrogation(){
     }
     return '';
   }).join('');
-
+  
+  const liesHtml = (cd.id === 'case004' && cd.lies)
+    ? `<div class="panel-title red" style="margin-top:14px">${esc(t('lieButton'))}</div>
+       <div class="small dim" style="margin-bottom:8px">${esc(t('lieIntro'))}</div>
+       ${Object.keys(cd.lies).map(k=>{
+         const used = cs.lieAttempts[sid] && cs.lieAttempts[sid][k] === 'used';
+         return `<button class="evbtn" ${used?'disabled style="opacity:.4"':''} data-act="lie" data-lie="${k}" data-sid="${sid}">
+           ${used?'✓ ':''}${esc(L(cd.lies[k].name))}
+         </button>`;
+       }).join('')}`
+    : '';
+  
   const pressureHint = (cd.id === 'case003')
     ? `<div class="small" style="color:var(--amber);font-family:var(--mono);letter-spacing:1px;margin-bottom:10px">${esc(t('pressureBalance'))} — ${esc(t('pressureBalanceHint'))}</div>`
     : '';
@@ -5407,6 +5648,7 @@ function viewInterrogation(){
       <div class="qlist">${qHtml}</div>
       <div class="panel-title red">${esc(t('confrontTitle'))}</div>
       <div>${evHtml}</div>
+      ${liesHtml}
     </aside>
   </div>`;
 }
@@ -5450,12 +5692,15 @@ function viewEnding(){
   const e = cs.ending;
   if(e === 'solved'){
     const sol = cd.ending.solved;
+      const isPerfect = cd.id === 'case004'
+      && cs.witnessPatternsFound && cs.witnessPatternsFound.length >= 3
+      && cs.evidence.length >= 14;
     const evList = sol.keyEvidenceIds.map(id=>{
       const ev = cd.evidence[id];
       return `<li>#${ev.num} — ${esc(L(ev.name))}</li>`;
     }).join('');
     return `
-    <div class="ending-title solved">${esc(t('caseSolved'))}</div>
+    <div class="ending-title solved">${esc(isPerfect ? t('endingPerfect') : t('caseSolved'))}</div>
     <div class="ending-sub">${esc(t('solvedSub'))}</div>
     <div class="panel">
       <div class="panel-title">${esc(t('murderer'))}</div>
@@ -5853,6 +6098,22 @@ document.addEventListener('click', function(ev){
       break;
     case 'decode':
       decodeTransmission(el.dataset.txid);
+      break;    
+    case 'lie':
+      SFX.click();
+      attemptLie(el.dataset.sid, el.dataset.lie);
+      break;
+    case 'toggle-obs':
+      SFX.click();
+      toggleWitnessObservation(el.dataset.obs);
+      break;
+    case 'submit-obs':
+      SFX.click();
+      submitWitnessGroup();
+      break;
+    case 'clear-obs':
+      SFX.click();
+      clearWitnessSelection();
       break;
     case 'accusescreen':
       SFX.click();
